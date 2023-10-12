@@ -5,7 +5,10 @@ set(SOURCE_FILES MainFrame.h MainFrame.cpp pch.h
         GameView.h
         Game.cpp
         Game.h
-
+        Sparty.h
+        Sparty.cpp
+        Item.cpp
+        Item.h
 )
 
 set(wxBUILD_PRECOMP OFF)
