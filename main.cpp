@@ -1,7 +1,13 @@
-#include <iostream>
+/**
+ * @file main.cpp
+ * @author hailey cohen
+ */
 
-int main()
-{
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
-}
+#include "pch.h"
+#include "GameApp.h"
+/**
+ *
+ * this is xw widgets GameApp
+ *
+ */
+wxIMPLEMENT_APP(GameApp);
