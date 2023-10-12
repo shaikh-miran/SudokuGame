@@ -14,7 +14,7 @@ class GameView:  public wxWindow {
 
 
 private:
-    //void OnPaint(wxPaintEvent& event);
+    void OnPaint(wxPaintEvent& event);
     Game mGame;
 
 public:

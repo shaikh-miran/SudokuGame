@@ -40,3 +40,19 @@ void GameView::Initialize(wxFrame* parent)
 //
 //    mStopWatch.Start();
 }
+
+/**
+ * Paint event, draws the window.
+ * @param event Paint event object
+ */
+void GameView::OnPaint(wxPaintEvent& event)
+{
+    wxAutoBufferedPaintDC dc(this);
+
+    wxBrush background(*wxWHITE);
+    dc.SetBackground(background);
+    dc.Clear();
+
+
+    mGame.OnDraw(&dc);
+}
