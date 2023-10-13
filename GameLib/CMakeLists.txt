@@ -5,6 +5,7 @@ set(SOURCE_FILES MainFrame.h MainFrame.cpp pch.h
         GameView.h
         Game.cpp
         Game.h
+        ids.h
 
 )
 
