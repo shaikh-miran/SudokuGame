@@ -24,8 +24,8 @@ private:
 
 public:
     void OnDraw(wxDC* dc);
+    void Load(const wxString & filename);
     Game();
-
 };
 
 #endif //CSE335PROJECTONE_PROJECT1_GAME_H

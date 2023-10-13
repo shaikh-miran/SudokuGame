@@ -7,6 +7,9 @@
 #include "MainFrame.h"
 #include "GameView.h"
 
+/**
+ * Initializes a game window.
+ */
 void MainFrame::Initialize()
 {
     Create(nullptr, wxID_ANY, L"Game", wxDefaultPosition, wxSize(1000, 800));
@@ -69,6 +72,7 @@ void MainFrame::OnExit(wxCommandEvent& event)
 
 /**
 *  "About" menu option handler
+ *  @param event
 */
 void MainFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 {
