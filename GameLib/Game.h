@@ -38,7 +38,6 @@ public:
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     Game();
     std::shared_ptr<Item> HitTest(int x, int y);
-    void Add(std::shared_ptr<Item> item);
 
 
 };

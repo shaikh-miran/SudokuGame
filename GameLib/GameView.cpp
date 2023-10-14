@@ -96,18 +96,14 @@ void GameView::OnMouseMove(wxMouseEvent &event)
     // See if an item is currently being moved by the mouse
     if (mGrabbedItem != nullptr)
     {
-        // If an item is being moved, we release the
-        // item.
+
         if (event.LeftIsDown())
         {
             mGrabbedItem = nullptr;
         }
         else
         {
-            // When the left button is released, we only continue to
-            // move it while the left button is down.
             mGrabbedItem->SetLocation(event.GetX() - mGrabOffsetX, event.GetY() - mGrabOffsetY);
-
         }
 
         // Force the screen to redraw
