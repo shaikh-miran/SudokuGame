@@ -3,7 +3,9 @@
  * @author Navya Singh
  */
 
+#include "pch.h"
 #include "Scoreboard.h"
+#include "Game.h"
 #include <memory>
 #include <wx/graphics.h>
 
@@ -60,34 +62,15 @@ void Scoreboard::ResetTimer()
  * @param gc
  * @param level
  */
-void Scoreboard::OnDraw(std::shared_ptr<wxGraphicsContext> gc)
+void Scoreboard::OnDraw(std::shared_ptr<wxGraphicsContext> gc, Game* level)
 {
 
     wxFont font(wxSize(0, ScoreboardTextSize), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
-
-
     gc->SetFont(font, FontColor);
-//    gc->SetTextForeground(wxColour(255, 255, 255)); // Text color
-//
     wxString timeString;
     timeString.Printf("%02d:%02d", minutes, seconds);
-//
-
     gc->DrawText(timeString, ScoreboardX, ScoreboardY);
-
-
 
 }
 
 
-//void Scoreboard::Draw(wxDC* dc)
-//{
-//    wxFont font(wxSize(0, ScoreboardTextSize), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
-//    dc->SetFont(font);
-//    dc->SetTextForeground(wxColour(255, 255, 255)); // Text color
-//
-//    wxString timeString;
-//    timeString.Printf("%02d:%02d", minutes, seconds);
-//
-//    dc->DrawText(timeString, ScoreboardTopLeft);
-//}

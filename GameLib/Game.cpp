@@ -65,6 +65,8 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 
     graphics->DrawBitmap(*mBackground, 0,0,pixelWidth, pixelHeight);
 
+    mScoreboard.OnDraw(graphics, this);
+
 
     graphics->PopState();
 

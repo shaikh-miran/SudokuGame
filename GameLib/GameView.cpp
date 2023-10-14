@@ -70,8 +70,8 @@ void GameView::OnPaint(wxPaintEvent& event)
     wxRect rect = GetRect();
     mGame.OnDraw(gc, rect.GetWidth(), rect.GetHeight());
 
-    // Draw the scoreboard
-    mScoreboard.OnDraw(gc);
+//    // Draw the scoreboard
+//    mScoreboard.OnDraw(gc);
 
 
 
