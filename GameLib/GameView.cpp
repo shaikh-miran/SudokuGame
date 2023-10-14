@@ -70,6 +70,9 @@ void GameView::OnPaint(wxPaintEvent& event)
     wxRect rect = GetRect();
     mGame.OnDraw(gc, rect.GetWidth(), rect.GetHeight());
 
+    // Draw the scoreboard
+    mScoreboard.OnDraw(gc);
+
 
 
 }
@@ -115,5 +118,12 @@ void GameView::OnLevel3(wxCommandEvent& event)
 {
     const wxString filename = L"levels/level3.xml";
     mGame.Load(filename);
+    Refresh();
+}
+
+
+void GameView::UpdateScoreboard(wxTimerEvent& event)
+{
+    mScoreboard.UpdateTime(event);
     Refresh();
 }

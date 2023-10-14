@@ -18,6 +18,8 @@ private:
     void OnExit(wxCommandEvent& event);
     void OnAbout(wxCommandEvent& event);
 
+    wxTimer mUpdateTimer; // Add the update timer
+
 public:
     void Initialize();
 };

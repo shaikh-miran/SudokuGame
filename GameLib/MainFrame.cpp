@@ -58,6 +58,15 @@ void MainFrame::Initialize()
 
     // Set the Menu Bar
     SetMenuBar(menuBar);
+
+
+    // Create the update timer
+    mUpdateTimer.Bind(wxEVT_TIMER, [this, gameView](wxTimerEvent& event) {
+        // Update the Scoreboard
+        gameView->UpdateScoreboard(event);
+    });
+    mUpdateTimer.Start(1000); // Start the timer to update every second
+
 }
 
 /**

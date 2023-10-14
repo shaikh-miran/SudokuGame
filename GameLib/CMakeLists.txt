@@ -6,6 +6,8 @@ set(SOURCE_FILES MainFrame.h MainFrame.cpp pch.h
         Game.cpp
         Game.h
         ids.h
+        Scoreboard.cpp
+        Scoreboard.h
 
 )
 

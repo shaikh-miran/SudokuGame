@@ -21,6 +21,7 @@ Game::Game()
 
 
 
+    mScoreboard.StartTimer();
 
 }
 
