@@ -9,6 +9,11 @@
 #define PROJECT1_PROJECT1_GAMEVIEW_H
 
 #include "Game.h"
+#include <wx/event.h>
+#include <wx/graphics.h>
+
+
+
 
 class GameView:  public wxWindow {
 

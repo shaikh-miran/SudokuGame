@@ -17,7 +17,10 @@
  */
 void GameView::Initialize(wxFrame* parent)
 {
-    Create(parent, wxID_ANY);
+    Create(parent, wxID_ANY,
+           wxDefaultPosition, wxDefaultSize,
+           wxFULL_REPAINT_ON_RESIZE);
+
     SetBackgroundStyle(wxBG_STYLE_PAINT);
 
     // Bind the OnPaint event handler
@@ -52,14 +55,23 @@ void GameView::Initialize(wxFrame* parent)
  */
 void GameView::OnPaint(wxPaintEvent& event)
 {
+    // Create a double-buffered display context
     wxAutoBufferedPaintDC dc(this);
 
-    wxBrush background(*wxWHITE);
+    // Clear the image to black
+    wxBrush background(*wxBLACK);
     dc.SetBackground(background);
     dc.Clear();
 
+    // Create a graphics context
+    auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
 
-    mGame.OnDraw(&dc);
+    // Tell the game class to draw
+    wxRect rect = GetRect();
+    mGame.OnDraw(gc, rect.GetWidth(), rect.GetHeight());
+
+
+
 }
 
 /**

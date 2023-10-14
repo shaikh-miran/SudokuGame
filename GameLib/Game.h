@@ -16,14 +16,24 @@
 
 
 #include <wx/xml/xml.h>
+#include <wx/graphics.h>
+
 
 class Game
 {
 private:
     std::unique_ptr<wxBitmap> mBackground;  ///< Background image to use
 
+    ///Scale double variable
+    double mScale;
+
+    ///Y and X offset doubles
+    double mXOffset;
+    ///Y and X offset doubles
+    double mYOffset;
+
 public:
-    void OnDraw(wxDC* dc);
+    void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     void Load(const wxString & filename);
     Game();
 };
