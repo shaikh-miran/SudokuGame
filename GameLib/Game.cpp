@@ -4,6 +4,7 @@
  */
 #include "pch.h"
 #include "Game.h"
+#include <wx/xml/xml.h>
 
 using namespace std;
 
@@ -37,6 +38,17 @@ void Game::OnDraw(wxDC *dc)
 //    {
 //        item->Draw(dc);
 //    }
+}
 
+void Game::Load(const wxString & filename) {
+    wxXmlDocument inputDoc;
+    if(!inputDoc.Load(filename))
+    {
+        wxMessageBox(L"Error loading file: check levels folder.");
+        return;
+    }
 
+    /// Parse through inputDoc
+    /// Clear any progress, anything on the board
+    /// delete the current level, create a new level
 }

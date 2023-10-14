@@ -18,8 +18,11 @@ private:
     Game mGame;
 
 public:
-
     void Initialize(wxFrame*);
+    void OnLevel0(wxCommandEvent& event);
+    void OnLevel1(wxCommandEvent& event);
+    void OnLevel2(wxCommandEvent& event);
+    void OnLevel3(wxCommandEvent& event);
 };
 
 #endif //PROJECT1_PROJECT1_GAMEVIEW_H
