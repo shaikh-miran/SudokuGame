@@ -6,11 +6,12 @@
 #include "pch.h"
 #include "GameApp.h"
 #include <Game.h>
+#include <MainFrame.h>
+
 #ifdef WIN32
 #define _CRTDBG_MAP_ALLOC
 #include <cstdlib>
 #include <crtdbg.h>
-#include <MainFrame.h>
 #endif
 
 /**
