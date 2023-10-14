@@ -9,6 +9,8 @@ set(SOURCE_FILES MainFrame.h MainFrame.cpp pch.h
         Sparty.cpp
         Item.cpp
         Item.h
+        Scoreboard.cpp
+        Scoreboard.h
 )
 
 set(wxBUILD_PRECOMP OFF)
