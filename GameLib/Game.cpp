@@ -4,6 +4,7 @@
  */
 #include "pch.h"
 #include "Game.h"
+#include <wx/xml/xml.h>
 
 using namespace std;
 
