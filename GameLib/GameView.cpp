@@ -8,9 +8,12 @@
 #include "GameView.h"
 #include "ids.h"
 
+
+#include "Sparty.h"
+
 #include <wx/dcclient.h>
 #include <wx/dcbuffer.h>
-
+#include <string>
 /**
  * Initialize the aquarium view class.
  *
@@ -26,11 +29,20 @@ void GameView::Initialize(wxFrame* parent)
     // Bind the OnPaint event handler
     Bind(wxEVT_PAINT, &GameView::OnPaint, this);
 
+
     // Bind options to load different levels
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevel0, this, IDM_LEVEL_0);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevel1, this, IDM_LEVEL_1);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevel2, this, IDM_LEVEL_2);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevel3, this, IDM_LEVEL_3);
+
+    Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);
+    Bind(wxEVT_LEFT_UP, &GameView::OnLeftUp, this);
+    Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
+    Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftClick,this);
+
+
+//    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnAddSparty, this, IDM_ADDSPARTY);
 
 //    Bind(wxEVT_LEFT_DOWN, &AquariumView::OnLeftDown, this);
 //    Bind(wxEVT_LEFT_UP, &AquariumView::OnLeftUp, this);
@@ -48,7 +60,6 @@ void GameView::Initialize(wxFrame* parent)
 //
 //    mStopWatch.Start();
 }
-
 /**
  * Paint event, draws the window.
  * @param event Paint event object
@@ -58,11 +69,12 @@ void GameView::OnPaint(wxPaintEvent& event)
     // Create a double-buffered display context
     wxAutoBufferedPaintDC dc(this);
 
+
     // Clear the image to black
+
     wxBrush background(*wxBLACK);
     dc.SetBackground(background);
     dc.Clear();
-
     // Create a graphics context
     auto gc = std::shared_ptr<wxGraphicsContext>(wxGraphicsContext::Create(dc));
 
@@ -126,4 +138,59 @@ void GameView::UpdateScoreboard(wxTimerEvent& event)
 {
     mScoreboard.UpdateTime(event);
     Refresh();
+}
+
+/**
+ * Handle the left mouse button down event
+ * @param event
+ */
+void GameView::OnLeftDown(wxMouseEvent &event)
+{
+    mGrabbedItem = mGame.HitTest(event.GetX(), event.GetY());
+}
+
+/**
+* Handle the left mouse button down event
+* @param event
+*/
+void GameView::OnLeftUp(wxMouseEvent &event)
+{
+    OnMouseMove(event);
+}
+
+/**
+* Handle the left mouse button down event
+* @param event
+*/
+void GameView::OnMouseMove(wxMouseEvent &event)
+{
+    // See if an item is currently being moved by the mouse
+    if (mGrabbedItem != nullptr)
+    {
+
+        if (event.LeftIsDown())
+        {
+            mGrabbedItem = nullptr;
+        }
+        else
+        {
+            mGrabbedItem->SetLocation(event.GetX() - mGrabOffsetX, event.GetY() - mGrabOffsetY);
+        }
+
+        // Force the screen to redraw
+        Refresh();
+    }
+}
+void GameView::OnLeftClick(wxMouseEvent &event)
+{
+    // Check if an item was clicked
+    mGrabbedItem = mGame.HitTest(event.GetX(), event.GetY());
+
+    // If an item is clicked, store its position relative to the mouse
+    if (mGrabbedItem != nullptr)
+    {
+        mGrabOffsetX = event.GetX() - mGrabbedItem->GetX();
+        mGrabOffsetY = event.GetY() - mGrabbedItem->GetY();
+    }
+
 }

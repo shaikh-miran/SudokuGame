@@ -5,9 +5,16 @@ set(SOURCE_FILES MainFrame.h MainFrame.cpp pch.h
         GameView.h
         Game.cpp
         Game.h
+
         ids.h
         Scoreboard.cpp
         Scoreboard.h
+
+        Sparty.cpp
+        Sparty.h
+        Item.cpp
+        Item.h
+
 
 )
 
