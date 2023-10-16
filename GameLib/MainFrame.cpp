@@ -159,6 +159,9 @@ void MainFrame::OnExit(wxCommandEvent& event)
 //    CreateStatusBar( 1, wxSTB_SIZEGRIP, wxID_ANY );
 
 
+
+
+
 /**
 *  "About" menu option handler
  *  @param event

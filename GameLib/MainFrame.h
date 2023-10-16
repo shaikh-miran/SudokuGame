@@ -8,7 +8,7 @@
  *
  *
  */
-
+#include <iostream>
 #ifndef PROJECT1_PROJECT1_GAMELIB_MAINFRAME_H
 #define PROJECT1_PROJECT1_GAMELIB_MAINFRAME_H
 
@@ -32,3 +32,4 @@ public:
 };
 
 #endif //PROJECT1_PROJECT1_GAMELIB_MAINFRAME_H
+
