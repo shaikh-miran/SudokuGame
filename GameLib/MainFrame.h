@@ -4,7 +4,7 @@
  *
  *
  */
-
+#include <iostream>
 #ifndef PROJECT1_PROJECT1_GAMELIB_MAINFRAME_H
 #define PROJECT1_PROJECT1_GAMELIB_MAINFRAME_H
 class GameView;
@@ -23,6 +23,8 @@ private:
 public:
     void Initialize();
 
+
 };
 
 #endif //PROJECT1_PROJECT1_GAMELIB_MAINFRAME_H
+
