@@ -108,7 +108,6 @@ void MainFrame::Initialize()
 //    CreateStatusBar( 1, wxSTB_SIZEGRIP, wxID_ANY );
 
 
-    std::cout << "Hello" << std::endl;
 }
 /**
 * Exit menu option handlers
