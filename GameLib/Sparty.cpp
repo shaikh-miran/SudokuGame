@@ -5,7 +5,9 @@
 #include "pch.h"
 #include "Sparty.h"
 #include <string>
+
 #include "Game.h"
+
 using namespace std;
 
 const int InitialX = 200;
@@ -23,7 +25,9 @@ Sparty::Sparty(Game *game) : Item(game, SpartyImage)
     mSpartyMouthBitmap = std::make_unique<wxBitmap>(*mSpartyMouthImage);
 }
 void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
+
 //put sparty mouth open here
+
 {
     double wid = mSpartyImage->GetWidth();
     double hit = mSpartyImage->GetHeight();
@@ -46,7 +50,11 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     graphics->DrawBitmap(*mSpartyImage, 0, 0, wid, hit);
 
     graphics->DrawBitmap(*mSpartyMouthBitmap, int(wid - wid1) / 2, int(hit - hit1) / 2, wid1, hit1);
+
     // hailey: this should be 0 and 0, not int(wid - wid1) / 2 and int(hit - hit1) / 2
+
+
+
     graphics->PopState();
 
 
@@ -80,8 +88,5 @@ bool Sparty::HitTest(int x, int y)
     // part of the image
     return !mSpartyImage->IsTransparent((int)testX, (int)testY);
 }
-
-
-
 
 

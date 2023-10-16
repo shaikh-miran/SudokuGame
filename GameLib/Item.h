@@ -8,6 +8,7 @@
 #ifndef PROJECT1_GAMELIB_ITEM_H
 #define PROJECT1_GAMELIB_ITEM_H
 
+
 class Game;
 class Item
 {
@@ -19,12 +20,17 @@ private:
     double  mX = 0;     ///< X location for the center of the item
     double  mY = 0;     ///< Y location for the center of the item
 
+
     std::unique_ptr<wxImage> mItemImage;
     std::unique_ptr<wxBitmap> mItemBitmap;
     std::unique_ptr<Item> mItems;
 
 protected:
     Item(Game *game, const std::wstring &filename);
+
+protected:
+    Item(Game *game);
+
 
 public:
     virtual ~Item();
@@ -64,6 +70,7 @@ public:
      * Draw this item
      * @param dc Device context to draw on
      */
+
     virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics) {};
 
     /**
@@ -72,7 +79,9 @@ public:
      * @param y Y location on the aquarium to test in pixels
      * @return true if clicked on
      */
+
     virtual bool HitTest(int x, int y);
+
 };
 
 

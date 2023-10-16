@@ -17,6 +17,10 @@ set(SOURCE_FILES MainFrame.h MainFrame.cpp pch.h
         XRay.cpp
         XRay.h
 
+        Scoreboard.cpp
+        Scoreboard.h
+        ids.h
+        ids.cpp
 
 )
 

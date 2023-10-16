@@ -1,6 +1,10 @@
 /**
  * @file MainFrame.h
+
  * @author haile, maui
+
+ * @author haile
+
  *
  *
  */
@@ -15,13 +19,16 @@ class MainFrame :  public wxFrame {
 private:
     GameView * mGameView;
 
-    void OnExit(wxCommandEvent& event);
-    void OnAbout(wxCommandEvent& event);
 
     wxTimer mUpdateTimer; // Add the update timer
 
 public:
     void Initialize();
+
+
+    void OnExit(wxCommandEvent& event);
+    void OnAbout(wxCommandEvent& event);
+
 };
 
 #endif //PROJECT1_PROJECT1_GAMELIB_MAINFRAME_H

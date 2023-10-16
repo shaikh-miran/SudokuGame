@@ -1,18 +1,27 @@
 /**
  * @file MainFrame.cpp
+
  * @author haile, maui
+
+ * @author haile
+
  */
 #include "pch.h"
 #include "ids.h"
 #include "MainFrame.h"
 #include "GameView.h"
 
+
 /**
  * Initializes a game window.
  */
 void MainFrame::Initialize()
 {
-    Create(nullptr, wxID_ANY, L"Game", wxDefaultPosition, wxSize(1000, 800));
+    Create(nullptr, wxID_ANY, L"Game", wxDefaultPosition,  wxSize( 1000,800 ));
+
+    // Create a sizer that will lay out child windows vertically
+    // one above each other
+    auto sizer = new wxBoxSizer( wxVERTICAL );
 
 
     // Create the view class object as a child of MainFrame
@@ -38,7 +47,11 @@ void MainFrame::Initialize()
 
     // Add options to fileMenu dropdown
     fileMenu->Append(IDM_SOLVE, "&Solve", "please help me i need help waahah");
+
         /// ^^^ no solve implementation yet
+
+    /// ^^^ no solve implementation yet
+
     fileMenu->Append(wxID_EXIT, "&Exit\tAlt-X", "Quit this program");
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
 
@@ -48,7 +61,11 @@ void MainFrame::Initialize()
     levelMenu->Append(IDM_LEVEL_1, L"&Level 1", "Change levels");
     levelMenu->Append(IDM_LEVEL_2, L"&Level 2", "Change levels");
     levelMenu->Append(IDM_LEVEL_3, L"&Level 3", "Change levels");
+
         /// ^^^ no level load implementations yet
+
+    /// ^^^ no level load implementations yet
+
 
 
     // Add options to helpMenu
@@ -79,17 +96,6 @@ void MainFrame::OnExit(wxCommandEvent& event)
     Close(true);
 }
 
-/**
-*  "About" menu option handler
- *  @param event
-*/
-void MainFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
-{
-    wxMessageBox(L"Built by Prometheus",
-                 L"Action Sudoku",
-                 wxOK | wxCENTRE,
-                 this);
-}
 
 
 // AQUARIUM CODE blub blub bbul
@@ -106,6 +112,17 @@ void MainFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 
 // Layout (place) the child windows.
 // Layout();
+
+
+    // Add it to the sizer
+   // sizer->Add(gameView,1, wxEXPAND | wxALL );
+
+    // Set the sizer for this frame
+    //SetSizer( sizer );
+
+    // Layout (place) the child windows.
+   // Layout();
+
 
 //    auto menuBar = new wxMenuBar( );
 //
@@ -136,4 +153,20 @@ void MainFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
 //
 //    SetMenuBar( menuBar );
 //
+
 //    CreateStatusBar( 1, wxSTB_SIZEGRIP, wxID_ANY );
+
+//    CreateStatusBar( 1, wxSTB_SIZEGRIP, wxID_ANY );
+
+
+/**
+*  "About" menu option handler
+ *  @param event
+*/
+void MainFrame::OnAbout(wxCommandEvent& WXUNUSED(event))
+{
+    wxMessageBox(L"Built by Prometheus",
+                 L"Action Sudoku",
+                 wxOK | wxCENTRE,
+                 this);
+}

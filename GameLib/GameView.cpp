@@ -5,12 +5,18 @@
 
 #include "pch.h"
 
+
 #include "GameView.h"
 #include "ids.h"
 
 
 #include "Sparty.h"
 #include "XRay.h"
+
+
+#include "ids.h"
+#include "GameView.h"
+#include "Sparty.h"
 
 #include <wx/dcclient.h>
 #include <wx/dcbuffer.h>
@@ -21,6 +27,7 @@
  */
 void GameView::Initialize(wxFrame* parent)
 {
+
     Create(parent, wxID_ANY,
            wxDefaultPosition, wxDefaultSize,
            wxFULL_REPAINT_ON_RESIZE);
@@ -49,12 +56,16 @@ void GameView::Initialize(wxFrame* parent)
 //    Bind(wxEVT_LEFT_UP, &AquariumView::OnLeftUp, this);
 //    Bind(wxEVT_MOTION, &AquariumView::OnMouseMove, this);
 //    Bind(wxEVT_TIMER, &AquariumView::AddTimer, this);
+
 //
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &AquariumView::OnAddFishBetaFish, this, IDM_ADDFISHBETA);
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &AquariumView::OnAddcatfishFish, this, IDM_ADDcatfish);
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &AquariumView::OnAddcarpFish, this, IDM_ADDcarp);
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &AquariumView::OnAddDecorCastle, this, IDM_ADDDecorCastle);
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &AquariumView::OnFileSaveAs, this, wxID_SAVEAS);
+
+//    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &AquariumView::OnFileOpen, this, wxID_OPEN);
+
 //
 //    mTimer.SetOwner(this);
 //    mTimer.Start(FrameDuration);
@@ -67,11 +78,13 @@ void GameView::Initialize(wxFrame* parent)
  */
 void GameView::OnPaint(wxPaintEvent& event)
 {
+
     // Create a double-buffered display context
     wxAutoBufferedPaintDC dc(this);
 
 
     // Clear the image to black
+
 
     wxBrush background(*wxBLACK);
     dc.SetBackground(background);
@@ -82,13 +95,12 @@ void GameView::OnPaint(wxPaintEvent& event)
     // Tell the game class to draw
     wxRect rect = GetRect();
     mGame.OnDraw(gc, rect.GetWidth(), rect.GetHeight());
-
 //    // Draw the scoreboard
 //    mScoreboard.OnDraw(gc);
-
-
-
 }
+
+
+
 
 /**
  * Handler for level 0 option in file menu
@@ -135,6 +147,7 @@ void GameView::OnLevel3(wxCommandEvent& event)
 }
 
 
+
 void GameView::UpdateScoreboard(wxTimerEvent& event)
 {
     mScoreboard.UpdateTime(event);
@@ -147,6 +160,7 @@ void GameView::UpdateScoreboard(wxTimerEvent& event)
  */
 void GameView::OnLeftDown(wxMouseEvent &event)
 {
+    // Urgent: Sparty should move on click, not drag. The reason why both items are moving is because of mGrabbedItem
     mGrabbedItem = mGame.HitTest(event.GetX(), event.GetY());
 }
 
@@ -169,7 +183,12 @@ void GameView::OnMouseMove(wxMouseEvent &event)
     if (mGrabbedItem != nullptr)
     {
 
+
         if (event.LeftIsDown())
+
+//
+        if (event.GetX() == 72 && event.GetY() == 24)
+
         {
             mGrabbedItem = nullptr;
         }

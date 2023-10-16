@@ -9,6 +9,7 @@
 #ifndef CSE335PROJECTONE_PROJECT1_GAME_H
 #define CSE335PROJECTONE_PROJECT1_GAME_H
 #include "pch.h"
+
 #include "Scoreboard.h"
 #include <vector>
 #include "XRay.h"
@@ -23,6 +24,14 @@
 
 
 
+#include <vector>
+#include<memory> //shared_ptr
+#include <random>
+#include "Item.h"
+#include "Scoreboard.h"
+
+
+#include <wx/xml/xml.h>
 class Item;
 class Game
 {
@@ -34,10 +43,15 @@ private:
     /// All of the items to populate our aquarium
     std::vector<std::shared_ptr<Item>> mItems;
 
+
+
+
     ///Y and X offset doubles
     double mXOffset;
     ///Y and X offset doubles
     double mYOffset;
+
+    Scoreboard mScoreboard;
 
 
 public:
@@ -48,11 +62,14 @@ public:
 
 //    /// All of the items to populate our aquarium
 //    std::vector<std::shared_ptr<Item>> mItems;
-    Scoreboard mScoreboard;
+
 
 
 public:
     void Load(const wxString & filename);
+
+
+
 };
 
 #endif //CSE335PROJECTONE_PROJECT1_GAME_H

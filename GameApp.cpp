@@ -5,7 +5,6 @@
 
 #include "pch.h"
 #include "GameApp.h"
-#include "MainFrame.h"
 #include <Game.h>
 #include <MainFrame.h>
 
