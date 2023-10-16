@@ -10,6 +10,7 @@
 
 
 #include "Sparty.h"
+#include "XRay.h"
 
 #include <wx/dcclient.h>
 #include <wx/dcbuffer.h>

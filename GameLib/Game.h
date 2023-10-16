@@ -11,6 +11,7 @@
 #include "pch.h"
 #include "Scoreboard.h"
 #include <vector>
+#include "XRay.h"
 #include<memory> //shared_ptr
 #include <random>
 #include "Item.h"

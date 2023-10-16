@@ -14,6 +14,8 @@ set(SOURCE_FILES MainFrame.h MainFrame.cpp pch.h
         Sparty.h
         Item.cpp
         Item.h
+        XRay.cpp
+        XRay.h
 
 
 )

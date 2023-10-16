@@ -39,7 +39,7 @@ public:
     Sparty(Game *game);
 
     void Draw( std::shared_ptr<wxGraphicsContext> graphics) override;
-    bool HitTest(int x, int y) override;
+    bool HitTest(int x, int y);
 
 };
 

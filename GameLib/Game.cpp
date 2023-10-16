@@ -6,19 +6,27 @@
 #include "Game.h"
 
 #include <wx/xml/xml.h>
+#include "XRay.h"
+#include <vector>
 #include <memory>
 
-
+using namespace std;
 
 #include "Sparty.h"
 #include "Item.h"
-using namespace std;
 
 /// Initial sparty X location
 const int InitialX = 100;
 
 /// Initial sparty Y location
 const int InitialY = 100;
+
+/// Initial XRay X location
+const int XRInitialX = 100;
+
+/// Initial XRay Y location
+const int XRInitialY = 100;
+
 
 /**
  * Game Constructor
@@ -29,9 +37,16 @@ Game::Game()
     mBackground = make_unique<wxBitmap>(
         L"images/background.png", wxBITMAP_TYPE_ANY);
 
-
-
     mScoreboard.StartTimer();
+
+    //XRay implementation
+
+    std::shared_ptr<XRay> xray = make_shared<XRay>(this);
+    xray->SetLocation(XRInitialX, XRInitialY);
+
+
+
+    mItems.push_back(xray);
 
 }
 
@@ -92,13 +107,16 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     {
         mYOffset = (double)((height - pixelHeight * mScale) / 2.0);
     }
-
+    for (auto item : mItems){
+        item->Draw(graphics);
+    }
     graphics->PopState();
 
 }
 
 void Game::Load(const wxString & filename) {
     wxXmlDocument inputDoc;
+    //<level width="20" height="15" tilewidth="48" tileheight="48">
     if(!inputDoc.Load(filename))
     {
         wxMessageBox(L"Error loading file: check levels folder.");
@@ -143,3 +161,5 @@ std::shared_ptr<Item> Game::HitTest(int x, int y)
 
     return  nullptr;
 }
+
+//tileheight and tilewidth setter -> <level width="20" height="15" tilewidth="48" tileheight="48">
