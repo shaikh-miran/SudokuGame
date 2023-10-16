@@ -59,17 +59,11 @@ public:
     Game();
     std::shared_ptr<Item> HitTest(int x, int y);
 
+    void XmlSet(wxXmlNode *node);
+    void Load(const wxString & filename);
 
 //    /// All of the items to populate our aquarium
 //    std::vector<std::shared_ptr<Item>> mItems;
-
-
-
-public:
-    void Load(const wxString & filename);
-
-
-
 };
 
 #endif //CSE335PROJECTONE_PROJECT1_GAME_H
