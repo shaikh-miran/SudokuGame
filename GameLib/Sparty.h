@@ -33,10 +33,6 @@ private:
 
 
 public:
-
-
-
-
     /// Default constructor (disabled)
     Sparty() = delete;
 
@@ -48,7 +44,7 @@ public:
 
     Sparty(Game *game);
 
-    void Update(double elapsed);
+    void Update(double elapsed) override;
 
     void Draw( std::shared_ptr<wxGraphicsContext> graphics) override;
     void DrawTop( std::shared_ptr<wxGraphicsContext> graphics);

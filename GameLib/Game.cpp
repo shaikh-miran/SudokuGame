@@ -12,6 +12,7 @@
 #include "Sparty.h"
 #include "Item.h"
 #include "GameView.h"
+#include "LoadXML.h"
 
 
 /// Initial sparty X location
@@ -132,76 +133,23 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 }
 
 /**
- * Handle a category (xml node). Each category can have many entries (children), so this function handles those.
- * @param node XML node
- */
-void Game::XmlSet(wxXmlNode * category)
-{
-    /// Get name of category
-    auto categoryName = category->GetName();
-
-    /// Handle different category names
-    if (categoryName == "declarations")
-    {
-
-    }
-    else if (categoryName == "game")
-    {
-
-    }
-    else if (categoryName == "items")
-    {
-
-    }
-
-    /// Tester code that runs through all of the nodes and displays them. Implement this into the if statements
-    /// to handle specific category types.
-    /// BEGIN TESTER CODE
-
-    auto message = categoryName + "\n";
-
-    /// Loop through all entries
-    auto entry = category->GetChildren();
-    for ( ; entry; entry = entry->GetNext())
-    {
-        auto entryName = entry->GetName();
-        message += entryName + " ";
-    }
-
-    wxMessageBox(message);
-
-    /// END TESTER CODE
-}
-
-/**
- * Load a level xml file given a file name
- * @param filename
+ * Start the level loading process, given the desired level filename
+ * @param filename name of the level file (ex. level0.xml)
  */
 void Game::Load(const wxString & filename)
 {
+    /// Instantiate an xml document
     wxXmlDocument xmlDoc;
-    //<level width="20" height="15" tilewidth="48" tileheight="48">
+
+    /// Load xml file based on the filename (errors if not found in directory)
     if(!xmlDoc.Load(filename))
     {
         wxMessageBox(L"Error loading file: check levels folder.");
         return;
     }
 
-    /// Temporary message, delete later lolz
-    wxMessageBox("Reading selected file... YIPPEEEEEE");
-
-    /// Get the XML document root node
-    auto root = xmlDoc.GetRoot();
-
-    /// Get first child (category) of the xmlDoc
-    auto category = root->GetChildren();
-
-    /// Loop through all of the categories in the xmlDoc
-    for ( ; category; category = category->GetNext())
-    {
-        /// Handle the category node
-        XmlSet(category);
-    }
+    /// Offload loading process to LoadXML object
+    mLevel->Load(xmlDoc);
 }
 
 /**
