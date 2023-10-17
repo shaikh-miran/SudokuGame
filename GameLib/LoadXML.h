@@ -1,5 +1,5 @@
 /**
- * @file ParseXML.h
+ * @file LoadXML.h
  * @author haile
  *
  *
@@ -8,14 +8,12 @@
 #ifndef PROJECT1_PROJECT1_GAMELIB_PARSEXML_H
 #define PROJECT1_PROJECT1_GAMELIB_PARSEXML_H
 
-class ParseXML
+class LoadXML
 {
 private:
 
 public:
-    explicit ParseXML(wxXmlNode *node);
-
-
+    void Load(wxXmlDocument xmlDoc);
 };
 
 #endif //PROJECT1_PROJECT1_GAMELIB_PARSEXML_H

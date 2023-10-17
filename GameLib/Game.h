@@ -33,6 +33,7 @@
 
 
 #include <wx/xml/xml.h>
+#include "LoadXML.h"
 class Item;
 class Game
 {
@@ -60,6 +61,9 @@ private:
 
     std::shared_ptr<Sparty> mSparty;
 
+    /// LoadXML object, handles the loading of the level
+    LoadXML * mLevel;
+
 
 public:
 
@@ -73,8 +77,6 @@ public:
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     Game();
     std::shared_ptr<Item> HitTest(int x, int y);
-
-    void XmlSet(wxXmlNode *node);
     void Load(const wxString & filename);
     void OnLeftDown(int x, int y);
 
