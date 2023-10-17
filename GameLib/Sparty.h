@@ -50,7 +50,7 @@ public:
     void DrawTop( std::shared_ptr<wxGraphicsContext> graphics);
     void DrawBottom( std::shared_ptr<wxGraphicsContext> graphics);
 
-    bool HitTest(int x, int y);
+    bool HitTest(int x, int y) override;
 
     /// moving mouth
     void SetMouthPivot(const wxPoint& pivot);
