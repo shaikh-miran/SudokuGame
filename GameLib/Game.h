@@ -44,6 +44,10 @@ private:
     /// All of the items to populate our aquarium
     std::vector<std::shared_ptr<Item>> mItems;
 
+    double mClickY = 200;
+    double mClickX = 200;
+
+
 
 
 
@@ -58,12 +62,23 @@ private:
 
 
 public:
+
+    double GetClickX(){return mClickX;}
+    double GetClickY(){return mClickY;}
+
+    void Update(double elapsed);
+
+
+
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     Game();
     std::shared_ptr<Item> HitTest(int x, int y);
 
     void XmlSet(wxXmlNode *node);
     void Load(const wxString & filename);
+    void OnLeftDown(int x, int y);
+
+
 
 //    /// All of the items to populate our aquarium
 //    std::vector<std::shared_ptr<Item>> mItems;

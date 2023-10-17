@@ -10,6 +10,7 @@
 #include <vector>
 #include <memory>
 #include "Sparty.h"
+#include "Item.h"
 #include "GameView.h"
 
 
@@ -224,7 +225,33 @@ std::shared_ptr<Item> Game::HitTest(int x, int y)
 
 }
 
-//tileheight and tilewidth setter -> <level width="20" height="15" tilewidth="48" tileheight="48">
+void Game::OnLeftDown(int x, int y)
+{
+    mClickY = (y - mYOffset) / mScale;
+    mClickX = (x - mXOffset) / mScale;
+
+    for (auto item : mItems)
+    {
+        if (item->isSpart)
+        {
+            double isSpartY = (item->GetY()-mYOffset) / mScale;
+            double isSpartX = (item->GetX()-mXOffset) / mScale;
+
+            double newSpeedX = mClickX - isSpartX;
+            double newSpeedY = mClickY - isSpartY;
+
+            item->SetXSpeed(newSpeedX);
+            item->SetYSpeed(newSpeedY);
+        }
+    }
+}
 
 
 
+void Game::Update(double elapsed)
+{
+    for (auto item : mItems)
+    {
+        item->Update(elapsed);
+    }
+}

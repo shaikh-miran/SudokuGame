@@ -36,6 +36,9 @@ private:
 
     Scoreboard mScoreboard; // Include the Scoreboard instance
 
+    wxStopWatch mStopwatch;
+    long mTime = 0;
+
 public:
     void OnLevel0(wxCommandEvent& event);
     void OnLevel1(wxCommandEvent& event);
@@ -61,7 +64,6 @@ public:
     void OnLeftUp(wxMouseEvent &event);
     void OnMouseMove(wxMouseEvent &event);
     void OnLeftClick(wxMouseEvent& event);
-
 
 
 

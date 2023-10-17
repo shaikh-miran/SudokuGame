@@ -34,7 +34,7 @@ public:
     /// Assignment operator
     void operator=(const XRay &) = delete;
     
-    
+    void Update(double elapsed){};
 
 };
 

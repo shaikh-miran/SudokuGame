@@ -50,7 +50,7 @@ void GameView::Initialize(wxFrame* parent)
     Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);
     Bind(wxEVT_LEFT_UP, &GameView::OnLeftUp, this);
     Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
-    Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftClick,this);
+    //Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftClick,this);
     //mouth moving
     Bind(wxEVT_KEY_DOWN, &GameView::SpaceBarPressed, this);
 
@@ -100,6 +100,13 @@ void GameView::OnPaint(wxPaintEvent& event)
     // Tell the game class to draw
     wxRect rect = GetRect();
     mGame.OnDraw(gc, rect.GetWidth(), rect.GetHeight());
+
+    auto newTime = mStopwatch.Time();
+    auto elapsed = (double)(newTime - mTime)*0.001;
+    mTime = newTime;
+
+    mGame.Update(elapsed);
+
 //    // Draw the scoreboard
 //    mScoreboard.OnDraw(gc);
 }
@@ -165,8 +172,9 @@ void GameView::UpdateScoreboard(wxTimerEvent& event)
  */
 void GameView::OnLeftDown(wxMouseEvent &event)
 {
-    // Urgent: Sparty should move on click, not drag. The reason why both items are moving is because of mGrabbedItem
-    mGrabbedItem = mGame.HitTest(event.GetX(), event.GetY());
+
+    mGame.OnLeftDown(event.GetX(), event.GetY());
+
 }
 
 /**
@@ -184,28 +192,28 @@ void GameView::OnLeftUp(wxMouseEvent &event)
 */
 void GameView::OnMouseMove(wxMouseEvent &event)
 {
-    // See if an item is currently being moved by the mouse
-    if (mGrabbedItem != nullptr)
-    {
-
-
-        if (event.LeftIsDown())
-
+//    // See if an item is currently being moved by the mouse
+//    if (mGrabbedItem != nullptr)
+//    {
 //
-        if (event.GetX() == 72 && event.GetY() == 24)
-
-        {
-            mGrabbedItem = nullptr;
-        }
-        else
-        {
-            mGrabbedItem->SetLocation(event.GetX() - mGrabOffsetX, event.GetY() - mGrabOffsetY);
-        }
-
-        // Force the screen to redraw
-        Refresh();
+//
+//        if (event.LeftIsDown())
+//
+////
+//        if (event.GetX() == 72 && event.GetY() == 24)
+//
+//        {
+//            mGrabbedItem = nullptr;
+//        }
+//        else
+//        {
+//            mGrabbedItem->SetLocation(event.GetX() - mGrabOffsetX, event.GetY() - mGrabOffsetY);
+//        }
+//
+//        // Force the screen to redraw
+//        Refresh();
     }
-}
+//}
 void GameView::OnLeftClick(wxMouseEvent &event)
 {
     // Check if an item was clicked

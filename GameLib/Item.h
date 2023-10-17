@@ -13,6 +13,10 @@ class Game;
 class Item
 {
 private:
+
+    double mXSpeed = 0;
+    double mYSpeed = 0;
+
     /// The aquarium this item is contained in
     Game *mGame;
 
@@ -28,11 +32,24 @@ private:
 protected:
     Item(Game *game, const std::wstring &filename);
 
-protected:
     Item(Game *game);
 
 
 public:
+
+    virtual void Update(double elapsed) = 0;
+
+    Game *GetGame() {return mGame;}
+
+    double GetSpeedX() {return mXSpeed;}
+    double GetSpeedY() {return mYSpeed;}
+
+    void SetXSpeed(double newXSpeed) {mXSpeed = newXSpeed;}
+    void SetYSpeed(double newYSpeed) {mYSpeed = newYSpeed;}
+
+
+    bool isSpart = false;
+
     virtual ~Item();
 
     /// Default constructor (disabled)

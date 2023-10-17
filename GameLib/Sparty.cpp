@@ -5,7 +5,7 @@
 #include "pch.h"
 #include "Sparty.h"
 #include <string>
-
+#include "Item.h"
 #include "Game.h"
 
 using namespace std;
@@ -13,6 +13,8 @@ using namespace std;
 const int InitialX = 200;
 
 const int InitialY = 200;
+
+const double MaxSpeed = 400.00;
 
 const wstring SpartyImage = L"images/sparty-1.png";
 const wstring SpartyMouthImage =  L"images/sparty-2.png";
@@ -200,6 +202,39 @@ of time that has elapsed.
 */
 void Sparty::Update(double elapsed)
 {
+    Game *game = GetGame();
+    int getClickX = game->GetClickX();
+    int getClickY = game->GetClickY();
 
+    if(GetX() == getClickX && GetY() == getClickY)
+    {
+        SetXSpeed(0);
+        SetYSpeed(0);
+    }
+    else
+    {
+        double deltaX = getClickX - GetX();
+        double deltaY = getClickY - GetY();
+        double distance = sqrt(deltaX * deltaX + deltaY * deltaY);
+
+        double dirX = deltaX / distance;
+        double dirY = deltaY / distance;
+
+        if(distance <= MaxSpeed * elapsed)
+        {
+            SetLocation(getClickX, getClickY);
+            SetXSpeed(0);
+            SetYSpeed(0);
+        }
+        else
+        {
+            SetXSpeed(MaxSpeed * dirX);
+            SetYSpeed(MaxSpeed * dirY);
+
+            SetLocation(GetX() + GetSpeedX() * elapsed, GetY() + GetSpeedY() * elapsed);
+
+
+        }
+    }
 }
 
