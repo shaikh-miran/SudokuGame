@@ -21,6 +21,9 @@
 #include <wx/dcclient.h>
 #include <wx/dcbuffer.h>
 #include <string>
+
+using namespace std;
+
 /**
  * Initialize the aquarium view class.
  *
@@ -48,6 +51,8 @@ void GameView::Initialize(wxFrame* parent)
     Bind(wxEVT_LEFT_UP, &GameView::OnLeftUp, this);
     Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
     Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftClick,this);
+    //mouth moving
+    Bind(wxEVT_KEY_DOWN, &GameView::SpaceBarPressed, this);
 
 
 //    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnAddSparty, this, IDM_ADDSPARTY);
@@ -214,3 +219,20 @@ void GameView::OnLeftClick(wxMouseEvent &event)
     }
 
 }
+
+///moving mouth
+/**
+* Handle the space bar event
+* @param event
+*/
+void GameView::SpaceBarPressed(wxKeyEvent &event)
+{
+    if (event.GetKeyCode() == WXK_SPACE)
+    {
+        std::shared_ptr<Sparty> sparty = mGame.GetSparty();
+        sparty->SetMouthPivot(wxPoint(30,86));
+        sparty->SetMouthAngle(0.8);
+
+    }
+}
+

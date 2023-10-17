@@ -9,6 +9,7 @@
 #ifndef CSE335PROJECTONE_PROJECT1_GAME_H
 #define CSE335PROJECTONE_PROJECT1_GAME_H
 #include "pch.h"
+#include "Sparty.h"
 
 #include "Scoreboard.h"
 #include <vector>
@@ -53,6 +54,8 @@ private:
 
     Scoreboard mScoreboard;
 
+    std::shared_ptr<Sparty> mSparty;
+
 
 public:
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
@@ -67,6 +70,9 @@ public:
 
 public:
     void Load(const wxString & filename);
+//mouth open close
+    std::shared_ptr<Sparty> GetSparty() { return mSparty; }
+
 
 
 

@@ -9,6 +9,8 @@
 #include "XRay.h"
 #include <vector>
 #include <memory>
+#include "Sparty.h"
+#include "GameView.h"
 
 
 /// Initial sparty X location
@@ -50,10 +52,11 @@ Game::Game()
 
     mItems.push_back(xray);
 
-    std::shared_ptr<Sparty> sparty = make_shared<Sparty>(this);
-    sparty->SetLocation(InitialX, InitialY);
+    //mouth open close
+    mSparty = std::make_shared<Sparty>(this);
+    mSparty->SetLocation(InitialX, InitialY);
 
-    mItems.push_back(sparty);
+    mItems.push_back(mSparty);
 }
 
 

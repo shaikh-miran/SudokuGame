@@ -29,6 +29,7 @@ private:
     void OnPaint(wxPaintEvent& event);
 
 
+
     Game mGame;
 
 
@@ -40,6 +41,7 @@ public:
     void OnLevel1(wxCommandEvent& event);
     void OnLevel2(wxCommandEvent& event);
     void OnLevel3(wxCommandEvent& event);
+    void SpaceBarPressed(wxKeyEvent &event);
 
     void UpdateScoreboard(wxTimerEvent& event);
 

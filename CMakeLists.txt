@@ -27,7 +27,8 @@ set(SOURCE_FILES main.cpp GameApp.cpp GameApp.h
 add_subdirectory(${APPLICATION_LIBRARY})
 include_directories(${APPLICATION_LIBRARY})
 
-set(SOURCE_FILES main.cpp GameApp.cpp GameApp.h pch.h)
+set(SOURCE_FILES main.cpp GameApp.cpp GameApp.h pch.h
+)
 
 
 add_executable(${PROJECT_NAME} WIN32 MACOSX_BUNDLE ${SOURCE_FILES})
