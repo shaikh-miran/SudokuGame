@@ -12,6 +12,7 @@
 #ifndef WX_PRECOMP
 #include <wx/wx.h>
 #endif
+
 #include <wx/xml/xml.h>
 
 #include <wx/graphics.h> // ADD FOR CONVERSION BETWEEN MAC AND PC

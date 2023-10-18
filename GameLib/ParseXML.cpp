@@ -6,27 +6,60 @@
 #include "pch.h"
 #include "ParseXML.h"
 
-void ParseXML::LoadDeclarations() {
-
+/**
+ * Loads entries under the <declarations> node in the XML document.
+ * @param declaration the parent node of all declaration entries
+ */
+void ParseXML::LoadDeclarations(wxXmlNode * declaration) {
+    /// Loop through all entries
+    auto entry = declaration->GetChildren();
+    for ( ; entry; entry = entry->GetNext())
+    {
+        /// handle each entry declaration (ex. <given id="i362" width="48" height="48" image="0b.png" value="0" />)
+        /// Types are: given/digit, sparty, xray, background (in that order)
+    }
 }
-void ParseXML::LoadGame() {
 
+/**
+ * Loads game solution (?) from <game> child from the XML document.
+ * @param game game node, containing the correct board layout.
+ */
+void ParseXML::LoadGame(wxXmlNode * game) {
+    /// Loop through all entries
+    auto entry = game->GetChildren();
+
+    /// handle the 1 entry in game
+    /// Format: <game col="6" row="3">3 2 5 6...5</game>
 }
-void ParseXML::LoadItems() {
 
+/**
+ * Loads entries under the <items> child in the XML document.
+ * @param items the parent node of all item entries
+ */
+void ParseXML::LoadItems(wxXmlNode * items) {
+    /// Loop through all entries
+    auto entry = items->GetChildren();
+    for ( ; entry; entry = entry->GetNext())
+    {
+        /// handle each entry item (ex. <background id="i389" col="0.0" row="14.0" />)
+        /// Types are: background, xray, given/digit, sparty (in that order)
+    }
 }
 
+/**
+ * Loads all attributes and items from a given XML document.
+ * @param xmlDoc input document
+ */
 void ParseXML::Load(wxXmlDocument xmlDoc)
 {
-    /// Temporary message, delete later lolz
-    wxMessageBox("Reading selected file... YIPPEEEEEE");
-
     /// Get the XML document root node
     auto root = xmlDoc.GetRoot(); // getattribute
 
-    /// Get Window and Tile dimensions >> doesn't load, only prints currently :) will add that functionality soon
-    wxMessageBox("Window: " + root->GetAttribute("width") + "x" + root->GetAttribute("height"));
-    wxMessageBox("Tile: " + root->GetAttribute("tilewidth") + "x" + root->GetAttribute("tileheight"));
+    /// handle the window/tile sizes (maybe make them into member variables?)
+    root->GetAttribute("width");
+    root->GetAttribute("height");
+    root->GetAttribute("tilewidth");
+    root->GetAttribute("tileheight");
 
     /// Get first child (category) of the xmlDoc
     auto category = root->GetChildren();
@@ -40,34 +73,16 @@ void ParseXML::Load(wxXmlDocument xmlDoc)
         /// Handle different category names
         if (categoryName == "declarations")
         {
-
+            LoadDeclarations(category);
         }
         else if (categoryName == "game")
         {
-
+            LoadGame(category);
         }
         else if (categoryName == "items")
         {
-
+            LoadItems(category);
         }
-
-        /// Tester code that runs through all of the nodes and displays them. Implement this into the if statements
-        /// to handle specific category types.
-        /// BEGIN TESTER CODE
-
-        auto message = categoryName + "\n";
-
-        /// Loop through all entries
-        auto entry = category->GetChildren();
-        for ( ; entry; entry = entry->GetNext())
-        {
-            auto entryName = entry->GetName();
-            message += entryName + " ";
-        }
-
-        wxMessageBox(message);
-
-        /// END TESTER CODE
     }
 }
 
