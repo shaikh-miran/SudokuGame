@@ -33,7 +33,7 @@
 
 
 #include <wx/xml/xml.h>
-#include "LoadXML.h"
+#include "ParseXML.h"
 class Item;
 class Game
 {
@@ -61,8 +61,8 @@ private:
 
     std::shared_ptr<Sparty> mSparty;
 
-    /// LoadXML object, handles the loading of the level
-    LoadXML * mLevel;
+    /// ParseXML object, handles the loading of the level
+    ParseXML * mLevel;
 
 
 public:

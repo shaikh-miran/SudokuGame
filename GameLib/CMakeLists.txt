@@ -21,8 +21,8 @@ set(SOURCE_FILES MainFrame.h MainFrame.cpp pch.h
         Scoreboard.h
         ids.h
         ids.cpp
-        LoadXML.cpp
-        LoadXML.h
+        ParseXML.cpp
+        ParseXML.h
         Background.cpp
         Background.h
 

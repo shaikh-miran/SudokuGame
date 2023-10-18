@@ -1,14 +1,23 @@
 /**
- * @file LoadXML.cpp
+ * @file ParseXML.cpp
  * @author haile
  */
 
 #include "pch.h"
-#include "LoadXML.h"
+#include "ParseXML.h"
 
-void LoadXML::Load(wxXmlDocument xmlDoc)
+void ParseXML::LoadDeclarations() {
+
+}
+void ParseXML::LoadGame() {
+
+}
+void ParseXML::LoadItems() {
+
+}
+
+void ParseXML::Load(wxXmlDocument xmlDoc)
 {
-
     /// Temporary message, delete later lolz
     wxMessageBox("Reading selected file... YIPPEEEEEE");
 

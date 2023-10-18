@@ -12,7 +12,7 @@
 #include "Sparty.h"
 #include "Item.h"
 #include "GameView.h"
-#include "LoadXML.h"
+#include "ParseXML.h"
 
 
 /// Initial sparty X location
@@ -148,7 +148,7 @@ void Game::Load(const wxString & filename)
         return;
     }
 
-    /// Offload loading process to LoadXML object
+    /// Offload loading process to ParseXML object
     mLevel->Load(xmlDoc);
 }
 
