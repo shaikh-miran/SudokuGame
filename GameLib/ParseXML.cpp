@@ -11,12 +11,51 @@
  * @param declaration the parent node of all declaration entries
  */
 void ParseXML::LoadDeclarations(wxXmlNode * declaration) {
+//    // Check if the input node is not NULL
+//    if (!declaration) {
+//        // Handle error or return
+//        return;
+//    }
     /// Loop through all entries
     auto entry = declaration->GetChildren();
     for ( ; entry; entry = entry->GetNext())
     {
+        wxString entryName = entry->GetName();
         /// handle each entry declaration (ex. <given id="i362" width="48" height="48" image="0b.png" value="0" />)
         /// Types are: given/digit, sparty, xray, background (in that order)
+        entry->GetAttribute("id");
+        entry->GetAttribute("width");
+        entry->GetAttribute("height");
+
+        if (entryName == "given" || entryName == "digit" )
+        {
+            entry->GetAttribute("image");
+            entry->GetAttribute("value");
+        }
+        if (entryName == "sparty")
+        {
+            entry->GetAttribute("front");
+            entry->GetAttribute("head-pivot-angle");
+            entry->GetAttribute("head-pivot-x");
+            entry->GetAttribute("head-pivot-y");
+            entry->GetAttribute("image1");
+            entry->GetAttribute("image2");
+            entry->GetAttribute("mouth-pivot-angle");
+            entry->GetAttribute("mouth-pivot-x");
+            entry->GetAttribute("mouth-pivot-y");
+            entry->GetAttribute("target-x");
+            entry->GetAttribute("target-y");
+        }
+        if (entryName == "xray")
+        {
+            entry->GetAttribute("image");
+            entry->GetAttribute("capacity");
+        }
+        if (entryName == "background")
+        {
+            entry->GetAttribute("image");
+        }
+        numDeclarations += 1;
     }
 }
 
@@ -30,6 +69,8 @@ void ParseXML::LoadGame(wxXmlNode * game) {
 
     /// handle the 1 entry in game
     /// Format: <game col="6" row="3">3 2 5 6...5</game>
+    entry->GetAttribute("col");
+    entry->GetAttribute("row");
 }
 
 /**
@@ -43,6 +84,10 @@ void ParseXML::LoadItems(wxXmlNode * items) {
     {
         /// handle each entry item (ex. <background id="i389" col="0.0" row="14.0" />)
         /// Types are: background, xray, given/digit, sparty (in that order)
+        entry->GetAttribute("id");
+        entry->GetAttribute("col");
+        entry->GetAttribute("row");
+        numItems++;
     }
 }
 

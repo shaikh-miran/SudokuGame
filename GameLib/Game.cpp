@@ -59,8 +59,11 @@ Game::Game()
     mSparty->SetLocation(InitialX, InitialY);
 
     mItems.push_back(mSparty);
-}
 
+    // Seed the random number generator
+    std::random_device rd;
+    mRandom.seed(rd());
+}
 
 ///**
 // * Draw the game
@@ -113,6 +116,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     // Draw in virtual pixels on the graphics context
     //
     // INSERT YOUR DRAWING CODE HERE
+
 
 
     graphics->DrawBitmap(*mBackground, 0,0,pixelWidth, pixelHeight);

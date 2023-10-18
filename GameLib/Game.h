@@ -64,6 +64,9 @@ private:
     /// ParseXML object, handles the loading of the level
     ParseXML * mLevel;
 
+    /// Random number generator
+    std::mt19937 mRandom;
+
 
 public:
 
@@ -87,6 +90,12 @@ public:
 
 //mouth open close
     std::shared_ptr<Sparty> GetSparty() { return mSparty; }
+
+    /**
+     * Get the random number generator
+     * @return Pointer to the random number generator
+     */
+    std::mt19937 &GetRandom() {return mRandom;}
 
 
 
