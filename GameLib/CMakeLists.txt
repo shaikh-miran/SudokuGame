@@ -5,12 +5,31 @@ set(SOURCE_FILES MainFrame.h MainFrame.cpp pch.h
         GameView.h
         Game.cpp
         Game.h
-        Sparty.h
-        Sparty.cpp
-        Item.cpp
-        Item.h
+
+        ids.h
         Scoreboard.cpp
         Scoreboard.h
+
+        Sparty.cpp
+        Sparty.h
+        Item.cpp
+        Item.h
+        XRay.cpp
+        XRay.h
+
+        Scoreboard.cpp
+        Scoreboard.h
+        ids.h
+        ids.cpp
+        ParseXML.cpp
+        ParseXML.h
+        Background.cpp
+        Background.h
+        Declaration.cpp
+        Declaration.h
+        DeclarationGiven.cpp
+        DeclarationGiven.h
+
 )
 
 set(wxBUILD_PRECOMP OFF)

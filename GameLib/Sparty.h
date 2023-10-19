@@ -24,6 +24,12 @@ private:
     /// The bitmap we can display for this Sparty Mouth
     std::unique_ptr<wxBitmap> mSpartyMouthBitmap;
 
+    /// moving mouth
+    wxPoint mMouthPivot;
+    double mMouthAngle;
+
+
+
 
 
 public:
@@ -38,8 +44,20 @@ public:
 
     Sparty(Game *game);
 
-    void Draw( wxDC *dc) override;
+    void Update(double elapsed) override;
+
+    void Draw( std::shared_ptr<wxGraphicsContext> graphics) override;
+    void DrawTop( std::shared_ptr<wxGraphicsContext> graphics);
+    void DrawBottom( std::shared_ptr<wxGraphicsContext> graphics);
+
     bool HitTest(int x, int y) override;
+
+    /// moving mouth
+    void SetMouthPivot(const wxPoint& pivot);
+    void SetMouthAngle(double angle);
+
+
+
 
 };
 

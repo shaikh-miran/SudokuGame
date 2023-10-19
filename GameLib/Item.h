@@ -7,12 +7,16 @@
 
 #ifndef PROJECT1_GAMELIB_ITEM_H
 #define PROJECT1_GAMELIB_ITEM_H
-#include "Game.h"
+
 
 class Game;
 class Item
 {
 private:
+
+    double mXSpeed = 0;
+    double mYSpeed = 0;
+
     /// The aquarium this item is contained in
     Game *mGame;
 
@@ -20,10 +24,31 @@ private:
     double  mX = 0;     ///< X location for the center of the item
     double  mY = 0;     ///< Y location for the center of the item
 
+    std::unique_ptr<wxImage> mItemImage;
+    std::unique_ptr<wxBitmap> mItemBitmap;
+    std::unique_ptr<Item> mItems;
+
 protected:
+    Item(Game *game, const std::wstring &filename);
+
     Item(Game *game);
 
+
 public:
+
+    virtual void Update(double elapsed) = 0;
+
+    Game *GetGame() {return mGame;}
+
+    double GetSpeedX() {return mXSpeed;}
+    double GetSpeedY() {return mYSpeed;}
+
+    void SetXSpeed(double newXSpeed) {mXSpeed = newXSpeed;}
+    void SetYSpeed(double newYSpeed) {mYSpeed = newYSpeed;}
+
+
+    bool isSpart = false;
+
     virtual ~Item();
 
     /// Default constructor (disabled)
@@ -61,7 +86,8 @@ public:
      * Draw this item
      * @param dc Device context to draw on
      */
-    virtual void Draw(wxDC *dc) = 0;
+
+    virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics) {};
 
     /**
      * Test this item to see if it has been clicked on
@@ -69,7 +95,11 @@ public:
      * @param y Y location on the aquarium to test in pixels
      * @return true if clicked on
      */
-    virtual bool HitTest(int x, int y) = 0;
+
+    virtual bool HitTest(int x, int y);
+
+    void XmlLoad(wxXmlNode *node);
+
 };
 
 
