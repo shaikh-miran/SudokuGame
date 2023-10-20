@@ -3,15 +3,29 @@
  * @author Navya Singh
  */
 
+#include "pch.h"
 #include "DeclarationGiven.h"
+#include "ItemGiven.h"
+#include "Game.h"
 
-DeclarationGiven::DeclarationGiven(Game *game, const std::wstring &filename) : Declaration(game, filename)
+DeclarationGiven::DeclarationGiven(wxXmlNode* node) : Declaration(node)
 {
-
+    mImage = L"images/" + node->GetAttribute(L"image").ToStdWstring();
+    node->GetAttribute(L"value", L"0").ToInt(&mValue);
 }
 
-void DeclarationGiven::XmlLoad(wxXmlNode *node)
+void DeclarationGiven::Create(wxXmlNode *node, Game *game)
 {
-    Declaration::XmlLoad(node);
-    node->GetAttribute(L"value", L"0").ToInt(&mValue);
+    double row, col, width, height;
+    node->GetAttribute(L"row").ToDouble(&row);
+    node->GetAttribute(L"col").ToDouble(&col);
+    width = GetWidth();
+    height = GetHeight();
+
+    auto item = std::make_shared<ItemGiven>(game, GetImageName());
+    item->SetWidth(width);
+    item->SetHeight(height);
+    item->SetLocation((col) * game->GetTileWidth(), (row) * game->GetTileHeight());
+
+    game->AddItem(item);
 }

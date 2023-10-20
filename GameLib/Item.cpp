@@ -28,10 +28,10 @@ Item::Item(Game *game, const std::wstring &filename) : mGame(game)
 /**
  * Destructor
  */
-    Item::~Item()
-    {
+Item::~Item()
+{
 
-    }
+}
 
 /**
  * Test to see if we hit this object with a mouse.
@@ -70,24 +70,14 @@ Item::Item(Game *game, const std::wstring &filename) : mGame(game)
 Draw this sparty
 @param dc Device context to draw on
 */
-//void Item::Draw(shared_ptr<wxGraphicsContext> graphics)
-//{
-//    if(mItemBitmap.IsNull())
-//    {
-//        mItemBitmap = graphics->CreateBitmapFromImage(mItemImage);
-//    }
-//    int width = mItemImage->GetWidth();
-//    int height = mItemImage->GetHeight();
-//
-//    graphics->DrawBitmap(mItemBitmap, mXOffsetmScale, mYOffsetmScale, (widthmScale)+mXOffset, (height*mScale)+mYOffset);
-//
-//    // Add to the list of sparty.
-//    //mItems.push_back(sparty);
-//    for (auto item : mItems)
-//    {
-//        item->Draw(graphics);
-//    }
-//}
+void Item::Draw(shared_ptr<wxGraphicsContext> graphics)
+{
+    graphics->DrawBitmap(*mItemBitmap,
+                         int(GetX()),
+                         int(GetY()),
+                         mWidth,
+                         mHeight);
+}
 
 void Item::XmlLoad(wxXmlNode *node)
 {

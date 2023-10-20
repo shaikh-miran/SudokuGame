@@ -3,20 +3,14 @@
  * @author Navya Singh
  */
 
+#include "pch.h"
 #include "Declaration.h"
 
 using namespace std;
 
-Declaration::Declaration(Game *game, const std::wstring &filename) : mGame(game)
+Declaration::Declaration(wxXmlNode *node)
 {
-    mDeclarationImage = make_unique<wxImage>(filename, wxBITMAP_TYPE_ANY);
-    mDeclarationBitmap = make_unique<wxBitmap>(*mDeclarationImage);
-}
-
-void Declaration::XmlLoad(wxXmlNode *node)
-{
-    auto id = node->GetAttribute(L"id").ToStdString();
-    mId = id;
+    mId = node->GetAttribute(L"id").ToStdString();
     node->GetAttribute(L"width", L"0").ToDouble(&mWidth);
     node->GetAttribute(L"height", L"0").ToDouble(&mHeight);
 }

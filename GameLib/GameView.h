@@ -28,11 +28,7 @@ private:
 
     void OnPaint(wxPaintEvent& event);
 
-
-
     Game mGame;
-
-
 
     Scoreboard mScoreboard; // Include the Scoreboard instance
 

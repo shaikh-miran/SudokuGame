@@ -74,8 +74,8 @@ Game::Game()
 
 void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    int pixelWidth = 1440;
-    int pixelHeight = 960;
+    int pixelWidth = 20*48;
+    int pixelHeight = 15*48;
 
     //
     // Automatic Scaling
@@ -137,9 +137,9 @@ void Game::Load(const wxString & filename)
 
     Clear();
 
-    ParseXML mLevel(this);
+    auto mLevel = new ParseXML(this);
     /// Offload loading process to ParseXML object
-    mLevel.Load(xmlDoc);
+    mLevel->Load(xmlDoc);
 }
 
 /**
@@ -206,11 +206,5 @@ void Game::Clear()
 
 void Game::AddItem(std::shared_ptr<Item> item)
 {
-    item->SetLocation(InitialX, InitialY);
     mItems.push_back(item);
-}
-
-void Game::AddDeclaration(std::shared_ptr<Declaration> dec)
-{
-    mDeclarations.push_back(dec);
 }

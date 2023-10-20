@@ -12,16 +12,11 @@ find_package(wxWidgets COMPONENTS core base xrc html xml REQUIRED)
 include(${wxWidgets_USE_FILE})
 
 # Define a variable containing a list of source files for the project
-set(SOURCE_FILES main.cpp GameApp.cpp GameApp.h
+set(SOURCE_FILES
+        main.cpp
+        GameApp.cpp
+        GameApp.h
         pch.h
-
-        GameView.cpp
-        GameView.h
-        MainFrame.cpp
-        MainFrame.h
-
-
-
 )
 
 add_subdirectory(${APPLICATION_LIBRARY})
