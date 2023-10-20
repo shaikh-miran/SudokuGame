@@ -44,6 +44,8 @@ private:
 
 
 public:
+
+    void Stop(){mTimer.Stop();};
     void OnLevel0(wxCommandEvent& event);
     void OnLevel1(wxCommandEvent& event);
     void OnLevel2(wxCommandEvent& event);

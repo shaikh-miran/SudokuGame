@@ -9,15 +9,17 @@
  *
  */
 #include <iostream>
+#include <wx/timer.h>
+#include "GameView.h"
 #ifndef PROJECT1_PROJECT1_GAMELIB_MAINFRAME_H
 #define PROJECT1_PROJECT1_GAMELIB_MAINFRAME_H
 
-class GameView;
+
 
 class MainFrame :  public wxFrame {
 
 private:
-    GameView * mGameView;
+    GameView * mGameView = nullptr;
 
 
     wxTimer mUpdateTimer; // Add the update timer
@@ -27,6 +29,7 @@ public:
 
 
     void OnExit(wxCommandEvent& event);
+    void OnClose(wxCloseEvent& event);
     void OnAbout(wxCommandEvent& event);
 
 };

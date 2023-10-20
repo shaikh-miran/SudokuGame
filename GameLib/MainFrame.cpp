@@ -25,8 +25,8 @@ void MainFrame::Initialize()
 
 
     // Create the view class object as a child of MainFrame
-    auto gameView = new GameView();
-    gameView->Initialize(this);
+    mGameView = new GameView();
+    mGameView->Initialize(this);
 
 
     // Create Menu Bar
@@ -54,6 +54,7 @@ void MainFrame::Initialize()
 
     fileMenu->Append(wxID_EXIT, "&Exit\tAlt-X", "Quit this program");
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
+    Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnClose, this);
 
 
     // Add options to levelMenu dropdown
@@ -76,13 +77,14 @@ void MainFrame::Initialize()
     // Set the Menu Bar
     SetMenuBar(menuBar);
 
+    //BELOW WASNT WORKING, TEMP COMMENT
 
     // Create the update timer
-    mUpdateTimer.Bind(wxEVT_TIMER, [this, gameView](wxTimerEvent& event) {
-        // Update the Scoreboard
-        gameView->UpdateScoreboard(event);
-    });
-    mUpdateTimer.Start(1000); // Start the timer to update every second
+//    mUpdateTimer.Bind(wxEVT_TIMER, [this, mGameView](wxTimerEvent& event) {
+//        // Update the Scoreboard
+//        mGameView->UpdateScoreboard(event);
+//    });
+//    mUpdateTimer.Start(1000); // Start the timer to update every second
 
 }
 
@@ -94,6 +96,12 @@ void MainFrame::OnExit(wxCommandEvent& event)
 {
     //mGameView->Stop(); ///< We might need to add this line if we implement a timer.
     Close(true);
+}
+
+void MainFrame::OnClose(wxCloseEvent& event){
+
+    mGameView->Stop();
+    Destroy();
 }
 
 
