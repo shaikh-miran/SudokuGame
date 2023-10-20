@@ -23,6 +23,8 @@ set(SOURCE_FILES MainFrame.h MainFrame.cpp pch.h
         ids.cpp
         ParseXML.cpp
         ParseXML.h
+        Level.cpp
+        Level.h
         Background.cpp
         Background.h
 

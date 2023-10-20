@@ -38,6 +38,7 @@ class Game
 {
 private:
     std::unique_ptr<wxBitmap> mBackground;  ///< Background image to use
+    /// eventually move to background class
 
     ///Scale double variable
     double mScale;
