@@ -30,6 +30,10 @@ set(SOURCE_FILES
         DeclarationGiven.h
         ItemGiven.cpp
         ItemGiven.h
+        DeclarationDigit.cpp
+        DeclarationDigit.h
+        ItemDigit.cpp
+        ItemDigit.h
 )
 
 set(wxBUILD_PRECOMP OFF)

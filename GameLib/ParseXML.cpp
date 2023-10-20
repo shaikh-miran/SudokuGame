@@ -6,7 +6,7 @@
 #include "pch.h"
 #include "ParseXML.h"
 #include "DeclarationGiven.h"
-#include "ItemGiven.h"
+#include "DeclarationDigit.h"
 #include "Game.h"
 
 using namespace std;
@@ -30,6 +30,11 @@ void ParseXML::LoadDeclarations(wxXmlNode * node) {
         if (name == L"given")
         {
             auto declaration = make_shared<DeclarationGiven>(entry);
+            mDeclarationMap[id] = declaration;
+        }
+        else if (name == L"digit")
+        {
+            auto declaration = make_shared<DeclarationDigit>(entry);
             mDeclarationMap[id] = declaration;
         }
     }
@@ -60,7 +65,7 @@ void ParseXML::LoadItems(wxXmlNode * node) {
         /// Types are: background, xray, given/digit, sparty (in that order)
         auto name = entry->GetName();
         auto id = entry->GetAttribute(L"id").ToStdString();
-        if (name == L"given" )
+        if (name == L"given" || name == L"digit")
         {
             auto declaration = mDeclarationMap[id];
             declaration->Create(entry, mGame);
