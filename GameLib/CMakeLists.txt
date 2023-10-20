@@ -25,6 +25,10 @@ set(SOURCE_FILES MainFrame.h MainFrame.cpp pch.h
         ParseXML.h
         Background.cpp
         Background.h
+        Digit.cpp
+        Digit.h
+        Given.cpp
+        Given.h
 
 )
 

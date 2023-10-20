@@ -95,7 +95,7 @@ public:
      * @return true if clicked on
      */
 
-    virtual bool HitTest(int x, int y);
+    bool HitTest(int x, int y);
 
 };
 

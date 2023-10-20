@@ -17,6 +17,7 @@
 #include<memory> //shared_ptr
 #include <random>
 #include "Item.h"
+#include "Digit.h"
 
 
 #include <wx/xml/xml.h>
@@ -42,7 +43,7 @@ private:
 
     ///Scale double variable
     double mScale;
-    /// All of the items to populate our aquarium
+    /// All of the items to populate our game
     std::vector<std::shared_ptr<Item>> mItems;
 
     double mClickY = 200;
@@ -66,6 +67,7 @@ private:
 
     /// Random number generator
     std::mt19937 mRandom;
+
 
 
 public:
