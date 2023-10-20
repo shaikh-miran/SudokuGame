@@ -8,38 +8,27 @@
 
 #ifndef CSE335PROJECTONE_PROJECT1_GAME_H
 #define CSE335PROJECTONE_PROJECT1_GAME_H
-#include "pch.h"
+
 #include "Sparty.h"
-
 #include "Scoreboard.h"
-#include <vector>
 #include "XRay.h"
-#include<memory> //shared_ptr
-#include <random>
 #include "Item.h"
-
-
+#include "ParseXML.h"
+#include "Declaration.h"
+#include <memory> //shared_ptr
+#include <random>
+#include <vector>
 #include <wx/xml/xml.h>
 #include <wx/graphics.h>
+#include <map>
 
-
-
-
-#include <vector>
-#include<memory> //shared_ptr
-#include <random>
-#include "Item.h"
-#include "Scoreboard.h"
-
-
-#include <wx/xml/xml.h>
-#include "ParseXML.h"
 class Item;
+class ParseXML;
+
 class Game
 {
 private:
     std::unique_ptr<wxBitmap> mBackground;  ///< Background image to use
-    /// eventually move to background class
 
     ///Scale double variable
     double mScale;
@@ -49,9 +38,10 @@ private:
     double mClickY = 200;
     double mClickX = 200;
 
-
-
-
+    double mHeight;
+    double mWidth;
+    double mTileHeight;
+    double mTileWidth;
 
     ///Y and X offset doubles
     double mXOffset;
@@ -63,10 +53,6 @@ private:
     std::shared_ptr<Sparty> mSparty;
 
     /// ParseXML object, handles the loading of the level
-    ParseXML * mLevel;
-
-    /// Random number generator
-    std::mt19937 mRandom;
 
 
 public:
@@ -76,31 +62,23 @@ public:
 
     void Update(double elapsed);
 
-
-
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     Game();
     std::shared_ptr<Item> HitTest(int x, int y);
     void Load(const wxString & filename);
     void OnLeftDown(int x, int y);
+    void Clear();
 
+    void SetHeight(double height) { mHeight = height; }
+    void SetWidth(double width) { mWidth = width; }
+    void SetTileHeight(double height) { mTileHeight = height; }
+    void SetTileWidth(double width) { mTileWidth = width; }
 
+    double GetTileWidth() { return mTileWidth; }
+    double GetTileHeight() { return mTileHeight; }
 
-//    /// All of the items to populate our aquarium
-//    std::vector<std::shared_ptr<Item>> mItems;
-
-//mouth open close
     std::shared_ptr<Sparty> GetSparty() { return mSparty; }
-
-    /**
-     * Get the random number generator
-     * @return Pointer to the random number generator
-     */
-    std::mt19937 &GetRandom() {return mRandom;}
-
-
-
-
+    void AddItem(std::shared_ptr<Item> item);
 };
 
 #endif //CSE335PROJECTONE_PROJECT1_GAME_H

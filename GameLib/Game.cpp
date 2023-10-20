@@ -5,15 +5,6 @@
 #include "pch.h"
 #include "Game.h"
 
-#include <wx/xml/xml.h>
-#include "XRay.h"
-#include <vector>
-#include <memory>
-#include "Sparty.h"
-#include "Item.h"
-#include "GameView.h"
-#include "ParseXML.h"
-
 
 /// Initial sparty X location
 const int InitialX = 100;
@@ -30,10 +21,6 @@ const int XRInitialY = 100;
 #include "Sparty.h"
 #include "Item.h"
 using namespace std;
-
-
-
-
 
 /**
  * Game Constructor
@@ -59,59 +46,12 @@ Game::Game()
     mSparty->SetLocation(InitialX, InitialY);
 
     mItems.push_back(mSparty);
-
-    // Seed the random number generator
-    std::random_device rd;
-    mRandom.seed(rd());
-}
-
-///**
-// * Draw the game
-// * @param graphics Graphics device to draw on
-// * @param width Width of the window
-// * @param height Height of the window
-// */
-////void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
-////{
-////    // Determine the size of the playing area in pixels
-////    // This is up to you...
-////    shared_ptr<Item> item = make_shared<Sparty>(this);
-////    item->SetLocation(InitialX, InitialY);
-////    mItems.push_back(item);
-////}
-//
-//    shared_ptr<Item> item = make_shared<Sparty>(this);
-//    item->SetLocation(InitialX, InitialY);
-//    mItems.push_back(item);
-//
-//    mScoreboard.StartTimer();
-//}
-
-
-/**
- * Start the level loading process, given the desired level filename
- * @param filename name of the level file (ex. level0.xml)
- */
-void Game::Load(const wxString & filename)
-{
-    /// Instantiate an xml document
-    wxXmlDocument xmlDoc;
-
-    /// Load xml file based on the filename (errors if not found in directory)
-    if(!xmlDoc.Load(filename))
-    {
-        wxMessageBox(L"Error loading file: check levels folder.");
-        return;
-    }
-
-    /// Offload loading process to ParseXML object
-    mLevel->Load(xmlDoc);
 }
 
 void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    int pixelWidth = 1440;
-    int pixelHeight = 960;
+    int pixelWidth = 20*48;
+    int pixelHeight = 15*48;
 
     //
     // Automatic Scaling
@@ -138,7 +78,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     // INSERT YOUR DRAWING CODE HERE
 
 
-
     graphics->DrawBitmap(*mBackground, 0,0,pixelWidth, pixelHeight);
 
     mScoreboard.OnDraw(graphics, this);
@@ -153,52 +92,30 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
         item->Draw(graphics);
     }
     graphics->PopState();
-
 }
-//
-///**
-// * Handle a category (xml node). Each category can have many entries (children), so this function handles those.
-// * @param node XML node
-// */
-//void Game::XmlSet(wxXmlNode * category)
-//{
-//    /// Get name of category
-//    auto categoryName = category->GetName();
-//
-//    /// Handle different category names
-//    if (categoryName == "declarations")
-//    {
-//
-//    }
-//    else if (categoryName == "game")
-//    {
-//
-//    }
-//    else if (categoryName == "items")
-//    {
-//
-//    }
-//
-//    /// Tester code that runs through all of the nodes and displays them. Implement this into the if statements
-//    /// to handle specific category types.
-//    /// BEGIN TESTER CODE
-//
-//    auto message = categoryName + "\n";
-//
-//    /// Loop through all entries
-//    auto entry = category->GetChildren();
-//    for ( ; entry; entry = entry->GetNext())
-//    {
-//        auto entryName = entry->GetName();
-//        message += entryName + " ";
-//    }
-//
-//    wxMessageBox(message);
-//
-//    /// END TESTER CODE
-//}
 
+/**
+ * Start the level loading process, given the desired level filename
+ * @param filename name of the level file (ex. level0.xml)
+ */
+void Game::Load(const wxString & filename)
+{
+    /// Instantiate an xml document
+    wxXmlDocument xmlDoc;
 
+    /// Load xml file based on the filename (errors if not found in directory)
+    if(!xmlDoc.Load(filename))
+    {
+        wxMessageBox(L"Error loading file: check levels folder.");
+        return;
+    }
+
+    Clear();
+
+    auto mLevel = new ParseXML(this);
+    /// Offload loading process to ParseXML object
+    mLevel->Load(xmlDoc);
+}
 
 /**
  * Test an x,y click location to see if it clicked
@@ -216,9 +133,7 @@ std::shared_ptr<Item> Game::HitTest(int x, int y)
             return *i;
         }
     }
-
     return  nullptr;
-
 }
 
 void Game::OnLeftDown(int x, int y)
@@ -252,3 +167,17 @@ void Game::Update(double elapsed)
     }
 }
 
+/**
+ * Clear the game data.
+ *
+ * Deletes all known items in the game.
+ */
+void Game::Clear()
+{
+    mItems.clear();
+}
+
+void Game::AddItem(std::shared_ptr<Item> item)
+{
+    mItems.push_back(item);
+}

@@ -9,6 +9,11 @@
 #define PROJECT1_PROJECT1_GAMELIB_PARSEXML_H
 
 #include <wx/xml/xml.h>
+#include <map>
+#include "DeclarationGiven.h"
+#include "Declaration.h"
+
+class Game;
 
 /**
  * Class that handles the XML loading aspect of the program.
@@ -16,19 +21,27 @@
 class ParseXML
 {
 private:
-    int numDeclarations = 0;
-    int numItems = 0;
+    Game * mGame;
 
+    double mTileWidth;
+    double mTileHeight;
+    double mWidth;
+    double mHeight;
+    std::map<std::string, std::shared_ptr<Declaration>> mDeclarationMap;
 
 public:
-    void LoadDeclarations(wxXmlNode * declaration);
-    void LoadGame(wxXmlNode * game);
-    void LoadItems(wxXmlNode * items);
+    /// Default constructor (disabled)
+    ParseXML() = delete;
+    /// Copy constructor (disabled)
+    ParseXML(const ParseXML &) = delete;
+    /// Assignment operator
+    void operator=(const ParseXML &) = delete;
+
+    ParseXML(Game *game);
+
     void Load(wxXmlDocument xmlDoc);
-    int GetNumDeclarations() {return numDeclarations;}
-    int GetNumItems() {return numItems;}
-
-
+    void LoadDeclarations(wxXmlNode *node);
+    void LoadItems(wxXmlNode *node);
 };
 
 #endif //PROJECT1_PROJECT1_GAMELIB_PARSEXML_H

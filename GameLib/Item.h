@@ -10,6 +10,7 @@
 
 
 class Game;
+
 class Item
 {
 private:
@@ -24,6 +25,8 @@ private:
     double  mX = 0;     ///< X location for the center of the item
     double  mY = 0;     ///< Y location for the center of the item
 
+    double mWidth;
+    double mHeight;
 
     std::unique_ptr<wxImage> mItemImage;
     std::unique_ptr<wxBitmap> mItemBitmap;
@@ -32,10 +35,12 @@ private:
 protected:
     Item(Game *game, const std::wstring &filename);
 
+    Item(Game *game);
+
 
 public:
 
-    virtual void Update(double elapsed) = 0;
+    virtual void Update(double elapsed) {}
 
     Game *GetGame() {return mGame;}
 
@@ -45,6 +50,8 @@ public:
     void SetXSpeed(double newXSpeed) {mXSpeed = newXSpeed;}
     void SetYSpeed(double newYSpeed) {mYSpeed = newYSpeed;}
 
+    void SetWidth(double width) {mWidth = width; }
+    void SetHeight(double height) {mHeight = height;}
 
     bool isSpart = false;
 
@@ -58,8 +65,6 @@ public:
 
     /// Assignment operator
     void operator=(const Item &) = delete;
-
-
 
     /**
      * The X location of the item
@@ -86,7 +91,7 @@ public:
      * @param dc Device context to draw on
      */
 
-    virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics) {};
+    virtual void Draw(std::shared_ptr<wxGraphicsContext> graphics);
 
     /**
      * Test this item to see if it has been clicked on
@@ -96,6 +101,8 @@ public:
      */
 
     virtual bool HitTest(int x, int y);
+
+    void XmlLoad(wxXmlNode *node);
 
 };
 

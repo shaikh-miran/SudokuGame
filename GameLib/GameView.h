@@ -28,11 +28,7 @@ private:
 
     void OnPaint(wxPaintEvent& event);
 
-
-
     Game mGame;
-
-
 
     Scoreboard mScoreboard; // Include the Scoreboard instance
 
@@ -42,39 +38,24 @@ private:
     /// The timer that allows for animation
     wxTimer mTimer;
 
-
 public:
-
-    void Stop(){mTimer.Stop();};
     void OnLevel0(wxCommandEvent& event);
     void OnLevel1(wxCommandEvent& event);
     void OnLevel2(wxCommandEvent& event);
     void OnLevel3(wxCommandEvent& event);
     void SpaceBarPressed(wxKeyEvent &event);
-
     void UpdateScoreboard(wxTimerEvent& event);
-
-
-
 
     int mGrabOffsetX; // Relative mouse position X
     int mGrabOffsetY; // Relative mouse position Y
-
-
     void Initialize(wxFrame* parent);
-
     void IntroScreenTimer(wxTimerEvent& event);
-
-
     void OnLeftDown(wxMouseEvent &event);
     void OnLeftUp(wxMouseEvent &event);
     void OnMouseMove(wxMouseEvent &event);
     void OnLeftClick(wxMouseEvent& event);
-    void Ontimer(wxTimerEvent& event);
-
-
-
-
+    void Stop(){mTimer.Stop();};
+    void OnTimer(wxTimerEvent& event);
 };
 
 #endif //PROJECT1_PROJECT1_GAMEVIEW_H

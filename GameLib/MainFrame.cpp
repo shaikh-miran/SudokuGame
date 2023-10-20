@@ -46,11 +46,7 @@ void MainFrame::Initialize()
 
 
     // Add options to fileMenu dropdown
-    fileMenu->Append(IDM_SOLVE, "&Solve", "please help me i need help waahah");
-
-        /// ^^^ no solve implementation yet
-
-    /// ^^^ no solve implementation yet
+    fileMenu->Append(IDM_SOLVE, "&Solve", "Solution");
 
     fileMenu->Append(wxID_EXIT, "&Exit\tAlt-X", "Quit this program");
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
@@ -63,12 +59,6 @@ void MainFrame::Initialize()
     levelMenu->Append(IDM_LEVEL_2, L"&Level 2", "Change levels");
     levelMenu->Append(IDM_LEVEL_3, L"&Level 3", "Change levels");
 
-        /// ^^^ no level load implementations yet
-
-    /// ^^^ no level load implementations yet
-
-
-
     // Add options to helpMenu
     helpMenu->Append(wxID_ABOUT, "&About\tF1", "Show about dialog");
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnAbout, this, wxID_ABOUT);
@@ -76,8 +66,6 @@ void MainFrame::Initialize()
 
     // Set the Menu Bar
     SetMenuBar(menuBar);
-
-    //BELOW WASNT WORKING, TEMP COMMENT
 
     // Create the update timer
 //    mUpdateTimer.Bind(wxEVT_TIMER, [this, mGameView](wxTimerEvent& event) {

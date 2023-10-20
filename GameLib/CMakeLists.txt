@@ -1,6 +1,9 @@
 project(GameLib)
 
-set(SOURCE_FILES MainFrame.h MainFrame.cpp pch.h
+set(SOURCE_FILES
+        MainFrame.h
+        MainFrame.cpp
+        pch.h
         GameView.cpp
         GameView.h
         Game.cpp
@@ -17,17 +20,26 @@ set(SOURCE_FILES MainFrame.h MainFrame.cpp pch.h
         XRay.cpp
         XRay.h
 
-        Scoreboard.cpp
-        Scoreboard.h
-        ids.h
-        ids.cpp
         ParseXML.cpp
         ParseXML.h
-        Level.cpp
-        Level.h
         Background.cpp
         Background.h
-
+        Declaration.cpp
+        Declaration.h
+        DeclarationGiven.cpp
+        DeclarationGiven.h
+        ItemGiven.cpp
+        ItemGiven.h
+        DeclarationDigit.cpp
+        DeclarationDigit.h
+        ItemDigit.cpp
+        ItemDigit.h
+        DeclarationGiven.cpp
+        DeclarationGiven.h
+        ItemDigit.cpp
+        ItemDigit.h
+        ItemGiven.cpp
+        ItemGiven.h
 )
 
 set(wxBUILD_PRECOMP OFF)
