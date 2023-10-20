@@ -23,7 +23,8 @@
 #include <string>
 
 using namespace std;
-
+/// Frame duration in milliseconds
+const int FrameDuration = 30;
 /**
  * Initialize the aquarium view class.
  *
@@ -50,6 +51,8 @@ void GameView::Initialize(wxFrame* parent)
     Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);
     Bind(wxEVT_LEFT_UP, &GameView::OnLeftUp, this);
     Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
+    Bind(wxEVT_TIMER,&GameView::Ontimer,this);
+
     //Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftClick,this);
     //mouth moving
     Bind(wxEVT_KEY_DOWN, &GameView::SpaceBarPressed, this);
@@ -76,6 +79,9 @@ void GameView::Initialize(wxFrame* parent)
 //    mTimer.Start(FrameDuration);
 //
 //    mStopWatch.Start();
+    mTimer.SetOwner(this);
+    mTimer.Start(FrameDuration);
+    mStopwatch.Start();
 }
 /**
  * Paint event, draws the window.
@@ -109,6 +115,8 @@ void GameView::OnPaint(wxPaintEvent& event)
 
 //    // Draw the scoreboard
 //    mScoreboard.OnDraw(gc);
+
+
 }
 
 
@@ -131,6 +139,7 @@ void GameView::OnLevel0(wxCommandEvent& event)
  */
 void GameView::OnLevel1(wxCommandEvent& event)
 {
+
     const wxString filename = L"levels/level1.xml";
     mGame.Load(filename);
     Refresh();
@@ -212,7 +221,7 @@ void GameView::OnMouseMove(wxMouseEvent &event)
 //
 //        // Force the screen to redraw
 //        Refresh();
-    }
+}
 //}
 void GameView::OnLeftClick(wxMouseEvent &event)
 {
@@ -242,5 +251,10 @@ void GameView::SpaceBarPressed(wxKeyEvent &event)
         sparty->SetMouthAngle(0.8);
 
     }
+}
+
+void GameView::Ontimer(wxTimerEvent& event)
+{
+    Refresh();
 }
 

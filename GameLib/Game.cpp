@@ -12,6 +12,7 @@
 #include "Sparty.h"
 #include "Item.h"
 #include "GameView.h"
+#include "ParseXML.h"
 
 
 /// Initial sparty X location
@@ -58,8 +59,11 @@ Game::Game()
     mSparty->SetLocation(InitialX, InitialY);
 
     mItems.push_back(mSparty);
-}
 
+    // Seed the random number generator
+    std::random_device rd;
+    mRandom.seed(rd());
+}
 
 ///**
 // * Draw the game
@@ -83,13 +87,25 @@ Game::Game()
 //    mScoreboard.StartTimer();
 //}
 
+
 /**
- * Load a level xml file given a file name
- * @param filename
+ * Start the level loading process, given the desired level filename
+ * @param filename name of the level file (ex. level0.xml)
  */
 void Game::Load(const wxString & filename)
 {
+    /// Instantiate an xml document
+    wxXmlDocument xmlDoc;
 
+    /// Load xml file based on the filename (errors if not found in directory)
+    if(!xmlDoc.Load(filename))
+    {
+        wxMessageBox(L"Error loading file: check levels folder.");
+        return;
+    }
+
+    /// Offload loading process to ParseXML object
+    mLevel->Load(xmlDoc);
 }
 
 void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
@@ -120,6 +136,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     // Draw in virtual pixels on the graphics context
     //
     // INSERT YOUR DRAWING CODE HERE
+
 
 
     graphics->DrawBitmap(*mBackground, 0,0,pixelWidth, pixelHeight);
@@ -180,6 +197,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 //
 //    /// END TESTER CODE
 //}
+
 
 
 /**

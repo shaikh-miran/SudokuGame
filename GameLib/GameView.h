@@ -39,6 +39,10 @@ private:
     wxStopWatch mStopwatch;
     long mTime = 0;
 
+    /// The timer that allows for animation
+    wxTimer mTimer;
+
+
 public:
     void OnLevel0(wxCommandEvent& event);
     void OnLevel1(wxCommandEvent& event);
@@ -57,13 +61,14 @@ public:
 
     void Initialize(wxFrame* parent);
 
-
+    void IntroScreenTimer(wxTimerEvent& event);
 
 
     void OnLeftDown(wxMouseEvent &event);
     void OnLeftUp(wxMouseEvent &event);
     void OnMouseMove(wxMouseEvent &event);
     void OnLeftClick(wxMouseEvent& event);
+    void Ontimer(wxTimerEvent& event);
 
 
 

@@ -33,6 +33,7 @@
 
 
 #include <wx/xml/xml.h>
+#include "ParseXML.h"
 class Item;
 class Game
 {
@@ -61,6 +62,12 @@ private:
 
     std::shared_ptr<Sparty> mSparty;
 
+    /// ParseXML object, handles the loading of the level
+    ParseXML * mLevel;
+
+    /// Random number generator
+    std::mt19937 mRandom;
+
 
 public:
 
@@ -74,8 +81,6 @@ public:
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height);
     Game();
     std::shared_ptr<Item> HitTest(int x, int y);
-
-    void XmlSet(wxXmlNode *node);
     void Load(const wxString & filename);
     void OnLeftDown(int x, int y);
 
@@ -86,6 +91,12 @@ public:
 
 //mouth open close
     std::shared_ptr<Sparty> GetSparty() { return mSparty; }
+
+    /**
+     * Get the random number generator
+     * @return Pointer to the random number generator
+     */
+    std::mt19937 &GetRandom() {return mRandom;}
 
 
 
