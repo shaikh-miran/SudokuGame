@@ -25,6 +25,13 @@ Item::Item(Game *game, const std::wstring &filename) : mGame(game)
     mItemBitmap = make_unique<wxBitmap>(*mItemImage);
 
 }
+
+/**
+ * Alternate Constructor
+ * @param game The game this item is a member of
+ */
+Item::Item(Game *game) : mGame(game) {}
+
 /**
  * Destructor
  */

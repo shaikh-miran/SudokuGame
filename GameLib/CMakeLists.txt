@@ -44,6 +44,8 @@ set(SOURCE_FILES
         DeclarationXray.h
         DeclarationBackground.cpp
         DeclarationBackground.h
+        DeclarationSparty.cpp
+        DeclarationSparty.h
 )
 
 set(wxBUILD_PRECOMP OFF)

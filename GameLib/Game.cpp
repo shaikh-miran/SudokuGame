@@ -29,12 +29,6 @@ Game::Game()
 
 {
     mScoreboard.StartTimer();
-
-    //mouth open close
-    mSparty = std::make_shared<Sparty>(this);
-    mSparty->SetLocation(InitialX, InitialY);
-
-    mItems.push_back(mSparty);
 }
 
 void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
@@ -66,6 +60,9 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     //
     // INSERT YOUR DRAWING CODE HERE
 
+
+    // graphics->DrawBitmap(*mBackground, 0,0,pixelWidth, pixelHeight);
+
     mScoreboard.OnDraw(graphics, this);
     mXOffset = (width - pixelWidth * mScale) / 2.0;
     mYOffset = 0;
@@ -74,7 +71,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
         mYOffset = (double)((height - pixelHeight * mScale) / 2.0);
     }
 
-    for (auto item : mItems) {
+    for (auto item : mItems){
         item->Draw(graphics);
     }
     graphics->PopState();

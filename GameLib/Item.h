@@ -33,9 +33,8 @@ private:
     std::unique_ptr<Item> mItems;
 
 protected:
-    Item(Game *game, const std::wstring &filename);
-
     Item(Game *game);
+    Item(Game *game, const std::wstring &filename);
 
 
 public:

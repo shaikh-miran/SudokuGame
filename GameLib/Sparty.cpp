@@ -10,25 +10,28 @@
 
 using namespace std;
 
-const int InitialX = 200;
-
-const int InitialY = 200;
-
 const double MaxSpeed = 400.00;
 
-const wstring SpartyImage = L"images/sparty-1.png";
-const wstring SpartyMouthImage =  L"images/sparty-2.png";
-
-Sparty::Sparty(Game *game) : Item(game, SpartyImage)
+/**
+ * Constructor
+ * @param game The game the sparty item will be part of
+ * @param image1 The image file name of sparty body
+ * @param image2 The image file name of sparty mouth
+ */
+Sparty::Sparty(Game *game, std::wstring image1, std::wstring image2) : Item(game)
 {
-    mSpartyImage = std::make_unique<wxImage>(SpartyImage, wxBITMAP_TYPE_ANY);
+    /// Initialize sparty main body image
+    mSpartyImage = std::make_unique<wxImage>(image1, wxBITMAP_TYPE_ANY);
     mSpartyBitmap = std::make_unique<wxBitmap>(*mSpartyImage);
-    mSpartyMouthImage = std::make_unique<wxImage>(SpartyMouthImage, wxBITMAP_TYPE_ANY);
+
+    /// Initialize sparty mouth image
+    mSpartyMouthImage = std::make_unique<wxImage>(image2, wxBITMAP_TYPE_ANY);
     mSpartyMouthBitmap = std::make_unique<wxBitmap>(*mSpartyMouthImage);
 
     mMouthPivot = wxPoint(0, 0);
     mMouthAngle = 0;
 }
+
 void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
     double wid = mSpartyImage->GetWidth();

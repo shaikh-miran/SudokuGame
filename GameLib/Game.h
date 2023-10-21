@@ -73,6 +73,7 @@ public:
     void SetWidth(double width) { mWidth = width; }
     void SetTileHeight(double height) { mTileHeight = height; }
     void SetTileWidth(double width) { mTileWidth = width; }
+    void SetSparty(std::shared_ptr<Sparty> sparty) { mSparty = sparty; }
 
     double GetTileWidth() { return mTileWidth; }
     double GetTileHeight() { return mTileHeight; }

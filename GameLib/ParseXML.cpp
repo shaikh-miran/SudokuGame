@@ -7,50 +7,16 @@
 #include "ParseXML.h"
 #include "DeclarationGiven.h"
 #include "DeclarationDigit.h"
+#include "DeclarationSparty.h"
 #include "DeclarationXray.h"
 #include "DeclarationBackground.h"
 #include "Game.h"
 
 using namespace std;
 
-ParseXML::ParseXML(Game * game) : mGame(game) {}
-
-/**
- * Loads all attributes and items from a given XML document.
- * @param xmlDoc input document
- */
-void ParseXML::Load(wxXmlDocument xmlDoc)
+ParseXML::ParseXML(Game * game) : mGame(game)
 {
-    auto root = xmlDoc.GetRoot(); // getattribute
 
-    /// handle the window/tile sizes (maybe make them into member variables?)
-    root->GetAttribute("width").ToDouble(&mWidth);
-    root->GetAttribute("height").ToDouble(&mHeight);
-    root->GetAttribute("tilewidth").ToDouble(&mTileHeight);
-    root->GetAttribute("tileheight").ToDouble(&mTileWidth);
-
-    mGame->SetWidth(mWidth);
-    mGame->SetHeight(mHeight);
-    mGame->SetTileWidth(mTileWidth);
-    mGame->SetTileHeight(mTileHeight);
-
-    /// Get first child (category) of the xmlDoc
-    auto category = root->GetChildren();
-    /// Loop through all of the categories in the xmlDoc
-    for ( ; category; category = category->GetNext())
-    {
-        /// Get name of category
-        auto categoryName = category->GetName();
-        /// Handle different category names
-        if (categoryName == "declarations")
-        {
-            LoadDeclarations(category);
-        }
-        else if (categoryName == "items")
-        {
-            LoadItems(category);
-        }
-    }
 }
 
 /**
@@ -72,6 +38,11 @@ void ParseXML::LoadDeclarations(wxXmlNode * node) {
         else if (name == L"digit")
         {
             auto declaration = make_shared<DeclarationDigit>(entry);
+            mDeclarationMap[id] = declaration;
+        }
+        else if (name == L"sparty")
+        {
+            auto declaration = make_shared<DeclarationSparty>(entry);
             mDeclarationMap[id] = declaration;
         }
         else if (name == L"xray")
@@ -113,12 +84,55 @@ void ParseXML::LoadItems(wxXmlNode * node) {
         /// Types are: background, xray, given/digit, sparty (in that order)
         auto name = entry->GetName();
         auto id = entry->GetAttribute(L"id").ToStdString();
-        if (name == L"given" || name == L"digit" || name == L"xray" || name == L"background")
+        if (name == L"given" || name == L"digit")
+        {
+            auto declaration = mDeclarationMap[id];
+            declaration->Create(entry, mGame);
+        }
+        else if (name == L"sparty")
         {
             auto declaration = mDeclarationMap[id];
             declaration->Create(entry, mGame);
         }
         numItems++;
+    }
+}
+
+/**
+ * Loads all attributes and items from a given XML document.
+ * @param xmlDoc input document
+ */
+void ParseXML::Load(wxXmlDocument xmlDoc)
+{
+    auto root = xmlDoc.GetRoot(); // getattribute
+
+    /// handle the window/tile sizes (maybe make them into member variables?)
+    root->GetAttribute("width").ToDouble(&mWidth);
+    root->GetAttribute("height").ToDouble(&mHeight);
+    root->GetAttribute("tilewidth").ToDouble(&mTileHeight);
+    root->GetAttribute("tileheight").ToDouble(&mTileWidth);
+
+    mGame->SetWidth(mWidth);
+    mGame->SetHeight(mHeight);
+    mGame->SetTileWidth(mTileWidth);
+    mGame->SetTileHeight(mTileHeight);
+
+    /// Get first child (category) of the xmlDoc
+    auto category = root->GetChildren();
+    /// Loop through all of the categories in the xmlDoc
+    for ( ; category; category = category->GetNext())
+    {
+        /// Get name of category
+        auto categoryName = category->GetName();
+        /// Handle different category names
+        if (categoryName == "declarations")
+        {
+            LoadDeclarations(category);
+        }
+        else if (categoryName == "items")
+        {
+            LoadItems(category);
+        }
     }
 }
 
