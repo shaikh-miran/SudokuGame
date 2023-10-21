@@ -5,13 +5,6 @@
 #include "pch.h"
 #include "Game.h"
 
-
-/// Initial sparty X location
-const int InitialX = 100;
-
-/// Initial sparty Y location
-const int InitialY = 100;
-
 /// Initial XRay X location
 const int XRInitialX = 100;
 
@@ -60,8 +53,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     //
     // INSERT YOUR DRAWING CODE HERE
 
-
-    // graphics->DrawBitmap(*mBackground, 0,0,pixelWidth, pixelHeight);
+    //graphics->DrawBitmap(*mBackground, 0,0,pixelWidth, pixelHeight);
 
     mScoreboard.OnDraw(graphics, this);
     mXOffset = (width - pixelWidth * mScale) / 2.0;
