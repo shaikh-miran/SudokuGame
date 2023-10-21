@@ -100,7 +100,7 @@ public:
      * @return true if clicked on
      */
 
-    virtual bool HitTest(int x, int y);
+    virtual bool HitTest(int x, int y) ;
 
     void XmlLoad(wxXmlNode *node);
 
