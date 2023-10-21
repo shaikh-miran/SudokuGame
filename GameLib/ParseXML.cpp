@@ -84,7 +84,7 @@ void ParseXML::LoadItems(wxXmlNode * node) {
         /// Types are: background, xray, given/digit, sparty (in that order)
         auto name = entry->GetName();
         auto id = entry->GetAttribute(L"id").ToStdString();
-        if (name == L"given" || name == L"digit" || name == L"sparty" || name == L"background")
+        if (name == L"given" || name == L"digit" || name == L"sparty" || name == L"background" || name == L"xray")
         {
             auto declaration = mDeclarationMap[id];
             declaration->Create(entry, mGame);
