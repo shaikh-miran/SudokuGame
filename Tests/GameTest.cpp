@@ -58,57 +58,32 @@ TEST_F(GameTest, Construct)
 }
 
 
-TEST_F(GameTest,Load)
-{
-    auto path = TempPath();
-    ParseXML game;
-    wxXmlDocument file = path + L"/level0.xml";
-    game.Load(file);
-
-
-}
-
-
-
 TEST_F(GameTest,LoadItemsTest)
 {
     auto path = TempPath();
-    ParseXML game;
-    wxXmlDocument file = path + L"/level0.xml";
+    Game *x = nullptr;
+    ParseXML game(x);
+    wxXmlDocument file = path + L"/level1.xml";
     wxXmlNode* itemsNode = file.GetRoot()->GetChildren();
     if (itemsNode->GetName() == "items")
     {
         ASSERT_TRUE(itemsNode);
         game.LoadItems(itemsNode);
         ASSERT_FALSE(itemsNode);
-
-
     }
 }
 
-TEST_F(GameTest,LoadGameTest)
-{
-    auto path = TempPath();
-    ParseXML game;
-    wxXmlDocument file = path + L"/level0.xml";
-    wxXmlNode* gameNode = file.GetRoot()->GetChildren();
-    if (gameNode->GetName() == "game")
-    {
-        ASSERT_TRUE(gameNode);
-        game.LoadGame(gameNode);
-        ASSERT_FALSE(gameNode);
-    }
-}
 
 TEST_F(GameTest, DeclarationsTest)
 {
     auto path = TempPath();
-    ParseXML game;
-    wxXmlDocument file = path + L"/level0.xml";
+    Game *x = nullptr ;
+    ParseXML game(x);
+    wxXmlDocument file = path + L"/level1.xml";
     wxXmlNode* Node = file.GetRoot();
 
-    int numDeclarations;
-    int numItems;
+    int numDeclarations ;
+    int numItems ;
     wxXmlNode* declarationsNode = nullptr;
     wxXmlNode* itemsNode = nullptr;
 
@@ -120,21 +95,17 @@ TEST_F(GameTest, DeclarationsTest)
             declarationsNode = child;
             break;
         }
-
         if (child->GetName() == "items")
         {
             itemsNode = child;
             break;
         }
-
     }
-
     if (declarationsNode != nullptr)
     {
         game.LoadDeclarations(declarationsNode);
         numDeclarations = game.GetNumDeclarations();
         ASSERT_EQ(numDeclarations, ExpectedNumDeclarations);
-
     }
 
     if (itemsNode != nullptr)
@@ -142,7 +113,6 @@ TEST_F(GameTest, DeclarationsTest)
         game.LoadItems(itemsNode);
         numItems = game.GetNumItems();
         ASSERT_EQ(numItems, ExpectedNumItems);
-
     }
 
 }

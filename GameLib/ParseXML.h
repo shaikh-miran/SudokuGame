@@ -29,6 +29,9 @@ private:
     double mHeight;
     std::map<std::string, std::shared_ptr<Declaration>> mDeclarationMap;
 
+    int numDeclarations = 0;
+    int numItems = 0;
+
 public:
     /// Default constructor (disabled)
     ParseXML() = delete;
@@ -42,6 +45,10 @@ public:
     void Load(wxXmlDocument xmlDoc);
     void LoadDeclarations(wxXmlNode *node);
     void LoadItems(wxXmlNode *node);
+
+    int GetNumDeclarations() const {return numDeclarations;}
+    int GetNumItems() const {return numItems;}
+
 };
 
 #endif //PROJECT1_PROJECT1_GAMELIB_PARSEXML_H

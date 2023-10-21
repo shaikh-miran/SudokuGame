@@ -25,7 +25,7 @@ void DeclarationDigit::Create(wxXmlNode *node, Game *game)
     auto item = std::make_shared<ItemDigit>(game, GetImageName());
     item->SetWidth(width);
     item->SetHeight(height);
-    item->SetLocation((col) * game->GetTileWidth(), (row) * game->GetTileHeight());
+    item->SetLocation(col * game->GetTileWidth(), row * game->GetTileHeight());
 
     game->AddItem(item);
 }

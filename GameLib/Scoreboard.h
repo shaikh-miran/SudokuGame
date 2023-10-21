@@ -14,10 +14,9 @@ class Game;
 class Scoreboard
 {
 private:
-    int minutes = 0;
-    int seconds = 0;
-    wxTimer timer;
-    long lastUpdateTime; // Track the last time UpdateTime was called
+    int mMinutes = 0;
+    int mSeconds = 0;
+    wxTimer mTimer;
 
     ///Scale double variable
     double mScale;

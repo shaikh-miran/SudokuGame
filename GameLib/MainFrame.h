@@ -14,8 +14,6 @@
 #ifndef PROJECT1_PROJECT1_GAMELIB_MAINFRAME_H
 #define PROJECT1_PROJECT1_GAMELIB_MAINFRAME_H
 
-
-
 class MainFrame :  public wxFrame {
 
 private:

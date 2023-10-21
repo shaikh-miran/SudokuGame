@@ -28,10 +28,6 @@ private:
     wxPoint mMouthPivot;
     double mMouthAngle;
 
-
-
-
-
 public:
     /// Default constructor (disabled)
     Sparty() = delete;

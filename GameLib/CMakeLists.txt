@@ -40,6 +40,10 @@ set(SOURCE_FILES
         ItemDigit.h
         ItemGiven.cpp
         ItemGiven.h
+        DeclarationXray.cpp
+        DeclarationXray.h
+        DeclarationBackground.cpp
+        DeclarationBackground.h
 )
 
 set(wxBUILD_PRECOMP OFF)

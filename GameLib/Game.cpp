@@ -28,18 +28,7 @@ using namespace std;
 Game::Game()
 
 {
-    mBackground = make_unique<wxBitmap>(
-        L"images/background.png", wxBITMAP_TYPE_ANY);
-
     mScoreboard.StartTimer();
-
-    //XRay implementation
-
-    std::shared_ptr<XRay> xray = make_shared<XRay>(this);
-    xray->SetLocation(XRInitialX, XRInitialY);
-
-
-    mItems.push_back(xray);
 
     //mouth open close
     mSparty = std::make_shared<Sparty>(this);
@@ -77,9 +66,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     //
     // INSERT YOUR DRAWING CODE HERE
 
-
-    graphics->DrawBitmap(*mBackground, 0,0,pixelWidth, pixelHeight);
-
     mScoreboard.OnDraw(graphics, this);
     mXOffset = (width - pixelWidth * mScale) / 2.0;
     mYOffset = 0;
@@ -88,7 +74,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
         mYOffset = (double)((height - pixelHeight * mScale) / 2.0);
     }
 
-    for (auto item : mItems){
+    for (auto item : mItems) {
         item->Draw(graphics);
     }
     graphics->PopState();

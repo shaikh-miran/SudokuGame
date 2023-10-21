@@ -8,33 +8,24 @@
 #ifndef PROJECT1_PROJECT1_GAMELIB_BACKGROUND_H
 #define PROJECT1_PROJECT1_GAMELIB_BACKGROUND_H
 
-class Background
+#include "Item.h"
+#include "DeclarationBackground.h"
+
+class Background : public Item
 {
 private:
 
-
-    int m_height;
-
-    int m_width;
-
-    wxString m_id;
-
-    wxString m_image;
-
 public:
-    Background(wxXmlNode* node_name);
+    //// Default constructor (disabled)
+    Background() = delete;
 
-    int GetHeight () const;
+    /// Copy constructor (disabled)
+    Background(const Background &) = delete;
 
-    int GetWidth() const;
+    /// Assignment operator
+    void operator=(const Background &) = delete;
 
-
-    wxString GetId() const;
-
-
-    wxString GetImage() const;
-
-
+    Background(Game* game, std::wstring filename);
 };
 
 #endif //PROJECT1_PROJECT1_GAMELIB_BACKGROUND_H

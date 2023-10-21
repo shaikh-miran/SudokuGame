@@ -25,7 +25,7 @@ void DeclarationGiven::Create(wxXmlNode *node, Game *game)
     auto item = std::make_shared<ItemGiven>(game, GetImageName());
     item->SetWidth(width);
     item->SetHeight(height);
-    item->SetLocation((col) * game->GetTileWidth(), (row) * game->GetTileHeight());
+    item->SetLocation((col) * game->GetTileWidth(), (row+0.25) * game->GetTileHeight());
 
     game->AddItem(item);
 }

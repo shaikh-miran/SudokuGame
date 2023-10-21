@@ -57,8 +57,6 @@ bool Item::HitTest(int x, int y)
         return false;
     }
 
-
-
     // Test to see if x, y are in the drawn part of the image
     // If the location is transparent, we are not in the drawn
     // part of the image
@@ -66,15 +64,14 @@ bool Item::HitTest(int x, int y)
 }
 
 /**
-
 Draw this sparty
 @param dc Device context to draw on
 */
 void Item::Draw(shared_ptr<wxGraphicsContext> graphics)
 {
     graphics->DrawBitmap(*mItemBitmap,
-                         int(GetX()),
-                         int(GetY()),
+                         GetX(),
+                         GetY(),
                          mWidth,
                          mHeight);
 }

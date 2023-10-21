@@ -30,25 +30,18 @@ Sparty::Sparty(Game *game) : Item(game, SpartyImage)
     mMouthAngle = 0;
 }
 void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
-
-//put sparty mouth open here
-
 {
-
-
     double wid = mSpartyImage->GetWidth();
     double hit = mSpartyImage->GetHeight();
 
     double wid1 = mSpartyMouthBitmap->GetWidth();
     double hit1 = mSpartyMouthBitmap->GetHeight();
-//
 //    // headX, headY are the pixel location of the top-left corner of the Sparty images
     double HeadX = GetX() - wid / 2;
     double HeadY = GetY() - hit / 2;
 
     graphics->PushState();
 
-//
 //    // Translate to the top-left corner of the Sparty image
     graphics->Translate(HeadX,HeadY);
 //
@@ -75,13 +68,9 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     DrawBottom(graphics);
 
     graphics->PopState();
-
-
 }
+
 void Sparty::DrawTop(std::shared_ptr<wxGraphicsContext> graphics)
-
-//put sparty mouth open here
-
 {
     double wid = mSpartyImage->GetWidth();
     double hit = mSpartyImage->GetHeight();

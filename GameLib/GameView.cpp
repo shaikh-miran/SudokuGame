@@ -32,7 +32,6 @@ const int FrameDuration = 30;
  */
 void GameView::Initialize(wxFrame* parent)
 {
-
     Create(parent, wxID_ANY,
            wxDefaultPosition, wxDefaultSize,
            wxFULL_REPAINT_ON_RESIZE);
@@ -41,7 +40,6 @@ void GameView::Initialize(wxFrame* parent)
 
     // Bind the OnPaint event handler
     Bind(wxEVT_PAINT, &GameView::OnPaint, this);
-
 
     // Bind options to load different levels
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevel0, this, IDM_LEVEL_0);
@@ -71,10 +69,6 @@ void GameView::OnPaint(wxPaintEvent& event)
 
     // Create a double-buffered display context
     wxAutoBufferedPaintDC dc(this);
-
-
-    // Clear the image to black
-
 
     wxBrush background(*wxBLACK);
     dc.SetBackground(background);

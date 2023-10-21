@@ -16,7 +16,7 @@ TEST(XrayTest, Construct)
     XRay xray(Game *game);
 }
 
-TEST(XrayTest,GettersSetters)
+TEST(XrayTest, GettersSetters)
 {
     Game game;
     XRay xRay(&game);
