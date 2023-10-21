@@ -77,6 +77,7 @@ public:
 
     double GetTileWidth() { return mTileWidth; }
     double GetTileHeight() { return mTileHeight; }
+    Scoreboard * GetScoreboard() { return &mScoreboard; }
 
     std::shared_ptr<Sparty> GetSparty() { return mSparty; }
     void AddItem(std::shared_ptr<Item> item);

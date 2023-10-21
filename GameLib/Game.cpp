@@ -21,7 +21,7 @@ using namespace std;
 Game::Game()
 
 {
-    mScoreboard.StartTimer();
+    Load(L"levels/level1.xml");
 }
 
 void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
@@ -55,7 +55,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 
     //graphics->DrawBitmap(*mBackground, 0,0,pixelWidth, pixelHeight);
 
-    mScoreboard.OnDraw(graphics, this);
     mXOffset = (width - pixelWidth * mScale) / 2.0;
     mYOffset = 0;
     if (height > pixelHeight * mScale)
@@ -66,6 +65,8 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     for (auto item : mItems){
         item->Draw(graphics);
     }
+    mScoreboard.OnDraw(graphics, this);
+
     graphics->PopState();
 }
 
@@ -90,6 +91,8 @@ void Game::Load(const wxString & filename)
     auto mLevel = new ParseXML(this);
     /// Offload loading process to ParseXML object
     mLevel->Load(xmlDoc);
+    mScoreboard.ResetTimer();
+    mScoreboard.StartTimer();
 }
 
 /**
