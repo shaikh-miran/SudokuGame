@@ -86,7 +86,7 @@ void ParseXML::LoadItems(wxXmlNode * items) {
         /// Types are: background, xray, given/digit, sparty (in that order)
         entry->GetAttribute("id");
         entry->GetAttribute("col");
-        entry->GetAttribute("row");
+        entry->GetAttribute("row"); /// does this call do anything??
         numItems++;
     }
 }
