@@ -18,14 +18,6 @@ private:
     int mSeconds = 0;
     wxTimer mTimer;
 
-    ///Scale double variable
-    double mScale;
-
-    ///Y and X offset doubles
-    double mXOffset;
-    ///Y and X offset doubles
-    double mYOffset;
-
 public:
     Scoreboard();
     void UpdateTime(wxTimerEvent& event);
@@ -34,7 +26,11 @@ public:
     void ResetTimer();
     /// Draw Scoreboard
     void OnDraw(std::shared_ptr<wxGraphicsContext> gc, Game* level);
-//    void Draw(wxDC* dc);
+
+    int GetMinutes() { return mMinutes; }
+    int GetSeconds() { return mSeconds; }
+
+    void SetTime(int minutes, int seconds) { mMinutes = minutes; mSeconds = seconds; }
 
 };
 
