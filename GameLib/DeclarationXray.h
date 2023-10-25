@@ -1,8 +1,6 @@
 /**
  * @file DeclarationXray.h
- * @author Navya Singh
- *
- *
+ * @author Team Prometheus
  */
 
 #ifndef PROJECT1_GAMELIB_DECLARATIONXRAY_H
@@ -10,12 +8,20 @@
 
 #include "Declaration.h"
 
+/// Forward declaration of Game class
 class Game;
 
+/**
+ * DeclarationBackground class - a type of Declaration; handles Declaration nodes that have the "name" attribute of
+ * "background"
+ */
 class DeclarationXray : public Declaration
 {
 private:
+    /// Capacity of the XRay object (can hold up to x digits)
     int mCapacity;
+
+    /// XRay image filename
     std::wstring mImage;
 
 public:
@@ -28,8 +34,16 @@ public:
     /// Assignment operator
     void operator=(const DeclarationXray &) = delete;
 
+    /// Constructor
     DeclarationXray(wxXmlNode* node);
+
+    /// Declaration::Create override; modified to accept "xray" specific attributes
     void Create(wxXmlNode* node, Game* game) override;
+
+    /**
+     * Return the xray image filename
+     * @return string form of the image's filename
+     */
     std::wstring GetImageName() { return mImage; }
 };
 

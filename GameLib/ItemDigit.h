@@ -1,8 +1,6 @@
 /**
  * @file ItemDigit.h
- * @author Navya Singh
- *
- *
+ * @author Team Prometheus
  */
 
 #ifndef PROJECT1_GAMELIB_ITEMDIGIT_H
@@ -25,6 +23,7 @@ public:
     /// Assignment operator
     void operator=(const ItemDigit &) = delete;
 
+    /// Constructor
     ItemDigit(Game* game, std::wstring filename);
 };
 

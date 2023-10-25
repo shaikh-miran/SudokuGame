@@ -1,13 +1,15 @@
 /**
  * @file Declaration.cpp
- * @author Navya Singh
+ * @author Team Prometheus
  */
 
 #include "pch.h"
 #include "Declaration.h"
 
-using namespace std;
-
+/**
+ * Decalaration constructor implementation - retrieves and stores data from declaration nodes in level XML files.
+ * @param node the associated node to get data from
+ */
 Declaration::Declaration(wxXmlNode *node)
 {
     mId = node->GetAttribute(L"id").ToStdString();

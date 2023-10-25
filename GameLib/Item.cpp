@@ -15,15 +15,14 @@ using namespace std;
 
 
 /**
- * Constructor
- * @param game The game this item is a member of
+ * Constructor - Sets the filename for the item, and creates a bitmap based on it
+ * @param game The game that the item will be associated with
+ * @param filename The filename of the item to use for the image
  */
-
 Item::Item(Game *game, const std::wstring &filename) : mGame(game)
 {
     mItemImage = make_unique<wxImage>(filename, wxBITMAP_TYPE_ANY);
     mItemBitmap = make_unique<wxBitmap>(*mItemImage);
-
 }
 
 /**
@@ -37,7 +36,6 @@ Item::Item(Game *game) : mGame(game) {}
  */
 Item::~Item()
 {
-
 }
 
 /**
@@ -71,8 +69,8 @@ bool Item::HitTest(int x, int y)
 }
 
 /**
-Draw this sparty
-@param dc Device context to draw on
+Draw implementation for items
+@param graphics Device context to draw on
 */
 void Item::Draw(shared_ptr<wxGraphicsContext> graphics)
 {

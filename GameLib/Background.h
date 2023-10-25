@@ -1,8 +1,6 @@
 /**
  * @file Background.h
- * @author haile
- *
- *
+ * @author Team Prometheus
  */
 
 #ifndef PROJECT1_PROJECT1_GAMELIB_BACKGROUND_H
@@ -11,10 +9,11 @@
 #include "Item.h"
 #include "DeclarationBackground.h"
 
+/**
+ * Class Background - Manages objects of the Background type, which display background images in the game window.
+ */
 class Background : public Item
 {
-private:
-
 public:
     //// Default constructor (disabled)
     Background() = delete;
@@ -25,6 +24,7 @@ public:
     /// Assignment operator
     void operator=(const Background &) = delete;
 
+    /// Constructor
     Background(Game* game, std::wstring filename);
 };
 

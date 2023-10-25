@@ -1,6 +1,6 @@
 /**
  * @file Game.cpp
- * @author hailey cohen, maui
+ * @author Team Prometheus
  */
 #include "pch.h"
 #include "Game.h"
@@ -16,14 +16,21 @@ const int XRInitialY = 100;
 using namespace std;
 
 /**
- * Game Constructor
+ * Game Constructor - Creates an instance of the game, and automatically loads the default level
  */
 Game::Game()
 
 {
+    /// Load level 1; this is the default level to load
     Load(L"levels/level1.xml");
 }
 
+/**
+ * Handles items to be drawn on the game window
+ * @param graphics wxGC object that handles the drawing task
+ * @param width window width
+ * @param height window height
+ */
 void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
     int pixelWidth = 20*48;
@@ -52,8 +59,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     // Draw in virtual pixels on the graphics context
     //
     // INSERT YOUR DRAWING CODE HERE
-
-    //graphics->DrawBitmap(*mBackground, 0,0,pixelWidth, pixelHeight);
 
     mXOffset = (width - pixelWidth * mScale) / 2.0;
     mYOffset = 0;
@@ -114,6 +119,11 @@ std::shared_ptr<Item> Game::HitTest(int x, int y)
     return  nullptr;
 }
 
+/**
+ * Handles left click event - force Sparty object to move to the clicked location
+ * @param x current cursor x-location
+ * @param y current cursor y-location
+ */
 void Game::OnLeftDown(int x, int y)
 {
     mClickY = (y - mYOffset) / mScale;
@@ -135,8 +145,10 @@ void Game::OnLeftDown(int x, int y)
     }
 }
 
-
-
+/**
+ * Update the game (on-demand)
+ * @param elapsed time elapsed from game begin
+ */
 void Game::Update(double elapsed)
 {
     for (auto item : mItems)
@@ -146,15 +158,17 @@ void Game::Update(double elapsed)
 }
 
 /**
- * Clear the game data.
- *
- * Deletes all known items in the game.
+ * Clear the game data - deletes all known items in the game.
  */
 void Game::Clear()
 {
     mItems.clear();
 }
 
+/**
+ * Add the Item from item parameter into the Game object's mItems list
+ * @param item the Item to add
+ */
 void Game::AddItem(std::shared_ptr<Item> item)
 {
     mItems.push_back(item);

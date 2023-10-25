@@ -1,23 +1,13 @@
 /**
  * @file GameView.cpp
- * @author haile
+ * @author Team Prometheus
  */
 
 #include "pch.h"
-
-
 #include "GameView.h"
 #include "ids.h"
-
-
 #include "Sparty.h"
 #include "XRay.h"
-
-
-#include "ids.h"
-#include "GameView.h"
-#include "Sparty.h"
-
 #include <wx/dcclient.h>
 #include <wx/dcbuffer.h>
 #include <string>
@@ -27,8 +17,7 @@ using namespace std;
 const int FrameDuration = 30;
 
 /**
- * Initialize the aquarium view class.
- *
+ * GameView object initializer.
  */
 void GameView::Initialize(wxFrame* parent)
 {
@@ -48,11 +37,7 @@ void GameView::Initialize(wxFrame* parent)
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevel3, this, IDM_LEVEL_3);
 
     Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);
-    Bind(wxEVT_LEFT_UP, &GameView::OnLeftUp, this);
-    Bind(wxEVT_MOTION, &GameView::OnMouseMove, this);
     Bind(wxEVT_TIMER,&GameView::OnTimer,this);
-    //Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftClick,this);
-    //mouth moving
     Bind(wxEVT_KEY_DOWN, &GameView::SpaceBarPressed, this);
 
     mTimer.SetOwner(this);
@@ -85,9 +70,6 @@ void GameView::OnPaint(wxPaintEvent& event)
     mTime = newTime;
 
     mGame.Update(elapsed);
-
-//    // Draw the scoreboard
-//    mScoreboard.OnDraw(gc);
 }
 
 
@@ -138,7 +120,6 @@ void GameView::OnLevel3(wxCommandEvent& event)
 }
 
 
-
 void GameView::UpdateScoreboard(wxTimerEvent& event)
 {
     mScoreboard.UpdateTime(event);
@@ -156,58 +137,6 @@ void GameView::OnLeftDown(wxMouseEvent &event)
 
 }
 
-/**
-* Handle the left mouse button down event
-* @param event
-*/
-void GameView::OnLeftUp(wxMouseEvent &event)
-{
-    OnMouseMove(event);
-}
-
-/**
-* Handle the left mouse button down event
-* @param event
-*/
-void GameView::OnMouseMove(wxMouseEvent &event)
-{
-//    // See if an item is currently being moved by the mouse
-//    if (mGrabbedItem != nullptr)
-//    {
-//
-//
-//        if (event.LeftIsDown())
-//
-////
-//        if (event.GetX() == 72 && event.GetY() == 24)
-//
-//        {
-//            mGrabbedItem = nullptr;
-//        }
-//        else
-//        {
-//            mGrabbedItem->SetLocation(event.GetX() - mGrabOffsetX, event.GetY() - mGrabOffsetY);
-//        }
-//
-//        // Force the screen to redraw
-//        Refresh();
-}
-//}
-void GameView::OnLeftClick(wxMouseEvent &event)
-{
-    // Check if an item was clicked
-    mGrabbedItem = mGame.HitTest(event.GetX(), event.GetY());
-
-    // If an item is clicked, store its position relative to the mouse
-    if (mGrabbedItem != nullptr)
-    {
-        mGrabOffsetX = event.GetX() - mGrabbedItem->GetX();
-        mGrabOffsetY = event.GetY() - mGrabbedItem->GetY();
-    }
-
-}
-
-///moving mouth
 /**
 * Handle the space bar event
 * @param event

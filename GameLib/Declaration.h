@@ -1,6 +1,6 @@
 /**
  * @file Declaration.h
- * @author Navya Singh
+ * @author Team Prometheus
  *
  *
  */
@@ -9,15 +9,30 @@
 #ifndef PROJECT1_GAMELIB_DECLARATION_H
 #define PROJECT1_GAMELIB_DECLARATION_H
 
+#include <utility>
+
 #include "Item.h"
 
+/// Forward declaration of game class
 class Game;
+
+/**
+ * Class Declaration - Stores relevant data from declaration nodes in the level XML file. Declaration objects are used
+ * in conjunction with the ParseXML class to handle the creation of items displayed in the game window.
+ */
 class Declaration
 {
 private:
+    /// The Game object that the (soon-to-be) item will be associated with
     Game *mGame;
+
+    /// The XML file-specified ID of the declaration node
     std::string mId;
+
+    /// Item width
     double mWidth;
+
+    /// Item height
     double mHeight;
 
 public:
@@ -30,15 +45,38 @@ public:
     /// Assignment operator
     void operator=(const Declaration &) = delete;
 
-
+    /// Constructor
     Declaration(wxXmlNode *node);
 
-    void SetId(std::string id) {mId = id;}
+    /**
+     * Set the declaration's id based on an input string
+     * @param id the string to set the mId member variable to
+     */
+    void SetId(std::string id) { mId = id; }
 
-    std::string GetId() const {return mId;}
-    double GetWidth() const {return mWidth;}
-    double GetHeight() const {return mHeight;}
+    /**
+     * Return the declaration id (mID)
+     * @return string form of the id
+     */
+    std::string GetId() const { return mId; }
 
+    /**
+     * Return the item declaration's width
+     * @return width, in double form
+     */
+    double GetWidth() const { return mWidth; }
+
+    /**
+     * Return the item declaration's height
+     * @return height, in double form
+     */
+    double GetHeight() const { return mHeight; }
+
+    /**
+     * Create the Item object with the specifications from the declaration object.
+     * @param node the "item" node to associate with the "declaration" node (this)
+     * @param game the Game object in which the Item object will reside in
+     */
     virtual void Create(wxXmlNode* node, Game *game) {}
 };
 
