@@ -14,18 +14,9 @@ class Game;
 class Scoreboard
 {
 private:
-    int minutes = 0;
-    int seconds = 0;
-    wxTimer timer;
-    long lastUpdateTime; // Track the last time UpdateTime was called
-
-    ///Scale double variable
-    double mScale;
-
-    ///Y and X offset doubles
-    double mXOffset;
-    ///Y and X offset doubles
-    double mYOffset;
+    int mMinutes = 0;
+    int mSeconds = 0;
+    wxTimer mTimer;
 
 public:
     Scoreboard();
@@ -35,7 +26,11 @@ public:
     void ResetTimer();
     /// Draw Scoreboard
     void OnDraw(std::shared_ptr<wxGraphicsContext> gc, Game* level);
-//    void Draw(wxDC* dc);
+
+    int GetMinutes() { return mMinutes; }
+    int GetSeconds() { return mSeconds; }
+
+    void SetTime(int minutes, int seconds) { mMinutes = minutes; mSeconds = seconds; }
 
 };
 

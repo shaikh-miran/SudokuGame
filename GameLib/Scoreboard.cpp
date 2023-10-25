@@ -27,33 +27,33 @@ const wxColour FontColor = wxColour(255, 255, 255);
 
 Scoreboard::Scoreboard()
 {
-    timer.Bind(wxEVT_TIMER, &Scoreboard::UpdateTime, this);
+    mTimer.Bind(wxEVT_TIMER, &Scoreboard::UpdateTime, this);
 }
 
 void Scoreboard::UpdateTime(wxTimerEvent& event)
 {
-    if (seconds == 60)
+    if (mSeconds == 60)
     {
-        minutes++;
-        seconds = 0;
+        mMinutes++;
+        mSeconds = 0;
     }
-    ++seconds;
+    ++mSeconds;
 }
 
 void Scoreboard::StartTimer()
 {
-    timer.Start(1000);
+    mTimer.Start(1000);
 }
 
 void Scoreboard::StopTimer()
 {
-    timer.Stop();
+    mTimer.Stop();
 }
 
 void Scoreboard::ResetTimer()
 {
-    minutes = 0;
-    seconds = 0;
+    mMinutes = 0;
+    mSeconds = 0;
 }
 
 
@@ -65,10 +65,10 @@ void Scoreboard::ResetTimer()
 void Scoreboard::OnDraw(std::shared_ptr<wxGraphicsContext> gc, Game* level)
 {
 
-    wxFont font(wxSize(0, ScoreboardTextSize), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+    wxFont font(wxSize(0, ScoreboardTextSize), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
     gc->SetFont(font, FontColor);
     wxString timeString;
-    timeString.Printf("%02d:%02d", minutes, seconds);
+    timeString.Printf("%02d:%02d", mMinutes, mSeconds);
     gc->DrawText(timeString, ScoreboardX, ScoreboardY);
 
 }

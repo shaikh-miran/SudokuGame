@@ -3,30 +3,12 @@
  * @author haile
  */
 
+#include "pch.h"
 #include "Background.h"
 
-///create Background constructor ti pull attributes from xml
-
-Background::Background(wxXmlNode* node) {
-    // Assuming the attributes are all strings
-    m_height = wxAtoi(node->GetAttribute("height", "0"));
-    m_width = wxAtoi(node->GetAttribute("width", "0"));
-    m_id = node->GetAttribute("id", "");
-    m_image = node->GetAttribute("image", "");
-}
-
-int Background::GetHeight() const {
-    return m_height;
-}
-
-int Background::GetWidth() const {
-    return m_width;
-}
-
-wxString Background::GetId() const {
-    return m_id;
-}
-
-wxString Background::GetImage() const {
-    return m_image;
-}
+/**
+ * Background Constructor implementation - passes parameters to parent class Item constructor.
+ * @param game The associated game
+ * @param filename The filename of the background image
+ */
+Background::Background(Game *game, std::wstring filename) : Item(game, filename) {}

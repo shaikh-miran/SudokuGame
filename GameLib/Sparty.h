@@ -28,11 +28,16 @@ private:
     wxPoint mMouthPivot;
     double mMouthAngle;
 
+    double mTimeHeadbutt = 0;
 
+    double mAngleofHead = .8;
 
-
+    double mTimeEating = 0;
 
 public:
+
+    void Yum();
+
     /// Default constructor (disabled)
     Sparty() = delete;
 
@@ -42,7 +47,8 @@ public:
     /// Assignment operator
     void operator=(const Sparty &) = delete;
 
-    Sparty(Game *game);
+    /// Constructor
+    Sparty(Game *game, std::wstring image1, std::wstring image2);
 
     void Update(double elapsed) override;
 
@@ -55,10 +61,6 @@ public:
     /// moving mouth
     void SetMouthPivot(const wxPoint& pivot);
     void SetMouthAngle(double angle);
-
-
-
-
 };
 
 #endif //PROJECT1_GAMELIB_SPARTY_H

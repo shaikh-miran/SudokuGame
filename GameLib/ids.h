@@ -1,6 +1,6 @@
 /**
  * @file ids.h
- * @author maui
+ * @author Team Prometheus
  */
 
 #ifndef PROJECT1_GAMELIB_IDS_H

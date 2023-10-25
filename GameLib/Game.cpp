@@ -1,25 +1,9 @@
 /**
  * @file Game.cpp
- * @author hailey cohen, maui
+ * @author Team Prometheus
  */
 #include "pch.h"
 #include "Game.h"
-
-#include <wx/xml/xml.h>
-#include "XRay.h"
-#include <vector>
-#include <memory>
-#include "Sparty.h"
-#include "Item.h"
-#include "GameView.h"
-#include "ParseXML.h"
-
-
-/// Initial sparty X location
-const int InitialX = 100;
-
-/// Initial sparty Y location
-const int InitialY = 100;
 
 /// Initial XRay X location
 const int XRInitialX = 100;
@@ -31,87 +15,26 @@ const int XRInitialY = 100;
 #include "Item.h"
 using namespace std;
 
-
-
-
-
 /**
- * Game Constructor
+ * Game Constructor - Creates an instance of the game, and automatically loads the default level
  */
 Game::Game()
 
 {
-    mBackground = make_unique<wxBitmap>(
-        L"images/background.png", wxBITMAP_TYPE_ANY);
-
-    mScoreboard.StartTimer();
-
-    //XRay implementation
-
-    std::shared_ptr<XRay> xray = make_shared<XRay>(this);
-    xray->SetLocation(XRInitialX, XRInitialY);
-
-
-    mItems.push_back(xray);
-
-    //mouth open close
-    mSparty = std::make_shared<Sparty>(this);
-    mSparty->SetLocation(InitialX, InitialY);
-
-    mItems.push_back(mSparty);
-
-    // Seed the random number generator
-    std::random_device rd;
-    mRandom.seed(rd());
+    /// Load level 1; this is the default level to load
+    Load(L"levels/level1.xml");
 }
-
-///**
-// * Draw the game
-// * @param graphics Graphics device to draw on
-// * @param width Width of the window
-// * @param height Height of the window
-// */
-////void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
-////{
-////    // Determine the size of the playing area in pixels
-////    // This is up to you...
-////    shared_ptr<Item> item = make_shared<Sparty>(this);
-////    item->SetLocation(InitialX, InitialY);
-////    mItems.push_back(item);
-////}
-//
-//    shared_ptr<Item> item = make_shared<Sparty>(this);
-//    item->SetLocation(InitialX, InitialY);
-//    mItems.push_back(item);
-//
-//    mScoreboard.StartTimer();
-//}
-
 
 /**
- * Start the level loading process, given the desired level filename
- * @param filename name of the level file (ex. level0.xml)
+ * Handles items to be drawn on the game window
+ * @param graphics wxGC object that handles the drawing task
+ * @param width window width
+ * @param height window height
  */
-void Game::Load(const wxString & filename)
-{
-    /// Instantiate an xml document
-    wxXmlDocument xmlDoc;
-
-    /// Load xml file based on the filename (errors if not found in directory)
-    if(!xmlDoc.Load(filename))
-    {
-        wxMessageBox(L"Error loading file: check levels folder.");
-        return;
-    }
-
-    /// Offload loading process to ParseXML object
-    mLevel->Load(xmlDoc);
-}
-
 void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    int pixelWidth = 1440;
-    int pixelHeight = 960;
+    int pixelWidth = 20*48;
+    int pixelHeight = 15*48;
 
     //
     // Automatic Scaling
@@ -137,11 +60,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     //
     // INSERT YOUR DRAWING CODE HERE
 
-
-
-    graphics->DrawBitmap(*mBackground, 0,0,pixelWidth, pixelHeight);
-
-    mScoreboard.OnDraw(graphics, this);
     mXOffset = (width - pixelWidth * mScale) / 2.0;
     mYOffset = 0;
     if (height > pixelHeight * mScale)
@@ -152,53 +70,35 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     for (auto item : mItems){
         item->Draw(graphics);
     }
+    mScoreboard.OnDraw(graphics, this);
+
     graphics->PopState();
-
 }
-//
-///**
-// * Handle a category (xml node). Each category can have many entries (children), so this function handles those.
-// * @param node XML node
-// */
-//void Game::XmlSet(wxXmlNode * category)
-//{
-//    /// Get name of category
-//    auto categoryName = category->GetName();
-//
-//    /// Handle different category names
-//    if (categoryName == "declarations")
-//    {
-//
-//    }
-//    else if (categoryName == "game")
-//    {
-//
-//    }
-//    else if (categoryName == "items")
-//    {
-//
-//    }
-//
-//    /// Tester code that runs through all of the nodes and displays them. Implement this into the if statements
-//    /// to handle specific category types.
-//    /// BEGIN TESTER CODE
-//
-//    auto message = categoryName + "\n";
-//
-//    /// Loop through all entries
-//    auto entry = category->GetChildren();
-//    for ( ; entry; entry = entry->GetNext())
-//    {
-//        auto entryName = entry->GetName();
-//        message += entryName + " ";
-//    }
-//
-//    wxMessageBox(message);
-//
-//    /// END TESTER CODE
-//}
 
+/**
+ * Start the level loading process, given the desired level filename
+ * @param filename name of the level file (ex. level0.xml)
+ */
+void Game::Load(const wxString & filename)
+{
+    /// Instantiate an xml document
+    wxXmlDocument xmlDoc;
 
+    /// Load xml file based on the filename (errors if not found in directory)
+    if(!xmlDoc.Load(filename))
+    {
+        wxMessageBox(L"Error loading file: check levels folder.");
+        return;
+    }
+
+    Clear();
+
+    auto mLevel = new ParseXML(this);
+    /// Offload loading process to ParseXML object
+    mLevel->Load(xmlDoc);
+    mScoreboard.ResetTimer();
+    mScoreboard.StartTimer();
+}
 
 /**
  * Test an x,y click location to see if it clicked
@@ -216,11 +116,14 @@ std::shared_ptr<Item> Game::HitTest(int x, int y)
             return *i;
         }
     }
-
     return  nullptr;
-
 }
 
+/**
+ * Handles left click event - force Sparty object to move to the clicked location
+ * @param x current cursor x-location
+ * @param y current cursor y-location
+ */
 void Game::OnLeftDown(int x, int y)
 {
     mClickY = (y - mYOffset) / mScale;
@@ -242,8 +145,10 @@ void Game::OnLeftDown(int x, int y)
     }
 }
 
-
-
+/**
+ * Update the game (on-demand)
+ * @param elapsed time elapsed from game begin
+ */
 void Game::Update(double elapsed)
 {
     for (auto item : mItems)
@@ -252,3 +157,27 @@ void Game::Update(double elapsed)
     }
 }
 
+/**
+ * Clear the game data - deletes all known items in the game.
+ */
+void Game::Clear()
+{
+    mItems.clear();
+}
+
+/**
+ * Add the Item from item parameter into the Game object's mItems list
+ * @param item the Item to add
+ */
+void Game::AddItem(std::shared_ptr<Item> item)
+{
+    mItems.push_back(item);
+}
+
+void Game::SpartyYum(){
+    mSparty->Yum();
+}
+
+void Game::SpartyHeadButt(){
+
+}

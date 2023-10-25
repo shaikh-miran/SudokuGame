@@ -13,13 +13,18 @@ using namespace std;
 
 TEST(SpartyTest, Construct)
 {
-    Sparty sparty(Game *game);
+    Game game;
+    const std::wstring &filename1 = L"images/sparty-1.png";
+    const std::wstring &filename2 = L"images/sparty-2.png";
+    Sparty sparty(&game, filename1, filename2);
 }
 
 TEST(SpartyTest,GettersSetters)
 {
     Game game;
-    Sparty sparty(&game);
+    const std::wstring &filename1 = L"images/sparty-1.png";
+    const std::wstring &filename2 = L"images/sparty-2.png";
+    Sparty sparty(&game, filename1, filename2);
 
     //Test initial values
     ASSERT_NEAR(0, sparty.GetX(), 0.0001);
@@ -40,8 +45,9 @@ TEST(SpartyTest,GettersSetters)
 TEST(SpartyTest, HitTest) {
     // Create a fish to test
     Game game;
-    Sparty sparty(&game);
-
+    const std::wstring &filename1 = L"images/sparty-1.png";
+    const std::wstring &filename2 = L"images/sparty-2.png";
+    Sparty sparty(&game, filename1, filename2);
     // Give it a location
     // Always make the numbers different, in case they are mixed up
     sparty.SetLocation(100, 200);

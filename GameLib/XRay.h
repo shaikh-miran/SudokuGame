@@ -9,21 +9,14 @@
 #define PROJECT1_PROJECT1_GAMELIB_XRAY_H
 
 #include "Item.h"
-
-
+#include "DeclarationXray.h"
 
 class XRay : public Item
 {
 private:
-    /// The underlying xray image
-    std::unique_ptr<wxImage> mXRayImage;
-
-    /// The bitmap we can display for this xray
-    std::unique_ptr<wxBitmap> mXRayBitmap;
 
 public:
-    XRay(Game* game);
-    virtual void Draw( std::shared_ptr<wxGraphicsContext> graphics);
+    XRay(Game* game, std::wstring filename);
     
     /// Default constructor (disabled)
     XRay() = delete;
@@ -33,9 +26,7 @@ public:
     
     /// Assignment operator
     void operator=(const XRay &) = delete;
-    
-    void Update(double elapsed){};
-
 };
 
 #endif //PROJECT1_PROJECT1_GAMELIB_XRAY_H
+
