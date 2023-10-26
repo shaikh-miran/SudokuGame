@@ -37,6 +37,10 @@ private:
     /// Handles Paint event, draws the window
     void OnPaint(wxPaintEvent& event);
 
+    //headbutting
+    std::unique_ptr<Sparty> spartyInstance;
+
+
 public:
 
 
@@ -63,6 +67,10 @@ public:
 
     /// Handler for left click down
     void OnLeftDown(wxMouseEvent &event);
+
+    /// Handler for headbutting
+    //void BKeyPressed(wxKeyEvent &event);
+
 
     /// Initializes the GameView object
     void Initialize(wxFrame* parent);
