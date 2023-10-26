@@ -32,8 +32,8 @@ Sparty::Sparty(Game *game, std::wstring image1, std::wstring image2) : Item(game
     mSpartyMouthImage = std::make_unique<wxImage>(image2, wxBITMAP_TYPE_ANY);
     mSpartyMouthBitmap = std::make_unique<wxBitmap>(*mSpartyMouthImage);
 
-    mMouthPivot = wxPoint(0, 0);
-    mMouthAngle = 0;
+//    mMouthPivot = wxPoint(39, 86);
+//    mMouthAngle = 1;
 }
 
 void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
@@ -72,10 +72,10 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 //
 //
 //
-    DrawTop(graphics);
-    DrawBottom(graphics);
+//    DrawTop(graphics);
+//    DrawBottom(graphics);
 
-    graphics->PopState();
+    //graphics->PopState();
 
     double angleOfHead = 0;
     double angleOfMouth = 0;
@@ -88,9 +88,9 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
         else{
             angleOfHead = (TotalTimeEating - mTimeHeadbutt) / halfOfHeadbutt * mAngleofHead;
         }
-        graphics->Translate(mMouthPivot.x, mMouthPivot.y);
-        graphics->Rotate(mMouthAngle);
-        graphics->Translate(-mMouthPivot.x, -mMouthPivot.y); //from Interact ;)
+        graphics->Translate(mHeadPivot.x, mHeadPivot.y);
+        graphics->Rotate(angleOfHead);
+        graphics->Translate(-mHeadPivot.x, -mHeadPivot.y); //from Interact ;)
     }
     if (mTimeEating > 0){
         double halfTimeEating = TotalTimeEating / 2;
@@ -103,14 +103,14 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     }
     graphics->PushState();
     graphics->Translate(mMouthPivot.x, mMouthPivot.y);
-    graphics->Rotate(mMouthAngle);
+    graphics->Rotate(angleOfMouth);
     graphics->Translate(-mMouthPivot.x, -mMouthPivot.y); //from Interact ;)
 
-//    graphics->DrawBitmap(mSpartyMouthBitmap , 0, 0, wid, hit);
-//
-//    graphics->DrawBitmap(mSpartyMouthBitmap , 0, 0, wid, hit);
+    graphics->DrawBitmap(*mSpartyMouthBitmap , 0, 0, wid1, hit1);
+    graphics->PopState();
 
-
+    graphics->DrawBitmap(*mSpartyBitmap , 0, 0, wid, hit);
+    graphics->PopState();
 }
 
 void Sparty::DrawTop(std::shared_ptr<wxGraphicsContext> graphics)
@@ -165,7 +165,7 @@ void Sparty::DrawBottom(std::shared_ptr<wxGraphicsContext> graphics)
     graphics->Translate(-mMouthPivot.x, -mMouthPivot.y);
 
 
-   graphics->DrawBitmap(*mSpartyMouthBitmap, 0, 0, wid1, hit1);
+    graphics->DrawBitmap(*mSpartyMouthBitmap, 0, 0, wid1, hit1);
 
     // moving mouth
 
@@ -284,4 +284,8 @@ void Sparty::Update(double elapsed)
 
 void Sparty::Yum(){
     mTimeEating = TotalTimeEating;
+}
+
+void Sparty::Headbutt(){
+    mTimeHeadbutt = TotalTimeHeadbutt;
 }

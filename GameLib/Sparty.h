@@ -25,8 +25,10 @@ private:
     std::unique_ptr<wxBitmap> mSpartyMouthBitmap;
 
     /// moving mouth
-    wxPoint mMouthPivot;
-    double mMouthAngle;
+    wxPoint mMouthPivot = wxPoint(39, 86);
+    double mMouthAngle = 1;
+
+    wxPoint mHeadPivot = wxPoint(39, 86);
 
     double mTimeHeadbutt = 0;
 
@@ -35,6 +37,8 @@ private:
     double mTimeEating = 0;
 
 public:
+
+    void Headbutt();
 
     void Yum();
 
