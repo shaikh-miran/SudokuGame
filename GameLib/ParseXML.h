@@ -32,6 +32,8 @@ private:
     int numDeclarations = 0;
     int numItems = 0;
 
+    std::vector<int> mSolution;
+
 public:
     /// Default constructor (disabled)
     ParseXML() = delete;
@@ -45,6 +47,7 @@ public:
     void Load(wxXmlDocument xmlDoc);
     void LoadDeclarations(wxXmlNode *node);
     void LoadItems(wxXmlNode *node);
+    void LoadGame(wxXmlNode * node);
 
     int GetNumDeclarations() const {return numDeclarations;}
     int GetNumItems() const {return numItems;}

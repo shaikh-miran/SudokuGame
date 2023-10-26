@@ -4,6 +4,10 @@
  */
 
 #include "pch.h"
+#include <wx/wx.h>
+#include <vector>
+#include <sstream>
+#include <string>
 #include "ParseXML.h"
 #include "DeclarationGiven.h"
 #include "DeclarationDigit.h"
@@ -59,17 +63,29 @@ void ParseXML::LoadDeclarations(wxXmlNode * node) {
     }
 }
 
+/**
+ * Loads game solution from <game> child from the XML document.
+ * @param game game node, containing the correct board layout.
+ */
+void ParseXML::LoadGame(wxXmlNode * node) {
+    double row, col;
+    node->GetAttribute(L"row").ToDouble(&row);
+    node->GetAttribute(L"col").ToDouble(&col);
 
-// * Loads game solution (?) from <game> child from the XML document.
-// * @param game game node, containing the correct board layout.
-// */
-//void ParseXML::LoadGame(wxXmlNode * game) {
-//    /// Loop through all entries
-//    auto entry = game->GetChildren();
-//
-//    /// handle the 1 entry in game
-//    /// Format: <game col="6" row="3">3 2 5 6...5</game>
-//}
+    // Get the text content of the XML tag
+    auto solution = node->GetNodeContent().ToStdString();
+
+    // Create an input string stream for parsing
+    std::istringstream iss(solution);
+
+    // Vector to store the extracted numbers
+    int number;
+
+    // Loop through the string and extract numbers
+    while (iss >> number) {
+        mSolution.push_back(number);
+    }
+}
 
 /**
  * Loads entries under the <items> child in the XML document.
@@ -80,12 +96,6 @@ void ParseXML::LoadItems(wxXmlNode * node) {
     auto entry = node->GetChildren();
     for ( ; entry; entry = entry->GetNext())
     {
-        /// handle each entry item (ex. <background id="i389" col="0.0" row="14.0" />)
-        /// Types are: background, xray, given/digit, sparty (in that order)
-        entry->GetAttribute("id");
-        entry->GetAttribute("col");
-        entry->GetAttribute("row"); /// does this call do anything??
-
         auto name = entry->GetName();
         auto id = entry->GetAttribute(L"id").ToStdString();
         if (name == L"given" || name == L"digit" || name == L"sparty" || name == L"background" || name == L"xray")
@@ -132,6 +142,10 @@ void ParseXML::Load(wxXmlDocument xmlDoc)
         else if (categoryName == "items")
         {
             LoadItems(category);
+        }
+        else if (categoryName == "game")
+        {
+            LoadGame(category);
         }
     }
 }

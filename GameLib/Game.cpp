@@ -70,6 +70,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     for (auto item : mItems){
         item->Draw(graphics);
     }
+
     mScoreboard.OnDraw(graphics, this);
 
     graphics->PopState();

@@ -16,9 +16,6 @@
  */
 class GameView:  public wxWindow {
 private:
-
-
-
     /// Game object associated with this
     Game mGame;
 
