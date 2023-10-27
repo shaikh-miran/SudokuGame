@@ -43,8 +43,8 @@ private:
     std::vector<std::shared_ptr<Item>> mItems;
 
 
-    double mClickY = 200;
-    double mClickX = 200;
+    double mClickY = -1;
+    double mClickX = -1;
     double mWidth;
     double mHeight;
 
@@ -160,6 +160,18 @@ public:
      * @param Container pointer to set
      */
     void SetContainer(std::shared_ptr<ItemContainer> container) { mContainer = container; }
+
+    /**
+    * sets the x-position of the click event
+    * @return x value of the position
+    */
+    double SetClickX(double clickedX){return mClickX = clickedX;}
+
+    /**
+     * sets the y-position of the click event
+     * @return y value of the position
+     */
+    double SetClickY(double clickedY){return mClickY = clickedY;}
 
     /**
      * Get the tile width

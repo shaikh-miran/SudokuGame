@@ -40,10 +40,17 @@ void DeclarationSparty::Create(wxXmlNode *node, Game *game)
     /// Using the local attributes from above, initialize the parameters of the Item
     item->SetWidth(width);
     item->SetHeight(height);
-    item->SetLocation((col) * game->GetTileWidth(), (row) * game->GetTileHeight());
+    double initialSpartyX = (col) * game->GetTileWidth();
+    double initialSpartyY = (row) * game->GetTileHeight();
+
+    item->SetLocation(initialSpartyX, initialSpartyY);
 
     /// Call Game::SetSparty to add the Sparty pointer to the associated Game object
     game->SetSparty(item);
+
+    ///sets the location of sparty to initial location every time the level loads.
+    game->SetClickX(initialSpartyX);
+    game->SetClickY(initialSpartyY);
 
     /// Once the Item is ready, add it to the Game object's item list
     game->AddItem(item);

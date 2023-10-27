@@ -260,7 +260,7 @@ void Sparty::Update(double elapsed)
         SetXSpeed(0);
         SetYSpeed(0);
     }
-    else
+    else if (getClickX != -1 && getClickY != -1)
     {
         double deltaX = getClickX - GetX();
         double deltaY = getClickY - GetY();
