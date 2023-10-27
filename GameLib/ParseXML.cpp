@@ -101,6 +101,8 @@ void ParseXML::LoadItems(wxXmlNode * node) {
                 if (digitName == "digit")
                 {
                     auto digitDeclaration = mDeclarationMap[digitId];
+                    digitDeclaration->Create(digitEntry, mGame);
+
 //                    std::shared_ptr<ItemContainer> digit = digitDeclaration;
 //                    digitDeclaration->CreateContainer(digitEntry,digit,mGame);
                 }

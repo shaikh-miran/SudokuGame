@@ -47,7 +47,7 @@ public:
      */
     std::wstring GetImageName() { return mImage; }
 
-    void CreateContainer(wxXmlNode *node, std::shared_ptr<ItemContainer> container,Game *game);
+    void CreateContainer(wxXmlNode *node, std::shared_ptr<ItemContainer> container,Game *game) override;
 
 };
 
