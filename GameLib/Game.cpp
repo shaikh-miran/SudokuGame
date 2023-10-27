@@ -23,7 +23,7 @@ Game::Game()
 
 {
     /// Load level 1; this is the default level to load
-    Load(L"levels/level1.xml");
+    Load(L"levels/level2.xml");
 }
 
 
