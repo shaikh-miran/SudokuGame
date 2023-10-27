@@ -27,10 +27,10 @@ private:
 public:
     //// Default constructor (disabled)
     DeclarationXray() = delete;
-    
+
     /// Copy constructor (disabled)
     DeclarationXray(const DeclarationXray &) = delete;
-    
+
     /// Assignment operator
     void operator=(const DeclarationXray &) = delete;
 

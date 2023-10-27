@@ -33,8 +33,8 @@ Game::Game()
  */
 void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    int pixelWidth = 20*48;
-    int pixelHeight = 15*48;
+    int pixelWidth = GetTileWidth() * mWidth;
+    int pixelHeight = GetTileHeight() * mHeight;
 
     //
     // Automatic Scaling

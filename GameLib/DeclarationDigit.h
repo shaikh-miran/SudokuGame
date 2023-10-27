@@ -7,14 +7,15 @@
 #define PROJECT1_GAMELIB_DECLARATIONDIGIT_H
 
 #include "Declaration.h"
-
 /// Forward declaration of Game class
 class Game;
+//class ItemContainer;
 
 /**
  * DeclarationDigit class - a type of Declaration; handles Declaration nodes that have the "name" attribute of
  * "digit"
  */
+
 class DeclarationDigit : public Declaration
 {
 private:
@@ -45,6 +46,9 @@ public:
      * @return string form of the image's filename
      */
     std::wstring GetImageName() { return mImage; }
+
+    void CreateContainer(wxXmlNode *node, std::shared_ptr<ItemContainer> container,Game *game);
+
 };
 
 #endif //PROJECT1_GAMELIB_DECLARATIONDIGIT_H

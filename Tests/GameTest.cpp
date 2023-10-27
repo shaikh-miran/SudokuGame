@@ -16,7 +16,7 @@
 using namespace std;
 
 
-int ExpectedNumDeclarations = 21;
+int ExpectedNumDeclarations = 24;
 int ExpectedNumItems = 83;
 
 class GameTest : public ::testing::Test
@@ -63,12 +63,12 @@ TEST_F(GameTest,LoadItemsTest)
     auto path = TempPath();
     Game *x = nullptr;
     ParseXML game(x);
-    wxXmlDocument file = path + L"/level1.xml";
+    wxXmlDocument file = path + L"/level2.xml";
     wxXmlNode* itemsNode = file.GetRoot()->GetChildren();
     if (itemsNode->GetName() == "items")
     {
         ASSERT_TRUE(itemsNode);
-        game.LoadItems(itemsNode);
+        game.Load(file);
         ASSERT_FALSE(itemsNode);
     }
 }
@@ -79,7 +79,7 @@ TEST_F(GameTest, DeclarationsTest)
     auto path = TempPath();
     Game *x = nullptr ;
     ParseXML game(x);
-    wxXmlDocument file = path + L"/level1.xml";
+    wxXmlDocument file = path + L"/level2.xml";
     wxXmlNode* Node = file.GetRoot();
 
     int numDeclarations ;
@@ -93,12 +93,10 @@ TEST_F(GameTest, DeclarationsTest)
         if (child->GetName() == "declarations")
         {
             declarationsNode = child;
-            break;
         }
         if (child->GetName() == "items")
         {
             itemsNode = child;
-            break;
         }
     }
     if (declarationsNode != nullptr)
@@ -113,6 +111,9 @@ TEST_F(GameTest, DeclarationsTest)
         game.LoadItems(itemsNode);
         numItems = game.GetNumItems();
         ASSERT_EQ(numItems, ExpectedNumItems);
+
     }
+//    ASSERT_EQ(numItems, ExpectedNumItems);
+
 
 }

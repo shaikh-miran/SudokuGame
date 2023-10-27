@@ -19,6 +19,8 @@
 #include <wx/xml/xml.h>
 #include <wx/graphics.h>
 #include <map>
+#include "ItemContainer.h"
+#include "MessageBox.h"
 
 /// Forward declaration of class Item
 class Item;
@@ -62,6 +64,19 @@ private:
 
     /// Sparty object saved in order to associate the game to it.
     std::shared_ptr<Sparty> mSparty;
+
+
+    std::shared_ptr<ItemContainer> mContainer;
+
+    /// The timer that allows for intro screen
+    wxTimer mIntroScreenTimer;
+
+    wxTimer mGameTimer;
+
+    /// An object that describes the intro screen
+    //MessageBox mMessageBox;
+
+    bool mIntroScreenVisible = true;
 
 public:
 
@@ -136,6 +151,12 @@ public:
     void SetSparty(std::shared_ptr<Sparty> sparty) { mSparty = sparty; }
 
     /**
+     * Set the Game's associated Container object (shared ptr)
+     * @param Container pointer to set
+     */
+    void SetContainer(std::shared_ptr<ItemContainer> container) { mContainer = container; }
+
+    /**
      * Get the tile width
      * @return tile width (double)
      */
@@ -158,6 +179,14 @@ public:
      * @return Sparty shared pointer
      */
     std::shared_ptr<Sparty> GetSparty() { return mSparty; }
+
+    /**
+     * Get the Game's Container object
+     * @return Container shared pointer
+     */
+    std::shared_ptr<ItemContainer> GetContainer() { return mContainer; }
+
 };
 
 #endif //CSE335PROJECTONE_PROJECT1_GAME_H
+

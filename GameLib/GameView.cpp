@@ -21,6 +21,7 @@ const int FrameDuration = 30;
  */
 void GameView::Initialize(wxFrame* parent)
 {
+
     Create(parent, wxID_ANY,
            wxDefaultPosition, wxDefaultSize,
            wxFULL_REPAINT_ON_RESIZE);
@@ -70,7 +71,6 @@ void GameView::OnPaint(wxPaintEvent& event)
     auto newTime = mStopwatch.Time();
     auto elapsed = (double)(newTime - mTime)*0.001;
     mTime = newTime;
-
     mGame.Update(elapsed);
 }
 
@@ -96,6 +96,7 @@ void GameView::OnLevel1(wxCommandEvent& event)
 {
     const wxString filename = L"levels/level1.xml";
     mGame.Load(filename);
+
     Refresh();
 }
 
@@ -159,6 +160,7 @@ void GameView::SpaceBarPressed(wxKeyEvent &event)
     }
 }
 
+
 //headbutt
 //void GameView::BKeyPressed(wxKeyEvent &event) {
 //    if (event.GetKeyCode() == 'B') {
@@ -170,7 +172,23 @@ void GameView::SpaceBarPressed(wxKeyEvent &event)
 //    event.Skip(); // Continue processing other events
 //}
 
-void GameView::OnTimer(wxTimerEvent& event)
+
+
+void GameView::OnTimer(wxTimerEvent &event)
+
 {
     Refresh();
 }
+
+//headbutt
+//void GameView::BKeyPressed(wxKeyEvent &event) {
+//    if (event.GetKeyCode() == 'B') {
+//        auto sparty = mGame.GetSparty();
+//        if (sparty) {
+//            sparty->OnBKeyPress();
+//        }
+//    }
+//    event.Skip(); // Continue processing other events
+//}
+
+

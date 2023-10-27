@@ -10,12 +10,11 @@
 #define PROJECT1_GAMELIB_DECLARATION_H
 
 #include <utility>
-
+//#include "ItemContainer.h"
 #include "Item.h"
-
 /// Forward declaration of game class
 class Game;
-
+class ItemContainer;
 /**
  * Class Declaration - Stores relevant data from declaration nodes in the level XML file. Declaration objects are used
  * in conjunction with the ParseXML class to handle the creation of items displayed in the game window.
@@ -78,6 +77,8 @@ public:
      * @param game the Game object in which the Item object will reside in
      */
     virtual void Create(wxXmlNode* node, Game *game) {}
+
+    virtual void CreateContainer(wxXmlNode *node, std::shared_ptr<ItemContainer> container,Game *game) {}
 };
 
 #endif //PROJECT1_GAMELIB_DECLARATION_H
