@@ -52,6 +52,10 @@ set(SOURCE_FILES
         ItemContainer.h
         MessageBox.cpp
         MessageBox.h
+        YumVisitor.cpp
+        YumVisitor.h
+        Visitor.cpp
+        Visitor.h
 )
 
 set(wxBUILD_PRECOMP OFF)
