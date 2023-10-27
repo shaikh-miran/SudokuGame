@@ -46,6 +46,12 @@ set(SOURCE_FILES
         DeclarationBackground.h
         DeclarationSparty.cpp
         DeclarationSparty.h
+        DeclarationContainer.cpp
+        DeclarationContainer.h
+        ItemContainer.cpp
+        ItemContainer.h
+        MessageBox.cpp
+        MessageBox.h
 )
 
 set(wxBUILD_PRECOMP OFF)

@@ -12,6 +12,11 @@
 class Sparty: public Item
 {
 private:
+
+    //headbutting
+
+    static const double HeadbuttTime;
+
     /// The underlying Sparty image
     std::unique_ptr<wxImage> mSpartyImage;
 
@@ -25,10 +30,35 @@ private:
     std::unique_ptr<wxBitmap> mSpartyMouthBitmap;
 
     /// moving mouth
-    wxPoint mMouthPivot;
-    double mMouthAngle;
+    wxPoint mMouthPivot = wxPoint(39, 86);
+    double mAngleOfMouth = 1;
+
+    wxPoint mHeadPivot = wxPoint(39, 86);
+
+    double mTimeHeadbutt = 0;
+
+    double mAngleofHead = .8;
+
+    double mTimeEating = 0;
+
+    //headbutting
+//    bool mIsHeadbutting = false;
+//    double mHeadbuttDuration = 0.0;
+//    //const wxPoint mHeadPivot = wxPoint(39,86);
+//    double mHeadAngle = 1;
+
 
 public:
+
+    //headbutting
+    void StartHeadbutt();
+    //headbutting
+    void BKeyPressed(wxKeyEvent& event);
+
+    void Headbutt();
+
+    void Yum();
+
     /// Default constructor (disabled)
     Sparty() = delete;
 
@@ -53,5 +83,7 @@ public:
     void SetMouthPivot(const wxPoint& pivot);
     void SetMouthAngle(double angle);
 };
+
+
 
 #endif //PROJECT1_GAMELIB_SPARTY_H

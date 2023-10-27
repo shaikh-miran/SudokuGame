@@ -70,14 +70,6 @@ void MainFrame::Initialize()
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnExit, this, wxID_EXIT);
     Bind(wxEVT_CLOSE_WINDOW, &MainFrame::OnClose, this);
     Bind(wxEVT_COMMAND_MENU_SELECTED, &MainFrame::OnAbout, this, wxID_ABOUT);
-
-    // Create the update mTimer
-//    mUpdateTimer.Bind(wxEVT_TIMER, [this, mGameView](wxTimerEvent& event) {
-//        // Update the Scoreboard
-//        mGameView->UpdateScoreboard(event);
-//    });
-//    mUpdateTimer.Start(1000); // Start the mTimer to update every second
-
 }
 
 /**
