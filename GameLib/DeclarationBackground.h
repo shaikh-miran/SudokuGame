@@ -22,6 +22,8 @@ private:
     std::wstring mImage;
 
 public:
+
+
     //// Default constructor (disabled)
     DeclarationBackground() = delete;
 
@@ -42,6 +44,8 @@ public:
      * @return string form of the image's filename
      */
     std::wstring GetImageName() { return mImage; }
+
+
 };
 
 #endif //PROJECT1_GAMELIB_DECLARATIONBACKGROUND_H

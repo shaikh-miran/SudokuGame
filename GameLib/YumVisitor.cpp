@@ -5,4 +5,3 @@
 
 #include "YumVisitor.h"
 
-class YumVisitor : public YumVisitor

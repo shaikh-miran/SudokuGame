@@ -25,7 +25,7 @@ private:
 
 public:
 
-    void GoToDigit(ItemDigit* digit)
+    void DigitVisit(ItemDigit* digit)
     {double digitx = digit->GetX();
 
     double digity = digit->GetY();

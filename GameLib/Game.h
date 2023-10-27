@@ -21,6 +21,7 @@
 #include <map>
 #include "ItemContainer.h"
 #include "MessageBox.h"
+#include "Visitor.h"
 
 /// Forward declaration of class Item
 class Item;
@@ -79,6 +80,10 @@ private:
     bool mIntroScreenVisible = true;
 
 public:
+
+    ItemDigit* mYummyTile = nullptr;
+
+    void Accept(Visitor * visitor);
 
     void SpartyYum();
 

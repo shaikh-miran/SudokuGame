@@ -15,6 +15,10 @@
 class Background : public Item
 {
 public:
+
+    void Accept(Visitor *visitor) override{
+        visitor->BackgroundVisit(this);
+    }
     //// Default constructor (disabled)
     Background() = delete;
 

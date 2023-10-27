@@ -4,12 +4,14 @@
  *
  *
  */
-#include "Item.h"
-#include "Game.h"
-#include "DeclarationContainer.h"
+
 
 #ifndef PROJECT1_GAMELIB_CONTAINER_H
 #define PROJECT1_GAMELIB_CONTAINER_H
+
+#include "Item.h"
+#include "Game.h"
+#include "DeclarationContainer.h"
 
 class ItemContainer : public Item
 {
@@ -26,6 +28,13 @@ private:
 
 
 public:
+    ///// needed for sparty mouth
+    void Accept(Visitor * visitor)override
+    {
+        visitor->ContainerVisit(this);
+    }
+
+
     //// Default constructor (disabled)
     ItemContainer() = delete;
 

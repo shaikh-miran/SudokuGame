@@ -82,6 +82,10 @@ public:
     /// moving mouth
     void SetMouthPivot(const wxPoint& pivot);
     void SetMouthAngle(double angle);
+
+    void Accept(Visitor *visitor) override{
+        visitor->SpartyVisit(this);
+    }
 };
 
 

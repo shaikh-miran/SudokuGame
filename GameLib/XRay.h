@@ -16,6 +16,9 @@ class XRay : public Item
 private:
 
 public:
+
+    void Accept(Visitor *visitor) override {visitor->XrayVisit(this);}
+
     XRay(Game* game, std::wstring filename);
     
     /// Default constructor (disabled)
