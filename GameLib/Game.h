@@ -19,6 +19,9 @@
 #include <wx/xml/xml.h>
 #include <wx/graphics.h>
 #include <map>
+#include "ItemContainer.h"
+#include "MessageBox.h"
+#include "Visitor.h"
 
 /// Forward declaration of class Item
 class Item;
@@ -40,8 +43,8 @@ private:
     std::vector<std::shared_ptr<Item>> mItems;
 
 
-    double mClickY = 200;
-    double mClickX = 200;
+    double mClickY = -1;
+    double mClickX = -1;
     double mWidth;
     double mHeight;
 
@@ -63,7 +66,24 @@ private:
     /// Sparty object saved in order to associate the game to it.
     std::shared_ptr<Sparty> mSparty;
 
+
+    std::shared_ptr<ItemContainer> mContainer;
+
+    /// The timer that allows for intro screen
+    wxTimer mIntroScreenTimer;
+
+    wxTimer mGameTimer;
+
+    /// An object that describes the intro screen
+    //MessageBox mMessageBox;
+
+    bool mIntroScreenVisible = true;
+
 public:
+
+    ItemDigit* mYummyTile = nullptr;
+
+    void Accept(Visitor * visitor);
 
     void SpartyYum();
 
@@ -136,6 +156,24 @@ public:
     void SetSparty(std::shared_ptr<Sparty> sparty) { mSparty = sparty; }
 
     /**
+     * Set the Game's associated Container object (shared ptr)
+     * @param Container pointer to set
+     */
+    void SetContainer(std::shared_ptr<ItemContainer> container) { mContainer = container; }
+
+    /**
+    * sets the x-position of the click event
+    * @return x value of the position
+    */
+    double SetClickX(double clickedX){return mClickX = clickedX;}
+
+    /**
+     * sets the y-position of the click event
+     * @return y value of the position
+     */
+    double SetClickY(double clickedY){return mClickY = clickedY;}
+
+    /**
      * Get the tile width
      * @return tile width (double)
      */
@@ -158,6 +196,14 @@ public:
      * @return Sparty shared pointer
      */
     std::shared_ptr<Sparty> GetSparty() { return mSparty; }
+
+    /**
+     * Get the Game's Container object
+     * @return Container shared pointer
+     */
+    std::shared_ptr<ItemContainer> GetContainer() { return mContainer; }
+
 };
 
 #endif //CSE335PROJECTONE_PROJECT1_GAME_H
+

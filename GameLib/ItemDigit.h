@@ -8,12 +8,17 @@
 
 #include "Item.h"
 #include "DeclarationDigit.h"
+#include "Visitor.h"
 
 class ItemDigit : public Item
 {
 private:
 
 public:
+
+    void Accept(Visitor * visitor) override{
+    visitor->DigitVisit(this);
+}
     //// Default constructor (disabled)
     ItemDigit() = delete;
 

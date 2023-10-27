@@ -6,6 +6,7 @@
 #ifndef PROJECT1_GAMELIB_ITEM_H
 #define PROJECT1_GAMELIB_ITEM_H
 
+#include "Visitor.h"
 /// Forward declaration of Game Class
 class Game;
 
@@ -68,6 +69,8 @@ public:
      * @param elapsed time elapsed since Game start
      */
     virtual void Update(double elapsed) {}
+
+    virtual void Accept(Visitor * visitor){};
 
     /**
      * Sets the x-direction speed of the Item

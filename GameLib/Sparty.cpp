@@ -140,7 +140,7 @@ void Sparty::DrawTop(std::shared_ptr<wxGraphicsContext> graphics)
     double HeadX = GetX() - wid / 2;
     double HeadY = GetY() - hit / 2;
 
-  //  graphics->PushState();
+    //  graphics->PushState();
 
 
 
@@ -155,7 +155,7 @@ void Sparty::DrawTop(std::shared_ptr<wxGraphicsContext> graphics)
 
 
 
-   // graphics->PopState();
+    // graphics->PopState();
 
 
 }
@@ -260,7 +260,7 @@ void Sparty::Update(double elapsed)
         SetXSpeed(0);
         SetYSpeed(0);
     }
-    else
+    else if (getClickX != -1 && getClickY != -1)
     {
         double deltaX = getClickX - GetX();
         double deltaY = getClickY - GetY();

@@ -13,6 +13,7 @@
 #include "DeclarationDigit.h"
 #include "DeclarationSparty.h"
 #include "DeclarationXray.h"
+#include "DeclarationContainer.h"
 #include "DeclarationBackground.h"
 #include "Game.h"
 
@@ -59,6 +60,11 @@ void ParseXML::LoadDeclarations(wxXmlNode * node) {
             auto declaration = make_shared<DeclarationBackground>(entry);
             mDeclarationMap[id] = declaration;
         }
+        else if (name == L"container")
+        {
+            auto declaration = make_shared<DeclarationContainer>(entry);
+            mDeclarationMap[id] = declaration;
+        }
         numDeclarations += 1;
     }
 }
@@ -102,6 +108,28 @@ void ParseXML::LoadItems(wxXmlNode * node) {
         {
             auto declaration = mDeclarationMap[id];
             declaration->Create(entry, mGame);
+        }
+
+        else if(name == L"container")
+        {
+            auto containerDeclaration = mDeclarationMap[id];
+            containerDeclaration->Create(entry, mGame);
+            auto digitEntry = entry->GetChildren();
+            for( ; digitEntry;digitEntry = digitEntry->GetNext())
+            {
+                auto digitId = digitEntry->GetAttribute(L"id").ToStdString();
+                auto digitName = digitEntry->GetName();
+                if (digitName == "digit")
+                {
+                    auto digitDeclaration = mDeclarationMap[digitId];
+                    digitDeclaration->Create(digitEntry, mGame);
+
+//                    std::shared_ptr<ItemContainer> digit = digitDeclaration;
+//                    digitDeclaration->CreateContainer(digitEntry,digit,mGame);
+                }
+
+            }
+
         }
 
         numItems++;

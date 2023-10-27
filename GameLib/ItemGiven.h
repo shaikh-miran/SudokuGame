@@ -23,6 +23,9 @@ public:
     /// Assignment operator
     void operator=(const ItemGiven &) = delete;
 
+    void Accept(Visitor *visitor) override{
+        visitor->GivenVisit(this);
+    }
     ItemGiven(Game* game, std::wstring filename);
 };
 

@@ -10,6 +10,7 @@
 #include "Game.h"
 #include <wx/event.h>
 #include "Scoreboard.h"
+#include "MessageBox.h"
 
 /**
  * GameView class - Handles user input, does the back end of displaying items and window. Also handles menu bar options.
@@ -37,10 +38,7 @@ private:
     //headbutting
     std::unique_ptr<Sparty> spartyInstance;
 
-
 public:
-
-
     /// Relative mouse x-pos
     int mGrabOffsetX;
 
@@ -75,13 +73,16 @@ public:
     /// Update the time of the scoreboard
     void UpdateScoreboard(wxTimerEvent& event);
 
+
     void IntroScreenTimer(wxTimerEvent& event);
+
 
     /// Handles the Timer event
     void OnTimer(wxTimerEvent& event);
 
     /// Stops the member timer object
     void Stop(){ mTimer.Stop(); }
+
 };
 
 #endif //PROJECT1_PROJECT1_GAMEVIEW_H

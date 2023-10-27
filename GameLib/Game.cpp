@@ -13,6 +13,7 @@ const int XRInitialY = 100;
 
 #include "Sparty.h"
 #include "Item.h"
+#include "YumVisitor.h"
 using namespace std;
 
 /**
@@ -25,6 +26,15 @@ Game::Game()
     Load(L"levels/level1.xml");
 }
 
+
+void Game::Accept(Visitor *visitor){
+    for (auto digit : mItems)
+    {
+        digit->Accept(visitor);
+    }
+}
+
+
 /**
  * Handles items to be drawn on the game window
  * @param graphics wxGC object that handles the drawing task
@@ -33,8 +43,8 @@ Game::Game()
  */
 void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    int pixelWidth = 20*48;
-    int pixelHeight = 15*48;
+    int pixelWidth = GetTileWidth() * mWidth;
+    int pixelHeight = GetTileHeight() * mHeight;
 
     //
     // Automatic Scaling
@@ -177,6 +187,16 @@ void Game::AddItem(std::shared_ptr<Item> item)
 
 void Game::SpartyYum(){
     mSparty->Yum();
+    YumVisitor visitor;
+    visitor.XSparty(mSparty->GetX());
+    visitor.YSparty(mSparty->GetY());
+
+    this->Accept(&visitor);
+    if (visitor.GetYummyDigit() != nullptr)
+    {
+        visitor.GetYummyDigit()->SetLocation(40, 550); /// this is hard coding. need to change
+        mYummyTile = visitor.GetYummyDigit();
+    }
 }
 
 void Game::SpartyHeadButt(){
