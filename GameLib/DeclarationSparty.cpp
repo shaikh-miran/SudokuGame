@@ -23,7 +23,7 @@ DeclarationSparty::DeclarationSparty(wxXmlNode* node) : Declaration(node)
  * @param node the "item" node to associate the declaration node with.
  * @param game the Game object that the Item object will reside in.
  */
-void DeclarationSparty::Create(wxXmlNode *node, Game *game)
+std::shared_ptr<Item> DeclarationSparty::Create(wxXmlNode *node, Game *game)
 {
     double row, col, width, height;
 
@@ -54,4 +54,5 @@ void DeclarationSparty::Create(wxXmlNode *node, Game *game)
 
     /// Once the Item is ready, add it to the Game object's item list
     game->AddItem(item);
+    return item;
 }

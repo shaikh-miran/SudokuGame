@@ -11,10 +11,12 @@
 
 #include <utility>
 //#include "ItemContainer.h"
+//#include "ParseXML.h"
 #include "Item.h"
 /// Forward declaration of game class
 class Game;
 class ItemContainer;
+class ParseXML;
 /**
  * Class Declaration - Stores relevant data from declaration nodes in the level XML file. Declaration objects are used
  * in conjunction with the ParseXML class to handle the creation of items displayed in the game window.
@@ -34,6 +36,11 @@ private:
     /// Item height
     double mHeight;
 
+    std::shared_ptr<Item> item;
+
+
+    ParseXML *mLevel;
+
 public:
     //// Default constructor (disabled)
     Declaration() = delete;
@@ -52,6 +59,10 @@ public:
      * @param id the string to set the mId member variable to
      */
     void SetId(std::string id) { mId = id; }
+
+    void SetLevel(ParseXML *level){ mLevel = level;}
+
+    ParseXML * GetLevel(){return mLevel;}
 
     /**
      * Return the declaration id (mID)
@@ -76,9 +87,8 @@ public:
      * @param node the "item" node to associate with the "declaration" node (this)
      * @param game the Game object in which the Item object will reside in
      */
-    virtual void Create(wxXmlNode* node, Game *game) {}
+    virtual std::shared_ptr<Item> Create(wxXmlNode* node, Game *game) {return item;}
 
-    virtual void CreateContainer(wxXmlNode *node, std::shared_ptr<ItemContainer> container,Game *game) {}
 };
 
 #endif //PROJECT1_GAMELIB_DECLARATION_H

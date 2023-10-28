@@ -38,7 +38,7 @@ public:
     DeclarationSparty(wxXmlNode* node);
 
     /// Declaration::Create override; modified to accept "background" specific attributes
-    void Create(wxXmlNode* node, Game* game) override;
+    std::shared_ptr<Item> Create(wxXmlNode* node, Game* game) override;
 
     /**
       * Return the sparty body image filename

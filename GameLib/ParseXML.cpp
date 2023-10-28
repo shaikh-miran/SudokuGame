@@ -28,42 +28,54 @@ ParseXML::ParseXML(Game * game) : mGame(game)
  * Loads entries under the <declarations> node in the XML document.
  * @param declaration the parent node of all declaration entries
  */
-void ParseXML::LoadDeclarations(wxXmlNode * node) {
+void ParseXML::LoadDeclarations(wxXmlNode * node)
+{
     /// Loop through all entries
     auto entry = node->GetChildren();
     for ( ; entry; entry = entry->GetNext())
     {
         auto name = entry->GetName();
-        auto id = entry->GetAttribute(L"id").ToStdString();
+        auto id = entry->GetAttribute(L"id").ToStdWstring();
         if (name == L"given")
         {
             auto declaration = make_shared<DeclarationGiven>(entry);
             mDeclarationMap[id] = declaration;
+            declaration->SetLevel(this);
         }
         else if (name == L"digit")
         {
             auto declaration = make_shared<DeclarationDigit>(entry);
             mDeclarationMap[id] = declaration;
+            declaration->SetLevel(this);
+
         }
         else if (name == L"sparty")
         {
             auto declaration = make_shared<DeclarationSparty>(entry);
             mDeclarationMap[id] = declaration;
+            declaration->SetLevel(this);
+
         }
         else if (name == L"xray")
         {
             auto declaration = make_shared<DeclarationXray>(entry);
             mDeclarationMap[id] = declaration;
+            declaration->SetLevel(this);
+
         }
         else if (name == L"background")
         {
             auto declaration = make_shared<DeclarationBackground>(entry);
             mDeclarationMap[id] = declaration;
+            declaration->SetLevel(this);
+
         }
         else if (name == L"container")
         {
             auto declaration = make_shared<DeclarationContainer>(entry);
             mDeclarationMap[id] = declaration;
+            declaration->SetLevel(this);
+
         }
         numDeclarations += 1;
     }
@@ -73,7 +85,8 @@ void ParseXML::LoadDeclarations(wxXmlNode * node) {
  * Loads game solution from <game> child from the XML document.
  * @param game game node, containing the correct board layout.
  */
-void ParseXML::LoadGame(wxXmlNode * node) {
+void ParseXML::LoadGame(wxXmlNode * node)
+{
     double row, col;
     node->GetAttribute(L"row").ToDouble(&row);
     node->GetAttribute(L"col").ToDouble(&col);
@@ -88,22 +101,30 @@ void ParseXML::LoadGame(wxXmlNode * node) {
     int number;
 
     // Loop through the string and extract numbers
-    while (iss >> number) {
+    while(iss >> number)
+    {
         mSolution.push_back(number);
     }
+}
+
+std::shared_ptr<Declaration> ParseXML::FindDeclaration(std::wstring id)
+{
+    auto declaration = mDeclarationMap[id];
+    return declaration;
 }
 
 /**
  * Loads entries under the <items> child in the XML document.
  * @param items the parent node of all item entries
  */
-void ParseXML::LoadItems(wxXmlNode * node) {
+void ParseXML::LoadItems(wxXmlNode * node)
+{
     /// Loop through all entries
     auto entry = node->GetChildren();
     for ( ; entry; entry = entry->GetNext())
     {
         auto name = entry->GetName();
-        auto id = entry->GetAttribute(L"id").ToStdString();
+        auto id = entry->GetAttribute(L"id").ToStdWstring();
         if (name == L"given" || name == L"digit" || name == L"sparty" || name == L"background" || name == L"xray")
         {
             auto declaration = mDeclarationMap[id];
@@ -114,22 +135,6 @@ void ParseXML::LoadItems(wxXmlNode * node) {
         {
             auto containerDeclaration = mDeclarationMap[id];
             containerDeclaration->Create(entry, mGame);
-            auto digitEntry = entry->GetChildren();
-            for( ; digitEntry;digitEntry = digitEntry->GetNext())
-            {
-                auto digitId = digitEntry->GetAttribute(L"id").ToStdString();
-                auto digitName = digitEntry->GetName();
-                if (digitName == "digit")
-                {
-                    auto digitDeclaration = mDeclarationMap[digitId];
-                    digitDeclaration->Create(digitEntry, mGame);
-
-//                    std::shared_ptr<ItemContainer> digit = digitDeclaration;
-//                    digitDeclaration->CreateContainer(digitEntry,digit,mGame);
-                }
-
-            }
-
         }
 
         numItems++;
