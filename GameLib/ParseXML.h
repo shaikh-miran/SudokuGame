@@ -11,10 +11,10 @@
 #include <wx/xml/xml.h>
 #include <map>
 #include "DeclarationGiven.h"
-#include "Declaration.h"
+//#include "Declaration.h"
 
 class Game;
-
+class Declaration;
 /**
  * Class that handles the XML loading aspect of the program.
  */
@@ -27,7 +27,7 @@ private:
     double mTileHeight;
     double mWidth;
     double mHeight;
-    std::map<std::string, std::shared_ptr<Declaration>> mDeclarationMap;
+    std::map<std::wstring, std::shared_ptr<Declaration>> mDeclarationMap;
 
     int numDeclarations = 0;
     int numItems = 0;
@@ -48,6 +48,7 @@ public:
 
     int GetNumDeclarations() const {return numDeclarations;}
     int GetNumItems() const {return numItems;}
+    std::shared_ptr<Declaration> FindDeclaration(std::wstring id);
 
 };
 

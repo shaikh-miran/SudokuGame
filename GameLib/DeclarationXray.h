@@ -38,7 +38,7 @@ public:
     DeclarationXray(wxXmlNode* node);
 
     /// Declaration::Create override; modified to accept "xray" specific attributes
-    void Create(wxXmlNode* node, Game* game) override;
+    std::shared_ptr<Item> Create(wxXmlNode* node, Game* game) override;
 
     /**
      * Return the xray image filename

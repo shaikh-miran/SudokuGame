@@ -18,8 +18,6 @@ private:
 
     std::wstring mImage2;
 
-    std::wstring mImage3;
-
 
 
 
@@ -35,13 +33,11 @@ public:
 
     DeclarationContainer(wxXmlNode* node);
 
-    void Create(wxXmlNode* node, Game* game) override;
+    std::shared_ptr<Item> Create(wxXmlNode* node, Game* game) override;
 
     std::wstring GetImage1Name() { return mImage1; }
 
     std::wstring GetImage2Name() { return mImage2; }
-
-    std::wstring GetImage3Name() { return mImage3; }
 
 
 

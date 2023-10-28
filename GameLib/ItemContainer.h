@@ -18,10 +18,12 @@ class ItemContainer : public Item
 private:
     std::unique_ptr<wxImage> mContainerImage;
     std::unique_ptr<wxBitmap> mContainerBitmap;
-    std::unique_ptr<wxImage> mContainerFrontImage;
-    std::unique_ptr<wxBitmap> mContainerFrontBitmap;
+//    std::unique_ptr<wxImage> mContainerFrontImage;
+//    std::unique_ptr<wxBitmap> mContainerFrontBitmap;
 
-    std::vector<std::shared_ptr<ItemDigit>> digits;
+    std::vector<std::shared_ptr<Item>> digits;
+
+    DeclarationContainer *mDeclaration;
 
 
 
@@ -44,12 +46,13 @@ public:
     /// Assignment operator
     void operator=(const ItemContainer &) = delete;
 
-    ItemContainer(Game* game, std::wstring image,std::wstring front);
+    ItemContainer(Game* game, std::wstring image, DeclarationContainer *declaration);
 
     void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;
     void DrawFront(std::shared_ptr<wxGraphicsContext> graphics);
     void DrawImage(std::shared_ptr<wxGraphicsContext> graphics);
-    void AddDigits(std::shared_ptr<ItemDigit> digit);
+    void AddDigits(std::shared_ptr<Item> digit);
+    void ContainerXmlLoad(wxXmlNode *node);
 
 };
 
