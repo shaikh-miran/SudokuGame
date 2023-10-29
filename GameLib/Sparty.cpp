@@ -254,16 +254,25 @@ void Sparty::Update(double elapsed)
     Game *game = GetGame();
     int getClickX = game->GetClickX();
     int getClickY = game->GetClickY();
+    int adjustedTargetX, adjustedTargetY;
 
-    if(GetX() == getClickX && GetY() == getClickY)
+    if (mCanMove) {
+        adjustedTargetX = getClickX - mTargetPivot.x;
+        adjustedTargetY = getClickY - mTargetPivot.y;
+    } else {
+        adjustedTargetX = getClickX;
+        adjustedTargetY = getClickY;
+    }
+
+    if(GetX() == adjustedTargetX && GetY() == adjustedTargetY)
     {
         SetXSpeed(0);
         SetYSpeed(0);
     }
     else if (getClickX != -1 && getClickY != -1)
     {
-        double deltaX = getClickX - GetX();
-        double deltaY = getClickY - GetY();
+        double deltaX = adjustedTargetX - GetX();
+        double deltaY = adjustedTargetY - GetY();
         double distance = sqrt(deltaX * deltaX + deltaY * deltaY);
 
         double dirX = deltaX / distance;
@@ -271,7 +280,7 @@ void Sparty::Update(double elapsed)
 
         if(distance <= MaxSpeed * elapsed)
         {
-            SetLocation(getClickX, getClickY);
+            SetLocation(adjustedTargetX, adjustedTargetY);
             SetXSpeed(0);
             SetYSpeed(0);
         }
@@ -281,8 +290,6 @@ void Sparty::Update(double elapsed)
             SetYSpeed(MaxSpeed * dirY);
 
             SetLocation(GetX() + GetSpeedX() * elapsed, GetY() + GetSpeedY() * elapsed);
-
-
         }
     }
     if (mTimeEating >0){

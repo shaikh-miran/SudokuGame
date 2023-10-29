@@ -6,6 +6,7 @@
  */
 
 #include "Item.h"
+#include "DeclarationSparty.h"
 #ifndef PROJECT1_GAMELIB_SPARTY_H
 #define PROJECT1_GAMELIB_SPARTY_H
 
@@ -33,13 +34,17 @@ private:
     wxPoint mMouthPivot = wxPoint(39, 86);
     double mAngleOfMouth = 1;
 
-    wxPoint mHeadPivot = wxPoint(39, 86);
+    wxPoint mHeadPivot = wxPoint(30, 86);
+
+    wxPoint mTargetPivot = wxPoint(72, 24);
 
     double mTimeHeadbutt = 0;
 
     double mAngleofHead = .8;
 
     double mTimeEating = 0;
+
+    bool mCanMove = false;
 
     //headbutting
 //    bool mIsHeadbutting = false;
@@ -82,6 +87,8 @@ public:
     /// moving mouth
     void SetMouthPivot(const wxPoint& pivot);
     void SetMouthAngle(double angle);
+
+    void SetCanMove(bool value) { mCanMove = value; }
 
     void Accept(Visitor *visitor) override{
         visitor->SpartyVisit(this);

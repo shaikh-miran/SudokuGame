@@ -11,7 +11,6 @@
 #include <wx/xml/xml.h>
 #include <map>
 #include "DeclarationGiven.h"
-//#include "Declaration.h"
 
 class Game;
 class Declaration;

@@ -24,6 +24,9 @@ private:
     /// Mouth image
     std::wstring mImage2;
 
+    double mTargetX;
+    double mTargetY;
+
 public:
     //// Default constructor (disabled)
     DeclarationSparty() = delete;
@@ -51,6 +54,9 @@ public:
       * @return string form of the image's filename
       */
     std::wstring GetImage2Name() { return mImage2; }
+
+    double GetTargetX() { return mTargetX; }
+    double GetTargetY() { return mTargetY; }
 };
 
 #endif //PROJECT1_GAMELIB_DECLARATIONSPARTY_H

@@ -154,6 +154,7 @@ void Game::OnLeftDown(int x, int y)
             item->SetYSpeed(newSpeedY);
         }
     }
+    mSparty->SetCanMove(true);
 }
 
 /**

@@ -16,6 +16,9 @@ DeclarationSparty::DeclarationSparty(wxXmlNode* node) : Declaration(node)
 {
     mImage1 = L"images/" + node->GetAttribute(L"image1").ToStdWstring();
     mImage2 = L"images/" + node->GetAttribute(L"image2").ToStdWstring();
+
+    node->GetAttribute(L"target-x").ToDouble(&mTargetX);
+    node->GetAttribute(L"target-y").ToDouble(&mTargetY);
 }
 
 /**
