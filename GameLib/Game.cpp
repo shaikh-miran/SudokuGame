@@ -202,5 +202,4 @@ void Game::SpartyYum(){
 
 void Game::SpartyHeadButt(){
     mSparty->Headbutt();
-
 }

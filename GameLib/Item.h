@@ -123,6 +123,9 @@ public:
      */
     double GetY() const { return mY; }
 
+    wxBitmap* GetBitmap() const {
+        return mItemBitmap.get();
+    }
     /**
      * Set the item location
      * @param x X location in pixels
@@ -144,6 +147,9 @@ public:
 
 
     void XmlLoad(wxXmlNode *node);
+
+    double GetWidthBitMap() {return mItemBitmap->GetWidth();}
+    double GetHeightBitMap() {return mItemBitmap->GetHeight();}
 };
 
 #endif //PROJECT1_GAMELIB_ITEM_H

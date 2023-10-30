@@ -19,7 +19,7 @@ const wxPoint ScoreboardTopLeft(10, 10);
 
 const int ScoreboardX = 10;
 
-const int ScoreboardY = 10;
+const int ScoreboardY = 20;
 
 /// The font color to use
 const wxColour FontColor = wxColour(255, 255, 255);

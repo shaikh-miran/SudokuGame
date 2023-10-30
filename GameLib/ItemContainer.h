@@ -22,16 +22,11 @@ private:
 //    std::unique_ptr<wxBitmap> mContainerFrontBitmap;
 
     std::vector<std::shared_ptr<Item>> digits;
-
     DeclarationContainer *mDeclaration;
-
-
-
-
 
 public:
     ///// needed for sparty mouth
-    void Accept(Visitor * visitor)override
+    void Accept(Visitor * visitor) override
     {
         visitor->ContainerVisit(this);
     }
@@ -52,8 +47,8 @@ public:
     void DrawFront(std::shared_ptr<wxGraphicsContext> graphics);
     void DrawImage(std::shared_ptr<wxGraphicsContext> graphics);
     void AddDigits(std::shared_ptr<Item> digit);
+    void EjectDigits();
     void ContainerXmlLoad(wxXmlNode *node);
-
 };
 
 #endif //PROJECT1_GAMELIB_CONTAINER_H

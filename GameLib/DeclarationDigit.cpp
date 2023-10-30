@@ -47,3 +47,24 @@ std::shared_ptr<Item> DeclarationDigit::Create(wxXmlNode *node, Game *game)
     game->AddItem(item);
     return item;
 }
+
+std::shared_ptr<Item> DeclarationDigit::CreateContainer(wxXmlNode *node, Game *game)
+{
+    double row, col, width, height;
+
+    /// Get row, column, width and height attributes
+    node->GetAttribute(L"row").ToDouble(&row);
+    node->GetAttribute(L"col").ToDouble(&col);
+    width = GetWidth();
+    height = GetHeight();
+
+    /// Create an ItemDigit object (base class Item)
+    auto item = std::make_shared<ItemDigit>(game, GetImageName());
+
+    /// Using the local attributes from above, initialize the parameters of the Item
+    item->SetWidth(width);
+    item->SetHeight(height);
+    item->SetLocation(col * game->GetTileWidth(), (row) * game->GetTileHeight());
+
+    return item;
+}

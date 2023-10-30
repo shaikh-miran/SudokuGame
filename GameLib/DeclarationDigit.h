@@ -41,12 +41,12 @@ public:
     // Declaration::Create override; modified to accept "digit" specific attributes
     std::shared_ptr<Item> Create(wxXmlNode* node, Game* game) override;
 
+    std::shared_ptr<Item> CreateContainer(wxXmlNode* node, Game* game) override;
     /**
      * Return the digit image filename
      * @return string form of the image's filename
      */
     std::wstring GetImageName() { return mImage; }
-
 
 };
 

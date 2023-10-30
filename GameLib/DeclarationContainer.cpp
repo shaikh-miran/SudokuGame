@@ -14,9 +14,6 @@ DeclarationContainer::DeclarationContainer(wxXmlNode *node) : Declaration(node)
 {
     mImage1 = L"images/" + node->GetAttribute(L"image").ToStdWstring();
     mImage2 = L"images/" + node->GetAttribute(L"front").ToStdWstring();
-
-
-
 }
 
 std::shared_ptr<Item> DeclarationContainer::Create(wxXmlNode *node, Game *game)

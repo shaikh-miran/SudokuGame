@@ -88,7 +88,7 @@ public:
      * @param game the Game object in which the Item object will reside in
      */
     virtual std::shared_ptr<Item> Create(wxXmlNode* node, Game *game) {return item;}
-
+    virtual std::shared_ptr<Item> CreateContainer(wxXmlNode* node, Game* game)  {return item;}
 };
 
 #endif //PROJECT1_GAMELIB_DECLARATION_H
