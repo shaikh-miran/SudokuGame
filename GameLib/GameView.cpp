@@ -41,7 +41,7 @@ void GameView::Initialize(wxFrame* parent)
     Bind(wxEVT_TIMER,&GameView::OnTimer,this);
     Bind(wxEVT_KEY_DOWN, &GameView::SpaceBarPressed, this);
     //headbutting
-    //Bind(wxEVT_KEY_DOWN, &GameView::BKeyPressed, this);
+    Bind(wxEVT_KEY_DOWN, &GameView::BKeyPressed, this);
 
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
@@ -154,23 +154,18 @@ void GameView::SpaceBarPressed(wxKeyEvent &event)
         mGame.SpartyYum();
 
     }
-    else if (event.GetUnicodeKey()==L'B'){
-        mGame.SpartyHeadButt();
+//    else if (event.GetUnicodeKey()==L'B'){
+//        mGame.SpartyHeadButt();
+//
+//    }
+}
 
+void GameView::BKeyPressed(wxKeyEvent &event) {
+    if (event.GetUnicodeKey()==L'B') {
+        mGame.SpartyHeadButt();
     }
 }
 
-
-//headbutt
-//void GameView::BKeyPressed(wxKeyEvent &event) {
-//    if (event.GetKeyCode() == 'B') {
-//        auto sparty = mGame.GetSparty();
-//        if (sparty) {
-//            sparty->OnBKeyPress();
-//        }
-//    }
-//    event.Skip(); // Continue processing other events
-//}
 
 
 
@@ -179,16 +174,5 @@ void GameView::OnTimer(wxTimerEvent &event)
 {
     Refresh();
 }
-
-//headbutt
-//void GameView::BKeyPressed(wxKeyEvent &event) {
-//    if (event.GetKeyCode() == 'B') {
-//        auto sparty = mGame.GetSparty();
-//        if (sparty) {
-//            sparty->OnBKeyPress();
-//        }
-//    }
-//    event.Skip(); // Continue processing other events
-//}
 
 

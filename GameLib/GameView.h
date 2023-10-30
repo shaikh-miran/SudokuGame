@@ -64,7 +64,7 @@ public:
     void OnLeftDown(wxMouseEvent &event);
 
     /// Handler for headbutting
-    //void BKeyPressed(wxKeyEvent &event);
+    void BKeyPressed(wxKeyEvent &event);
 
 
     /// Initializes the GameView object
