@@ -57,15 +57,11 @@ public:
     /// Handler for when Level 3 is clicked in the menu bar
     void OnLevel3(wxCommandEvent& event);
 
-    /// Handler for spacebar press
-    void SpaceBarPressed(wxKeyEvent &event);
+    /// Handler for key presses
+    void OnKeyPress(wxKeyEvent &event);
 
     /// Handler for left click down
     void OnLeftDown(wxMouseEvent &event);
-
-    /// Handler for headbutting
-    void BKeyPressed(wxKeyEvent &event);
-
 
     /// Initializes the GameView object
     void Initialize(wxFrame* parent);

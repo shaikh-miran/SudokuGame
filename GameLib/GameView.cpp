@@ -39,9 +39,7 @@ void GameView::Initialize(wxFrame* parent)
 
     Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);
     Bind(wxEVT_TIMER,&GameView::OnTimer,this);
-    Bind(wxEVT_KEY_DOWN, &GameView::SpaceBarPressed, this);
-    //headbutting
-    Bind(wxEVT_KEY_DOWN, &GameView::BKeyPressed, this);
+    Bind(wxEVT_KEY_DOWN, &GameView::OnKeyPress, this);
 
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
@@ -144,35 +142,21 @@ void GameView::OnLeftDown(wxMouseEvent &event)
 * Handle the space bar event
 * @param event
 */
-void GameView::SpaceBarPressed(wxKeyEvent &event)
+void GameView::OnKeyPress(wxKeyEvent &event)
 {
+    /// Spacebar pressed
     if (event.GetKeyCode() == WXK_SPACE)
     {
-//        std::shared_ptr<Sparty> sparty = mGame.GetSparty();
-//        sparty->SetMouthPivot(wxPoint(30,86));
-//        sparty->SetMouthAngle(0.8);
         mGame.SpartyYum();
-
     }
-//    else if (event.GetUnicodeKey()==L'B'){
-//        mGame.SpartyHeadButt();
-//
-//    }
-}
-
-void GameView::BKeyPressed(wxKeyEvent &event) {
-    if (event.GetUnicodeKey()==L'B') {
+    /// B pressed
+    else if (event.GetUnicodeKey()==L'B'){
         mGame.SpartyHeadButt();
     }
 }
-
-
-
 
 void GameView::OnTimer(wxTimerEvent &event)
 
 {
     Refresh();
 }
-
-

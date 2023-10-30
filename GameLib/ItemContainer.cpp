@@ -49,3 +49,6 @@ void ItemContainer::AddDigits(std::shared_ptr<Item> digit)
     digits.push_back(digit);
 }
 
+void ItemContainer::EjectDigits() {
+
+}

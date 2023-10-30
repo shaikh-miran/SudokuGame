@@ -47,6 +47,7 @@ public:
     void DrawFront(std::shared_ptr<wxGraphicsContext> graphics);
     void DrawImage(std::shared_ptr<wxGraphicsContext> graphics);
     void AddDigits(std::shared_ptr<Item> digit);
+    void EjectDigits();
     void ContainerXmlLoad(wxXmlNode *node);
 };
 
