@@ -91,9 +91,9 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
         mPopUpMessage.OnDraw(graphics, mCurrentLevel);
     }
 
-
-    mScoreboard.OnDraw(graphics, this);
-
+    if (mScoreboard.GetStartTimer()) {
+        mScoreboard.OnDraw(graphics, this);
+    }
 
     graphics->PopState();
 }
@@ -185,6 +185,7 @@ void Game::Update(double elapsed)
     if(mDuration >= 3 && mStartState == true)
     {
 //        mScoreboard.ResetTimer();
+        mScoreboard.SetStartTimer(true);
         mScoreboard.StartTimer();
         /// change state
         mStartState = false;

@@ -17,6 +17,7 @@ private:
     int mMinutes = 0;
     int mSeconds = 0;
     wxTimer mTimer;
+    bool mStartTimer = false;
 
 public:
     Scoreboard();
@@ -31,6 +32,9 @@ public:
     int GetSeconds() { return mSeconds; }
 
     void SetTime(int minutes, int seconds) { mMinutes = minutes; mSeconds = seconds; }
+
+    void SetStartTimer(bool startTimer) { mStartTimer = startTimer; }
+    bool GetStartTimer() { return mStartTimer; }
 
 };
 

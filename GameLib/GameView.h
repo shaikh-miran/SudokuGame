@@ -32,9 +32,6 @@ private:
     /// The timer that allows for animation
     wxTimer mTimer;
 
-    /// Handles Paint event, draws the window
-    void OnPaint(wxPaintEvent& event);
-
     //headbutting
     std::unique_ptr<Sparty> spartyInstance;
 
@@ -45,6 +42,9 @@ public:
     /// Relative mouse y-pos
     int mGrabOffsetY;
 
+    /// Handles Paint event, draws the window
+    void OnPaint(wxPaintEvent& event);
+    
     /// Handler for when Level 0 is clicked in the menu bar
     void OnLevel0(wxCommandEvent& event);
 

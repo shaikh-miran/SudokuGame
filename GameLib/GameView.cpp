@@ -159,7 +159,6 @@ void GameView::OnKeyPress(wxKeyEvent &event)
 }
 
 void GameView::OnTimer(wxTimerEvent &event)
-
 {
     Refresh();
 }

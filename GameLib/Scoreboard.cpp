@@ -64,13 +64,14 @@ void Scoreboard::ResetTimer()
  */
 void Scoreboard::OnDraw(std::shared_ptr<wxGraphicsContext> gc, Game* level)
 {
-
-    wxFont font(wxSize(0, ScoreboardTextSize), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
-    gc->SetFont(font, FontColor);
-    wxString timeString;
-    timeString.Printf("%02d:%02d", mMinutes, mSeconds);
-    gc->DrawText(timeString, ScoreboardX, ScoreboardY);
-
+    if (mStartTimer)
+    {
+        wxFont font(wxSize(0, ScoreboardTextSize), wxFONTFAMILY_SWISS, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD);
+        gc->SetFont(font, FontColor);
+        wxString timeString;
+        timeString.Printf("%02d:%02d", mMinutes, mSeconds);
+        gc->DrawText(timeString, ScoreboardX, ScoreboardY);
+    }
 }
 
 
