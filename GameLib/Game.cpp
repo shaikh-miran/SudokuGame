@@ -85,7 +85,15 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
         item->Draw(graphics);
     }
 
+    // Write out PopUp message for 3 seconds
+    mStopWatchPopUp.Start();
+    if (mStartState){
+        mPopUpMessage.OnDraw(graphics, mCurrentLevel);
+    }
+
+
     mScoreboard.OnDraw(graphics, this);
+
 
     graphics->PopState();
 }
@@ -112,7 +120,7 @@ void Game::Load(const wxString & filename)
     /// Offload loading process to ParseXML object
     mLevel->Load(xmlDoc);
     mScoreboard.ResetTimer();
-    mScoreboard.StartTimer();
+//    mScoreboard.StartTimer();
 }
 
 /**
@@ -171,6 +179,17 @@ void Game::Update(double elapsed)
     {
         item->Update(elapsed);
     }
+
+    mDuration += elapsed;
+
+    if(mDuration >= 3 && mStartState == true)
+    {
+//        mScoreboard.ResetTimer();
+        mScoreboard.StartTimer();
+        /// change state
+        mStartState = false;
+        mDuration = 0;
+    }
 }
 
 /**
@@ -211,4 +230,50 @@ void Game::SpartyYum(){
 
 void Game::SpartyHeadButt(){
     mSparty->Headbutt();
+}
+
+
+/**
+ * Change Level to 0
+ * @param starting
+ */
+void Game::ChangeStateZero(bool starting){
+    mStartState = starting;
+    mEndState = false;
+    mCurrentLevel = 0;
+    mDuration = 0;
+}
+
+/**
+ * Change Level to 1
+ * @param starting
+ */
+void Game::ChangeStateOne(bool starting){
+    mStartState = starting;
+    mEndState = false;
+    mCurrentLevel = 1;
+    mDuration = 0;
+}
+
+/**
+ * Change Level to 2
+ * @param starting
+ */
+void Game::ChangeStateTwo(bool starting){
+    mStartState = starting;
+    mEndState = false;
+    mCurrentLevel = 2;
+    mDuration = 0;
+}
+
+/**
+ * Change Level to 3
+ * @param starting
+ */
+void Game::ChangeStateThree(bool starting){
+    mStartState = starting;
+    mEndState = false;
+    mCurrentLevel = 3;
+
+    mDuration = 0;
 }

@@ -58,6 +58,8 @@ set(SOURCE_FILES
         Visitor.h
         XRayVisitor.cpp
         XRayVisitor.h
+        PopUp.cpp
+        PopUp.h
 )
 
 set(wxBUILD_PRECOMP OFF)

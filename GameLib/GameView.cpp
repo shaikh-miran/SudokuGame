@@ -83,6 +83,7 @@ void GameView::OnLevel0(wxCommandEvent& event)
 {
     const wxString filename = L"levels/level0.xml";
     mGame.Load(filename);
+    mGame.ChangeStateZero(true);
     Refresh();
 }
 
@@ -94,7 +95,7 @@ void GameView::OnLevel1(wxCommandEvent& event)
 {
     const wxString filename = L"levels/level1.xml";
     mGame.Load(filename);
-
+    mGame.ChangeStateOne(true);
     Refresh();
 }
 
@@ -106,6 +107,7 @@ void GameView::OnLevel2(wxCommandEvent& event)
 {
     const wxString filename = L"levels/level2.xml";
     mGame.Load(filename);
+    mGame.ChangeStateTwo(true);
     Refresh();
 }
 
@@ -117,6 +119,7 @@ void GameView::OnLevel3(wxCommandEvent& event)
 {
     const wxString filename = L"levels/level3.xml";
     mGame.Load(filename);
+    mGame.ChangeStateThree(true);
     Refresh();
 }
 

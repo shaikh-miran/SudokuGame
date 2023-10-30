@@ -23,6 +23,7 @@
 #include "MessageBox.h"
 #include "Visitor.h"
 #include "XRayVisitor.h"
+#include "PopUp.h"
 
 /// Forward declaration of class Item
 class Item;
@@ -80,6 +81,22 @@ private:
 
     bool mIntroScreenVisible = true;
     std::mt19937 mRandom;
+
+    ///Duration
+    double mDuration = 0;
+
+    /// Status Starting
+    bool mStartState = true;
+    /// Status Ending
+    bool mEndState = false;
+    /// Current Level
+    long mCurrentLevel = 1;
+
+    /// Stopwatch for pop up message
+    wxStopWatch mStopWatchPopUp;
+
+    /// pop up message
+    PopUp mPopUpMessage;
 
 public:
 
@@ -210,6 +227,19 @@ public:
      * @return Pointer to the random number generator
      */
     std::mt19937 &GetRandom() {return mRandom;}
+
+
+    /// change game state to level 0
+    void ChangeStateZero(bool starting);
+
+    /// change game state to level 1
+    void ChangeStateOne(bool starting);
+
+    /// change game state to level 2
+    void ChangeStateTwo(bool starting);
+
+    /// change game state to level 3
+    void ChangeStateThree(bool starting);
 
 };
 
