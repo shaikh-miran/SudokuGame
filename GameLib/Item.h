@@ -150,6 +150,9 @@ public:
 
     double GetWidthBitMap() {return mItemBitmap->GetWidth();}
     double GetHeightBitMap() {return mItemBitmap->GetHeight();}
+
+    double GetWidth() { return mWidth; }
+    double GetHeight() { return mHeight; }
 };
 
 #endif //PROJECT1_GAMELIB_ITEM_H

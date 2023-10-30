@@ -16,9 +16,9 @@ private:
 
 public:
 
-    void Accept(Visitor * visitor) override{
-    visitor->DigitVisit(this);
-}
+    void Accept(Visitor * visitor) override {
+        visitor->DigitVisit(this);
+    }
     //// Default constructor (disabled)
     ItemDigit() = delete;
 

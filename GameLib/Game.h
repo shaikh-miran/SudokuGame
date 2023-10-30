@@ -22,6 +22,7 @@
 #include "ItemContainer.h"
 #include "MessageBox.h"
 #include "Visitor.h"
+#include "XRayVisitor.h"
 
 /// Forward declaration of class Item
 class Item;
@@ -78,6 +79,7 @@ private:
     //MessageBox mMessageBox;
 
     bool mIntroScreenVisible = true;
+    std::mt19937 mRandom;
 
 public:
 
@@ -202,6 +204,12 @@ public:
      * @return Container shared pointer
      */
     std::shared_ptr<ItemContainer> GetContainer() { return mContainer; }
+
+    /**
+     * Get the random number generator
+     * @return Pointer to the random number generator
+     */
+    std::mt19937 &GetRandom() {return mRandom;}
 
 };
 

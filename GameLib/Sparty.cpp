@@ -257,7 +257,7 @@ void Sparty::Update(double elapsed)
     int adjustedTargetX, adjustedTargetY;
 
     if (mCanMove) {
-        adjustedTargetX = getClickX - mTargetPivot.x;
+        adjustedTargetX = getClickX - (mTargetPivot.x/2.5);
         adjustedTargetY = getClickY - mTargetPivot.y;
     } else {
         adjustedTargetX = getClickX;

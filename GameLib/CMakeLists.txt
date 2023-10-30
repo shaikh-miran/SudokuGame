@@ -56,6 +56,8 @@ set(SOURCE_FILES
         YumVisitor.h
         Visitor.cpp
         Visitor.h
+        XRayVisitor.cpp
+        XRayVisitor.h
 )
 
 set(wxBUILD_PRECOMP OFF)

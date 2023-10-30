@@ -24,6 +24,10 @@ Game::Game()
 {
     /// Load level 1; this is the default level to load
     Load(L"levels/level1.xml");
+
+    // Seed the random number generator
+    std::random_device rd;
+    mRandom.seed(rd());
 }
 
 
@@ -195,7 +199,12 @@ void Game::SpartyYum(){
     this->Accept(&visitor);
     if (visitor.GetYummyDigit() != nullptr)
     {
-        visitor.GetYummyDigit()->SetLocation(40, 550); /// this is hard coding. need to change
+        XRayVisitor visitor2;
+        this->Accept(&visitor2);
+        XRay *xray = visitor2.GetXray();
+        xray->DisplayNums(visitor.GetYummyDigit());
+        visitor.GetYummyDigit()->SetHeight(visitor.GetYummyDigit()->GetHeight()/2);
+        visitor.GetYummyDigit()->SetWidth(visitor.GetYummyDigit()->GetWidth()/2);
         mYummyTile = visitor.GetYummyDigit();
     }
 }

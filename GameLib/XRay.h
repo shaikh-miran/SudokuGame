@@ -17,7 +17,7 @@ private:
 
 public:
 
-    void Accept(Visitor *visitor) override {visitor->XrayVisit(this);}
+    void Accept(Visitor *visitor) override { visitor->XrayVisit(this); }
 
     XRay(Game* game, std::wstring filename);
     
@@ -29,6 +29,7 @@ public:
     
     /// Assignment operator
     void operator=(const XRay &) = delete;
+    void DisplayNums(ItemDigit * digit);
 };
 
 #endif //PROJECT1_PROJECT1_GAMELIB_XRAY_H
