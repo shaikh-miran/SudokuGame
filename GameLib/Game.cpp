@@ -228,7 +228,7 @@ void Game::SpartyYum(){
             xray->DisplayNums(visitor.GetYummyDigit());
             visitor.GetYummyDigit()->SetHeight(visitor.GetYummyDigit()->GetHeight()/2);
             visitor.GetYummyDigit()->SetWidth(visitor.GetYummyDigit()->GetWidth()/2);
-            mYummyTile = visitor.GetYummyDigit();
+            //mYummyTile = visitor.GetYummyDigit();
         }
     }
 }

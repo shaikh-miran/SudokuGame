@@ -19,14 +19,16 @@ XRay::XRay(Game *game, std::wstring filename) : Item(game, filename)
 void XRay::DisplayNums(ItemDigit * digit)
 {
     const double MaxX = GetWidth() - GetGame()->GetTileWidth();
-    const double MinX = GetX();
     const double MaxY = GetHeight() - GetGame()->GetTileHeight();
-    const double MinY = GetY();
     std::uniform_real_distribution<> distributionX(0, MaxX);
     std::uniform_real_distribution<> distributionY(0, MaxY);
-    auto x = GetX() + distributionX(GetGame()->GetRandom());
-    auto y = (GetY() + GetGame()->GetTileHeight() / 1.5 + GetHeight() - GetGame()->GetTileHeight() * 1.5)
-        - distributionY(GetGame()->GetRandom());
+    double x, y;
+
+    do {
+        x = GetX() + distributionX(GetGame()->GetRandom());
+        y = (GetY() + GetGame()->GetTileHeight() / 1.5 + GetHeight() - GetGame()->GetTileHeight() * 1.5)
+            - distributionY(GetGame()->GetRandom());
+    } while (DigitExist(x, y));
 
     digit->SetLocation(x, y);
 }
@@ -46,4 +48,22 @@ bool XRay::GetXrayFull()
         mXrayFull = false;
     }
     return mXrayFull;
+}
+
+bool XRay::DigitExist(double x, double y)
+{
+    // Iterate through existing ItemDigits and check if any are located at (x, y)
+    for (const auto& item : mXrayDigits) {
+            double itemX = item->GetX();
+            double itemY = item->GetY();
+            double itemWidth = item->GetWidth();
+            double itemHeight = item->GetHeight();
+
+            // Check if the new position overlaps with the existing ItemDigit's position
+            if (x >= itemX - 20 && x <= itemX + itemWidth + 20 &&
+                y >= itemY - 20 && y <= itemY + itemHeight + 20) {
+                return true; // An ItemDigit already exists at this position
+            }
+    }
+    return false; // No ItemDigit exists at this position
 }
