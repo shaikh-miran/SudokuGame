@@ -222,10 +222,14 @@ void Game::SpartyYum(){
         XRayVisitor visitor2;
         this->Accept(&visitor2);
         XRay *xray = visitor2.GetXray();
-        xray->DisplayNums(visitor.GetYummyDigit());
-        visitor.GetYummyDigit()->SetHeight(visitor.GetYummyDigit()->GetHeight()/2);
-        visitor.GetYummyDigit()->SetWidth(visitor.GetYummyDigit()->GetWidth()/2);
-        mYummyTile = visitor.GetYummyDigit();
+
+        if (!xray->GetXrayFull()) {
+            xray->AddItem(visitor.GetYummyDigit());
+            xray->DisplayNums(visitor.GetYummyDigit());
+            visitor.GetYummyDigit()->SetHeight(visitor.GetYummyDigit()->GetHeight()/2);
+            visitor.GetYummyDigit()->SetWidth(visitor.GetYummyDigit()->GetWidth()/2);
+            mYummyTile = visitor.GetYummyDigit();
+        }
     }
 }
 

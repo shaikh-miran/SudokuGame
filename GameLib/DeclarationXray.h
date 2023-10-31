@@ -45,6 +45,8 @@ public:
      * @return string form of the image's filename
      */
     std::wstring GetImageName() { return mImage; }
+
+
 };
 
 #endif //PROJECT1_GAMELIB_DECLARATIONXRAY_H

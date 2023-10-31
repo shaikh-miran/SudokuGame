@@ -44,8 +44,8 @@ void GameView::Initialize(wxFrame* parent)
     mTimer.SetOwner(this);
     mTimer.Start(FrameDuration);
     mStopwatch.Start();
-
 }
+
 /**
  * Paint event, draws the window.
  * @param event Paint event object

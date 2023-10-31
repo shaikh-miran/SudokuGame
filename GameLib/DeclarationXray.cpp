@@ -42,6 +42,7 @@ std::shared_ptr<Item> DeclarationXray::Create(wxXmlNode *node, Game *game)
     item->SetWidth(width);
     item->SetHeight(height);
     item->SetLocation((col) * game->GetTileWidth(), (row-2) * game->GetTileHeight());
+    item->SetCapacity(mCapacity);
 
     /// Once the Item is ready, add it to the Game object's item list
     game->AddItem(item);

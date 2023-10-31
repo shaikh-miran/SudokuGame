@@ -30,3 +30,20 @@ void XRay::DisplayNums(ItemDigit * digit)
 
     digit->SetLocation(x, y);
 }
+
+void XRay::AddItem(ItemDigit* item)
+{
+    if (mXrayDigits.size() <= mCapacity) {
+        mXrayDigits.push_back(item);
+    }
+}
+
+bool XRay::GetXrayFull()
+{
+    if (mXrayDigits.size() == mCapacity) {
+        mXrayFull = true;
+    } else {
+        mXrayFull = false;
+    }
+    return mXrayFull;
+}

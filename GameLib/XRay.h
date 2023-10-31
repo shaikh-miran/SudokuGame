@@ -14,6 +14,9 @@
 class XRay : public Item
 {
 private:
+    std::vector<ItemDigit*> mXrayDigits;
+    int mCapacity;
+    bool mXrayFull = false;
 
 public:
 
@@ -30,6 +33,11 @@ public:
     /// Assignment operator
     void operator=(const XRay &) = delete;
     void DisplayNums(ItemDigit * digit);
+
+    void AddItem(ItemDigit* item);
+    bool GetXrayFull();
+
+    void SetCapacity(int capacity) { mCapacity = capacity; }
 };
 
 #endif //PROJECT1_PROJECT1_GAMELIB_XRAY_H

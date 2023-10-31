@@ -26,19 +26,20 @@ private:
 public:
 
     void DigitVisit(ItemDigit* digit)
-    {double digitx = digit->GetX();
-
-    double digity = digit->GetY();
-
-    mSpartyCenterX += 1;
-    double distance = sqrt(pow(digitx - mSpartyCenterX, 2) + pow(digity - mSpartyCenterY, 2));
-
-    if (distance <= 48)
     {
-        mX = digitx;
-        mY = digity;
-        mYumDigit = digit;
-    }
+        double digitx = digit->GetX();
+
+        double digity = digit->GetY();
+
+        mSpartyCenterX += 1;
+        double distance = sqrt(pow(digitx - mSpartyCenterX, 2) + pow(digity - mSpartyCenterY, 2));
+
+        if (distance <= 48)
+        {
+            mX = digitx;
+            mY = digity;
+            mYumDigit = digit;
+        }
 
     }
     double GetX() {return mX;}
