@@ -52,6 +52,19 @@ bool XRay::GetXrayFull()
 
 
 
+void XRay::RegurgitateItemDigit(int keyPressed)
+{
+    for (auto item : mXrayDigits)
+    {
+        int valueDigit = item->GetValue();
+        if (keyPressed == valueDigit)
+        {
+
+        }
+    }
+
+}
+
 
 bool XRay::DigitExist(double x, double y)
 {
