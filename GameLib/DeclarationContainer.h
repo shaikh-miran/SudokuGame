@@ -15,11 +15,7 @@ class DeclarationContainer : public Declaration
 private:
 
     std::wstring mImage1;
-
     std::wstring mImage2;
-
-
-
 
 public:
 //// Default constructor (disabled)
@@ -36,7 +32,6 @@ public:
     std::shared_ptr<Item> Create(wxXmlNode* node, Game* game) override;
 
     std::wstring GetImage1Name() { return mImage1; }
-
     std::wstring GetImage2Name() { return mImage2; }
 
 

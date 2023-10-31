@@ -160,9 +160,7 @@ void Sparty::DrawTop(std::shared_ptr<wxGraphicsContext> graphics)
 
 }
 void Sparty::DrawBottom(std::shared_ptr<wxGraphicsContext> graphics)
-
 //put sparty mouth open here
-
 {
 
 
@@ -190,12 +188,7 @@ void Sparty::DrawBottom(std::shared_ptr<wxGraphicsContext> graphics)
     //graphics->DrawBitmap(*mSpartyMouthBitmap, int(wid - wid1) / 2, int(hit - hit1) / 2, wid1, hit1);
 
     // hailey: this should be 0 and 0, not int(wid - wid1) / 2 and int(hit - hit1) / 2
-
-
-
     graphics->PopState();
-
-
 }
 
 
@@ -307,10 +300,11 @@ void Sparty::Update(double elapsed)
     if (mTimeHeadbutt >0){
         double time = mTimeHeadbutt - elapsed;
         if (mTimeHeadbutt >= TotalTimeHeadbutt/2 && time < TotalTimeHeadbutt/2)
-        {}
+        {
+
+        }
         if (time < 0){
             mTimeHeadbutt = 0;
-
         }
         else{
             mTimeHeadbutt = time;

@@ -163,14 +163,3 @@ void GameView::OnTimer(wxTimerEvent &event)
     Refresh();
 }
 
-//headbutt
-//void GameView::BKeyPressed(wxKeyEvent &event) {
-//    if (event.GetKeyCode() == 'B') {
-//        auto sparty = mGame.GetSparty();
-//        if (sparty) {
-//            sparty->OnBKeyPress();
-//        }
-//    }
-//    event.Skip(); // Continue processing other events
-//}
-

@@ -4,16 +4,17 @@
  */
 #include "pch.h"
 #include "Game.h"
-
-/// Initial XRay X location
-const int XRInitialX = 100;
-
-/// Initial XRay Y location
-const int XRInitialY = 100;
-
 #include "Sparty.h"
 #include "Item.h"
 #include "YumVisitor.h"
+#include "ContainerVisitor.h"
+
+///// Initial XRay X location
+//const int XRInitialX = 100;
+//
+///// Initial XRay Y location
+//const int XRInitialY = 100;
+
 using namespace std;
 
 /**
@@ -32,9 +33,9 @@ Game::Game()
 
 
 void Game::Accept(Visitor *visitor){
-    for (auto digit : mItems)
+    for (auto item : mItems)
     {
-        digit->Accept(visitor);
+        item->Accept(visitor);
     }
 }
 
@@ -124,8 +125,7 @@ void Game::Load(const wxString & filename)
 }
 
 /**
- * Test an x,y click location to see if it clicked
- * on some item in the aquarium.
+ * Test an x,y click location to see if an item exists at that position.
  * @param x X location in pixels
  * @param y Y location in pixels
  * @returns Pointer to item we clicked on or nullptr if none.
@@ -233,8 +233,19 @@ void Game::SpartyYum(){
     }
 }
 
+/**
+ * Function that runs when sparty headbutts (B is pressed, activating this function). If there is a container in range,
+ * the container will release all numbers within.
+ */
 void Game::SpartyHeadButt(){
     mSparty->Headbutt();
+    ContainerVisitor visitor;
+    visitor.SetSpartyLocation(mSparty->GetX(), mSparty->GetY());
+    this->Accept(&visitor);
+    if (visitor.GetContainer() != nullptr)
+    {
+        visitor.GetContainer()->EjectDigits();
+    }
 }
 
 

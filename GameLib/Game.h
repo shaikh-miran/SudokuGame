@@ -68,8 +68,7 @@ private:
     /// Sparty object saved in order to associate the game to it.
     std::shared_ptr<Sparty> mSparty;
 
-
-    std::shared_ptr<ItemContainer> mContainer;
+//    std::shared_ptr<ItemContainer> mContainer;
 
     /// The timer that allows for intro screen
     wxTimer mIntroScreenTimer;
@@ -174,11 +173,11 @@ public:
      */
     void SetSparty(std::shared_ptr<Sparty> sparty) { mSparty = sparty; }
 
-    /**
-     * Set the Game's associated Container object (shared ptr)
-     * @param Container pointer to set
-     */
-    void SetContainer(std::shared_ptr<ItemContainer> container) { mContainer = container; }
+//    /**
+//     * Set the Game's associated Container object (shared ptr)
+//     * @param Container pointer to set
+//     */
+//    void SetContainer(std::shared_ptr<ItemContainer> container) { mContainer = container; }
 
     /**
     * sets the x-position of the click event
@@ -216,11 +215,11 @@ public:
      */
     std::shared_ptr<Sparty> GetSparty() { return mSparty; }
 
-    /**
-     * Get the Game's Container object
-     * @return Container shared pointer
-     */
-    std::shared_ptr<ItemContainer> GetContainer() { return mContainer; }
+//    /**
+//     * Get the Game's Container object
+//     * @return Container shared pointer
+//     */
+//    std::shared_ptr<ItemContainer> GetContainer() { return mContainer; }
 
     /**
      * Get the random number generator
