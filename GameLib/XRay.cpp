@@ -50,6 +50,9 @@ bool XRay::GetXrayFull()
     return mXrayFull;
 }
 
+
+
+
 bool XRay::DigitExist(double x, double y)
 {
     // Iterate through existing ItemDigits and check if any are located at (x, y)

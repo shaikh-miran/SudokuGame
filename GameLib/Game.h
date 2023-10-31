@@ -24,6 +24,7 @@
 #include "Visitor.h"
 #include "XRayVisitor.h"
 #include "PopUp.h"
+#include "XRay.h"
 
 /// Forward declaration of class Item
 class Item;
@@ -68,6 +69,9 @@ private:
     /// Sparty object saved in order to associate the game to it.
     std::shared_ptr<Sparty> mSparty;
 
+    /// xRay object
+    std::shared_ptr<XRay> mXray;
+
 //    std::shared_ptr<ItemContainer> mContainer;
 
     /// The timer that allows for intro screen
@@ -104,6 +108,10 @@ public:
     void Accept(Visitor * visitor);
 
     void SpartyYum();
+
+    /// function that regurgitates a number from xray to a location
+    void SpartyRegurgitate(long keyPressed);
+
 
     void SpartyHeadButt();
 

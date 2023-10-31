@@ -233,6 +233,20 @@ void Game::SpartyYum(){
     }
 }
 
+void Game::SpartyRegurgitate(long keyPressed)
+{
+    XRayVisitor visitor;
+    this->Accept(&visitor);
+    XRay *xray = visitor.GetXray();
+
+    xray->RegurgitateItemDigit(keyPressed);
+
+
+
+
+}
+
+
 /**
  * Function that runs when sparty headbutts (B is pressed, activating this function). If there is a container in range,
  * the container will release all numbers within.

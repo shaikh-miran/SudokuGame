@@ -38,7 +38,11 @@ public:
     bool GetXrayFull();
 
     void SetCapacity(int capacity) { mCapacity = capacity; }
+
+    void RegurgitateItemDigit(int keyPressed);
+
     bool DigitExist(double x, double y);
+
 };
 
 #endif //PROJECT1_PROJECT1_GAMELIB_XRAY_H
