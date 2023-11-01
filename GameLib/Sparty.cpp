@@ -34,30 +34,12 @@ Sparty::Sparty(Game *game, std::wstring image1, std::wstring image2) : Item(game
     /// Initialize sparty mouth image
     mSpartyMouthImage = std::make_unique<wxImage>(image2, wxBITMAP_TYPE_ANY);
     mSpartyMouthBitmap = std::make_unique<wxBitmap>(*mSpartyMouthImage);
-
-//    mMouthPivot = wxPoint(39, 86);
-//    mAngleOfMouth = 1;
 }
 
 void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
     double wid = mSpartyImage->GetWidth();
     double hit = mSpartyImage->GetHeight();
-
-//    //headbutting
-//    graphics->PushState();
-//
-//    if (mIsHeadbutting)
-//    {
-//        // Compute rotation based on the duration of the headbutt
-//        double fraction = mHeadbuttDuration / HeadbuttTime;
-//        double angle = mHeadAngle * sin(fraction * M_PI); // Using sin for a smooth back and forth motion
-//
-//        graphics->Translate(mHeadPivot.x, mHeadPivot.y);
-//        graphics->Rotate(angle);
-//        graphics->Translate(-mHeadPivot.x, -mHeadPivot.y);
-//    }
-
 
     double wid1 = mSpartyMouthBitmap->GetWidth();
     double hit1 = mSpartyMouthBitmap->GetHeight();
@@ -69,30 +51,6 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 
 //    // Translate to the top-left corner of the Sparty image
     graphics->Translate(HeadX,HeadY);
-//
-//    // Draw all the Sparty character assuming the
-//    // top left corner is at 0,0
-//    graphics->Translate(mMouthPivot.x, mMouthPivot.y);
-//    graphics->Rotate(mAngleOfMouth);
-//    graphics->Translate(-mMouthPivot.x, -mMouthPivot.y);
-//
-//
-//    graphics->DrawBitmap(*mSpartyMouthBitmap, int(wid - wid1) / 2, int(hit - hit1) / 2, wid1, hit1);
-//    graphics->DrawBitmap(*mSpartyImage, 0, 0, wid, hit);
-//
-//    // moving mouth
-//
-//
-//    //graphics->DrawBitmap(*mSpartyMouthBitmap, int(wid - wid1) / 2, int(hit - hit1) / 2, wid1, hit1);
-//
-//    // hailey: this should be 0 and 0, not int(wid - wid1) / 2 and int(hit - hit1) / 2
-//
-//
-//
-//    DrawTop(graphics);
-//    DrawBottom(graphics);
-
-    //graphics->PopState();
 
     double angleOfHead = 0;
     double angleOfMouth = 0;
@@ -118,6 +76,7 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
             angleOfMouth = (TotalTimeHeadbutt - mTimeEating) / halfTimeEating * mAngleOfMouth;
         }
     }
+
     graphics->PushState();
     graphics->Translate(mMouthPivot.x, mMouthPivot.y);
     graphics->Rotate(angleOfMouth);
@@ -334,16 +293,6 @@ void Sparty::Update(double elapsed)
             mTimeHeadbutt = time;
         }
     }
-//    //headbutting
-//    if (mIsHeadbutting)
-//    {
-//        mHeadbuttDuration += elapsed;
-//        if (mHeadbuttDuration >= HeadbuttTime)
-//        {
-//            mIsHeadbutting = false;
-//            mHeadbuttDuration = 0.0;
-//        }
-//    }
 }
 
 void Sparty::StartHeadbutt()
@@ -359,4 +308,18 @@ void Sparty::Yum(){
 
 void Sparty::Headbutt(){
     mTimeHeadbutt = TotalTimeHeadbutt;
+}
+
+/**
+ * Update Sparty's image post-initialization. Updates the current image/bitmaps with the input.
+ */
+void Sparty::UpdateSpartyImage(std::wstring image1, std::wstring image2)
+{
+    /// Initialize sparty main body image
+    mSpartyImage = std::make_unique<wxImage>(image1, wxBITMAP_TYPE_ANY);
+    mSpartyBitmap = std::make_unique<wxBitmap>(*mSpartyImage);
+
+    /// Initialize sparty mouth image
+    mSpartyMouthImage = std::make_unique<wxImage>(image2, wxBITMAP_TYPE_ANY);
+    mSpartyMouthBitmap = std::make_unique<wxBitmap>(*mSpartyMouthImage);
 }

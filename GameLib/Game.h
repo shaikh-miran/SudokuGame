@@ -24,7 +24,6 @@
 #include "Visitor.h"
 #include "XRayVisitor.h"
 #include "PopUp.h"
-#include "XRay.h"
 
 /// Forward declaration of class Item
 class Item;

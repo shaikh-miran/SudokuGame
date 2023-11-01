@@ -20,7 +20,7 @@
 		<digit id="i234" width="48" height="48" image="6r.png" value="6" />
 		<digit id="i236" width="48" height="48" image="7r.png" value="7" />
 
-		<sparty id="i599" width="96" height="96" front="2" head-pivot-angle="0.8" head-pivot-x="30" head-pivot-y="86" image1="sparty-5-1.png" image2="sparty-2.png" mouth-pivot-angle="1" mouth-pivot-x="39" mouth-pivot-y="86" target-x="72" target-y="24" />
+		<sparty id="i599" width="96" height="96" front="2" head-pivot-angle="0.8" head-pivot-x="30" head-pivot-y="86" image1="sparty-1.png" image2="sparty-2.png" mouth-pivot-angle="1" mouth-pivot-x="39" mouth-pivot-y="86" target-x="72" target-y="24" />
 		<background id="i166" width="960" height="720" image="level3_bg.png" />
 		<xray id="i167" width="144" height="144" image="xray.png" capacity="7" />
 	</declarations>

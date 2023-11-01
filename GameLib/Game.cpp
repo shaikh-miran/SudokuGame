@@ -8,13 +8,6 @@
 #include "Item.h"
 #include "YumVisitor.h"
 #include "ContainerVisitor.h"
-
-///// Initial XRay X location
-//const int XRInitialX = 100;
-//
-///// Initial XRay Y location
-//const int XRInitialY = 100;
-
 using namespace std;
 
 /**
@@ -191,6 +184,10 @@ void Game::Update(double elapsed)
         /// change state
         mStartState = false;
         mDuration = 0;
+    }
+    if (round(mDuration) == 10 && mCurrentLevel == 3 && !GetSparty()->InAction())
+    {
+        GetSparty()->UpdateSpartyImage(L"images/sparty-5-1.png", L"images/sparty-2.png");
     }
 }
 

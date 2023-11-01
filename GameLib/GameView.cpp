@@ -72,9 +72,6 @@ void GameView::OnPaint(wxPaintEvent& event)
     mGame.Update(elapsed);
 }
 
-
-
-
 /**
  * Handler for level 0 option in file menu
  * @param event Menu event

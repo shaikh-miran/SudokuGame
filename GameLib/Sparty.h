@@ -13,9 +13,7 @@
 class Sparty: public Item
 {
 private:
-
     //headbutting
-
     static const double HeadbuttTime;
 
     /// The underlying Sparty image
@@ -46,15 +44,7 @@ private:
 
     bool mCanMove = false;
 
-    //headbutting
-//    bool mIsHeadbutting = false;
-//    double mHeadbuttDuration = 0.0;
-//    //const wxPoint mHeadPivot = wxPoint(39,86);
-//    double mHeadAngle = 1;
-
-
 public:
-
     //headbutting
     void StartHeadbutt();
     //headbutting
@@ -93,6 +83,13 @@ public:
     void Accept(Visitor *visitor) override{
         visitor->SpartyVisit(this);
     }
+
+    /// Update Sparty's image post-initialization
+    void UpdateSpartyImage(std::wstring image1, std::wstring image2);
+
+    /// Returns true if sparty is performing a headbutt or eating action (prevent crash if event + image change occurs
+    /// concurrently)
+    bool InAction() { return mTimeHeadbutt != 0 or mTimeEating != 0; }
 };
 
 
