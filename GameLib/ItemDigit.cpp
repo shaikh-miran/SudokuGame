@@ -8,4 +8,7 @@
 
 ItemDigit::ItemDigit(Game* game, std::wstring filename) : Item(game, filename)
 {
+    int digitInString = filename[7] - '0';
+    mValue = digitInString;
+
 }

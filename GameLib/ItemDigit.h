@@ -13,6 +13,7 @@
 class ItemDigit : public Item
 {
 private:
+    int mValue ;
 
 public:
 
@@ -30,6 +31,12 @@ public:
 
     /// Constructor
     ItemDigit(Game* game, std::wstring filename);
+
+    /// getter for mValue
+    int GetValue(){return mValue;}
+
+
+
 };
 
 #endif //PROJECT1_GAMELIB_ITEMDIGIT_H

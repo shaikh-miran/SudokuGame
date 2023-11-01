@@ -151,35 +151,11 @@ void GameView::OnKeyPress(wxKeyEvent &event)
     else if (event.GetUnicodeKey()==L'B'){
         mGame.SpartyHeadButt();
     }
-
-    else if (event.GetUnicodeKey()==L'0'){
-
+    else if(event.GetUnicodeKey() >= 48 && event.GetUnicodeKey() <= 57)
+    {
+        int keyPressed = event.GetUnicodeKey() - 48;
+        mGame.SpartyRegurgitate(keyPressed);
     }
-    else if (event.GetUnicodeKey()==L'1'){
-
-    }
-    else if (event.GetUnicodeKey()==L'2'){
-
-    }
-    else if (event.GetUnicodeKey()==L'3'){
-
-    }
-    else if (event.GetUnicodeKey()==L'4'){
-
-    }
-    else if (event.GetUnicodeKey()==L'5'){
-
-    }
-    else if (event.GetUnicodeKey()==L'6'){
-
-    }
-    else if (event.GetUnicodeKey()==L'7'){
-
-    }
-    else if (event.GetUnicodeKey()==L'8'){
-
-    }
-
 
 
 }
