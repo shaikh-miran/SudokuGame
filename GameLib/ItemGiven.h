@@ -27,6 +27,8 @@ public:
         visitor->GivenVisit(this);
     }
     ItemGiven(Game* game, std::wstring filename);
+
+    bool HitTest(int x, int y) override { return true; };
 };
 
 #endif //PROJECT1_GAMELIB_ITEMGIVEN_H

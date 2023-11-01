@@ -4,6 +4,7 @@
  */
 
 #include "ItemContainer.h"
+#include "Game.h"
 #include <utility>
 
 /**

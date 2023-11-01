@@ -91,6 +91,8 @@ void ParseXML::LoadGame(wxXmlNode * node)
     node->GetAttribute(L"row").ToDouble(&row);
     node->GetAttribute(L"col").ToDouble(&col);
 
+    mGame->GetSolution()->SetSolRowCol(col, row);
+
     // Get the text content of the XML tag
     auto solution = node->GetNodeContent().ToStdString();
 
@@ -103,8 +105,10 @@ void ParseXML::LoadGame(wxXmlNode * node)
     // Loop through the string and extract numbers
     while(iss >> number)
     {
-        mSolution.push_back(number);
+        mSolutionVector.push_back(number);
     }
+
+    mGame->GetSolution()->SetSolution(mSolutionVector);
 }
 
 std::shared_ptr<Declaration> ParseXML::FindDeclaration(std::wstring id)

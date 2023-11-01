@@ -8,9 +8,9 @@
 #define PROJECT1_GAMELIB_CONTAINER_H
 
 #include "Item.h"
-#include "Game.h"
 #include "DeclarationContainer.h"
 
+class Game;
 class ItemContainer : public Item
 {
 private:

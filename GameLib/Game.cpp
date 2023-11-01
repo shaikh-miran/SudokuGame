@@ -47,8 +47,8 @@ void Game::Accept(Visitor *visitor){
  */
 void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int height)
 {
-    int pixelWidth = GetTileWidth() * mWidth;
-    int pixelHeight = GetTileHeight() * mHeight;
+    int pixelWidth = mTileWidth * mWidth;
+    int pixelHeight = mTileHeight * mHeight;
 
     //
     // Automatic Scaling
@@ -74,12 +74,12 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     //
     // INSERT YOUR DRAWING CODE HERE
 
-    mXOffset = (width - pixelWidth * mScale) / 2.0;
-    mYOffset = 0;
-    if (height > pixelHeight * mScale)
-    {
-        mYOffset = (double)((height - pixelHeight * mScale) / 2.0);
-    }
+//    mXOffset = (width - pixelWidth * mScale) / 2.0;
+//    mYOffset = 0;
+//    if (height > pixelHeight * mScale)
+//    {
+//        mYOffset = (double)((height - pixelHeight * mScale) / 2.0);
+//    }
 
     for (auto item : mItems){
         item->Draw(graphics);

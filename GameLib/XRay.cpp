@@ -12,9 +12,7 @@
  * Constructor
  * @param game game this xray is a member of
  */
-XRay::XRay(Game *game, std::wstring filename) : Item(game, filename)
-{
-}
+XRay::XRay(Game *game, std::wstring filename) : Item(game, filename) {}
 
 void XRay::DisplayNums(ItemDigit * digit)
 {
@@ -50,8 +48,6 @@ bool XRay::GetXrayFull()
     return mXrayFull;
 }
 
-
-
 void XRay::RegurgitateItemDigit(int keyPressed)
 {
     for (auto item : mXrayDigits)
@@ -62,10 +58,7 @@ void XRay::RegurgitateItemDigit(int keyPressed)
 
             item->SetLocation(GetGame()->GetClickX(),GetGame()->GetClickY());
         }
-
-
     }
-
 }
 
 

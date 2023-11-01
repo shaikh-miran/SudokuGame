@@ -9,7 +9,6 @@
 #include "Declaration.h"
 /// Forward declaration of Game class
 class Game;
-//class ItemContainer;
 
 /**
  * DeclarationDigit class - a type of Declaration; handles Declaration nodes that have the "name" attribute of

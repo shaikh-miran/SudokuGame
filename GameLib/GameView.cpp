@@ -7,10 +7,10 @@
 #include "GameView.h"
 #include "ids.h"
 #include "Sparty.h"
-#include "XRay.h"
 #include <wx/dcclient.h>
 #include <wx/dcbuffer.h>
 #include <string>
+#include "Solution.h"
 
 using namespace std;
 
@@ -35,6 +35,7 @@ void GameView::Initialize(wxFrame* parent)
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevel1, this, IDM_LEVEL_1);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevel2, this, IDM_LEVEL_2);
     parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnLevel3, this, IDM_LEVEL_3);
+    parent->Bind(wxEVT_COMMAND_MENU_SELECTED, &GameView::OnSolve, this, IDM_SOLVE);
 
     Bind(wxEVT_LEFT_DOWN, &GameView::OnLeftDown, this);
     Bind(wxEVT_TIMER,&GameView::OnTimer,this);
@@ -165,3 +166,11 @@ void GameView::OnTimer(wxTimerEvent &event)
     Refresh();
 }
 
+/**
+ * Handler for level 0 option in file menu
+ * @param event Menu event
+ */
+void GameView::OnSolve(wxCommandEvent& event)
+{
+    mGame.GetSolution()->DisplaySolution(&mGame);
+}

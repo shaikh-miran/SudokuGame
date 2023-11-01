@@ -37,6 +37,8 @@ private:
 
     std::unique_ptr<Item> mItems;
 
+    int mValue = -1;
+
 protected:
     /// Item Constructor
     Item(Game *game);
@@ -152,6 +154,9 @@ public:
 
     double GetWidth() { return mWidth; }
     double GetHeight() { return mHeight; }
+
+    void SetValue(int value) { mValue = value; }
+    int GetValue() { return mValue; }
 };
 
 #endif //PROJECT1_GAMELIB_ITEM_H

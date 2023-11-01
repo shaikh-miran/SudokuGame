@@ -58,6 +58,8 @@ public:
     /// Handler for when Level 3 is clicked in the menu bar
     void OnLevel3(wxCommandEvent& event);
 
+    void OnSolve(wxCommandEvent& event);
+
     /// Handler for key presses
     void OnKeyPress(wxKeyEvent &event);
 

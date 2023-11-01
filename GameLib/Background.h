@@ -30,6 +30,8 @@ public:
 
     /// Constructor
     Background(Game* game, std::wstring filename);
+
+    bool HitTest(int x, int y) override { return false; };
 };
 
 #endif //PROJECT1_PROJECT1_GAMELIB_BACKGROUND_H

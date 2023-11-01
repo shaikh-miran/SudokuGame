@@ -26,6 +26,7 @@
 #include "PopUp.h"
 #include "Alert.h"
 #include "XRay.h"
+#include "Solution.h"
 
 /// Forward declaration of class Item
 class Item;
@@ -103,6 +104,8 @@ private:
     wxStopWatch mFullTimer;
 
     Alert mAlert;
+
+    Solution * mSolution = new Solution();
 
 public:
 
@@ -258,6 +261,8 @@ public:
 
     wxStopWatch GetFullTimer() { return mFullTimer; }
     void StopFullTimer() { mFullTimer.Pause(); }
+
+    Solution * GetSolution() { return mSolution; };
 
 };
 

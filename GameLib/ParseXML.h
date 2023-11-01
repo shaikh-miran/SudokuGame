@@ -11,6 +11,7 @@
 #include <wx/xml/xml.h>
 #include <map>
 #include "DeclarationGiven.h"
+#include "Solution.h"
 
 class Game;
 class Declaration;
@@ -31,7 +32,9 @@ private:
     int numDeclarations = 0;
     int numItems = 0;
 
-    std::vector<int> mSolution;
+    std::vector<int> mSolutionVector;
+
+    Solution * mSolution = new Solution();;
 
 public:
     /// Default constructor (disabled)
@@ -51,7 +54,6 @@ public:
     int GetNumDeclarations() const {return numDeclarations;}
     int GetNumItems() const {return numItems;}
     std::shared_ptr<Declaration> FindDeclaration(std::wstring id);
-
 };
 
 #endif //PROJECT1_PROJECT1_GAMELIB_PARSEXML_H

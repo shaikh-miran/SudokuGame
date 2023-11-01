@@ -64,6 +64,10 @@ set(SOURCE_FILES
         ContainerVisitor.h
         Alert.cpp
         Alert.h
+        Solution.cpp
+        Solution.h
+        DigitVisitor.cpp
+        DigitVisitor.h
 )
 
 set(wxBUILD_PRECOMP OFF)

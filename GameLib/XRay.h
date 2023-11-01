@@ -43,6 +43,8 @@ public:
 
     bool DigitExist(double x, double y);
 
+    bool HitTest(int x, int y) override { return false; }
+
 };
 
 #endif //PROJECT1_PROJECT1_GAMELIB_XRAY_H

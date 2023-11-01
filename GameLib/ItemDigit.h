@@ -14,6 +14,7 @@ class ItemDigit : public Item
 {
 private:
     int mValue ;
+    bool mIsEatable;
 
 public:
 
@@ -33,10 +34,10 @@ public:
     ItemDigit(Game* game, std::wstring filename);
 
     /// getter for mValue
-    int GetValue(){return mValue;}
+    int GetValue() {return mValue;}
 
-
-
+    void SetEatable(bool isEatable) { mIsEatable = isEatable; }
+    bool GetEatable() { return mIsEatable; }
 };
 
 #endif //PROJECT1_GAMELIB_ITEMDIGIT_H
