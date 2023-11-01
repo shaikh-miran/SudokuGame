@@ -1,8 +1,6 @@
 /**
  * @file ItemDigit.h
- * @author Navya Singh
- *
- *
+ * @author Team Prometheus
  */
 
 #ifndef PROJECT1_GAMELIB_ITEMDIGIT_H
@@ -10,12 +8,19 @@
 
 #include "Item.h"
 #include "DeclarationDigit.h"
+#include "Visitor.h"
 
 class ItemDigit : public Item
 {
 private:
+    int mValue ;
+    bool mIsEatable;
 
 public:
+
+    void Accept(Visitor * visitor) override {
+        visitor->DigitVisit(this);
+    }
     //// Default constructor (disabled)
     ItemDigit() = delete;
 
@@ -25,7 +30,14 @@ public:
     /// Assignment operator
     void operator=(const ItemDigit &) = delete;
 
+    /// Constructor
     ItemDigit(Game* game, std::wstring filename);
+
+    /// getter for mValue
+    int GetValue() {return mValue;}
+
+    void SetEatable(bool isEatable) { mIsEatable = isEatable; }
+    bool GetEatable() { return mIsEatable; }
 };
 
 #endif //PROJECT1_GAMELIB_ITEMDIGIT_H
