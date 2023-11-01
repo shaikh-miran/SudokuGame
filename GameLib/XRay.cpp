@@ -51,7 +51,11 @@ bool XRay::GetXrayFull()
 }
 
 
-
+/**
+ * Allows regurgitate to happen. Removes the item specified by the input from xray.
+ * @param keyPressed
+ * @return
+ */
 void XRay::RegurgitateItemDigit(int keyPressed)
 {
     for (auto it = mXrayDigits.begin(); it != mXrayDigits.end(); )
@@ -68,6 +72,16 @@ void XRay::RegurgitateItemDigit(int keyPressed)
         {
             ++it;
         }
+    }
+
+    /// Update mXrayFull boolean after the regurgitate process is done
+    if (mXrayDigits.size() != mCapacity)
+    {
+        mXrayFull = false;
+    }
+    else
+    {
+        mXrayFull = true;
     }
 }
 

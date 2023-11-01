@@ -311,7 +311,7 @@ void Sparty::Headbutt(){
 }
 
 /**
- * Update Sparty's image post-initialization. Updates the current image/bitmaps with the input.
+ * Update Sparty's image post-initialization. Updates the current image/bitmaps with the input. (Level 3)
  */
 void Sparty::UpdateSpartyImage(std::wstring image1, std::wstring image2)
 {
