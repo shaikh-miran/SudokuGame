@@ -170,6 +170,7 @@ void Game::OnLeftDown(int x, int y)
 }
 
 /**
+/**
  * Update the game (on-demand)
  * @param elapsed time elapsed from game begin
  */

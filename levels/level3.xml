@@ -17,6 +17,9 @@
 		<given id="i160" width="48" height="48" image="8b.png" value="8" />
 		<digit id="i161" width="48" height="48" image="8r.png" value="8" />
 		<digit id="i164" width="48" height="48" image="3r.png" value="3" />
+		<digit id="i234" width="48" height="48" image="6r.png" value="6" />
+		<digit id="i236" width="48" height="48" image="7r.png" value="7" />
+
 		<sparty id="i165" width="96" height="96" front="2" head-pivot-angle="0.8" head-pivot-x="30" head-pivot-y="86" image1="sparty-1.png" image2="sparty-2.png" mouth-pivot-angle="1" mouth-pivot-x="39" mouth-pivot-y="86" target-x="72" target-y="24" />
 		<background id="i166" width="960" height="720" image="background.png" />
 		<xray id="i167" width="144" height="144" image="xray.png" capacity="7" />
@@ -25,41 +28,104 @@
 	<items>
 		<background id="i166" col="0.0" row="14.0" />
 		<xray id="i167" col="0.6042" row="14.0" />
-		<given id="i158" col="4" row="3" />
-		<given id="i152" col="7" row="3" />
-		<given id="i154" col="9" row="3" />
-		<given id="i149" col="12" row="3" />
-		<given id="i156" col="5" row="4" />
-		<given id="i151" col="11" row="4" />
-		<given id="i151" col="7" row="5" />
-		<given id="i149" col="8" row="5" />
-		<given id="i147" col="9" row="5" />
-		<given id="i151" col="4" row="6" />
-		<given id="i149" col="6" row="6" />
-		<given id="i154" col="10" row="6" />
-		<given id="i160" col="12" row="6" />
-		<given id="i160" col="6" row="7" />
-		<given id="i145" col="10" row="7" />
-		<given id="i154" col="4" row="8" />
-		<given id="i156" col="6" row="8" />
-		<given id="i151" col="10" row="8" />
-		<given id="i147" col="12" row="8" />
-		<given id="i149" col="7" row="9" />
-		<given id="i151" col="8" row="9" />
-		<given id="i152" col="9" row="9" />
+
+<!--		below are the black digits given on the board-->
+
+		<given id="i149" col="4" row="3" />
+		<given id="i158" col="6" row="3" />
+		<given id="i151" col="7" row="3" />
+		<given id="i160" col="6" row="4" />
+		<given id="i158" col="9" row="4" />
+		<given id="i152" col="10" row="4" />
+		<given id="i147" col="11" row="4" />
+		<given id="i145" col="12" row="4" />
+		<given id="i154" col="5" row="5" />
+		<given id="i156" col="7" row="5" />
+		<given id="i151" col="11" row="5" />
+		<given id="i147" col="4" row="6" />
+		<given id="i156" col="5" row="6" />
+		<given id="i154" col="6" row="6" />
+		<given id="i158" col="10" row="6" />
+		<given id="i151" col="12" row="6" />
+		<given id="i154" col="7" row="7" />
+		<given id="i152" col="9" row="7" />
+		<given id="i145" col="5" row="8" />
+		<given id="i160" col="10" row="8" />
+		<given id="i149" col="12" row="8" />
+		<given id="i151" col="6" row="9" />
+		<given id="i154" col="10" row="9" />
 		<given id="i160" col="5" row="10" />
-		<given id="i158" col="11" row="10" />
-		<given id="i156" col="4" row="11" />
+		<given id="i145" col="7" row="10" />
+		<given id="i149" col="8" row="10" />
+		<given id="i156" col="11" row="10" />
+		<given id="i152" col="12" row="10" />
 		<given id="i158" col="7" row="11" />
-		<given id="i145" col="9" row="11" />
-		<given id="i154" col="12" row="11" />
-		<digit id="i164" col="4.7779" row="0.2939" />
-		<digit id="i148" col="5.9099" row="0.1763" />
-		<digit id="i150" col="3.837" row="1.1466" />
-		<digit id="i155" col="5.954" row="1.0584" />
-		<digit id="i161" col="3.8958" row="1.9993" />
-		<digit id="i153" col="4.969" row="1.9111" />
-		<digit id="i146" col="5.954" row="1.9258" />
-		<sparty id="i165" col="1.4167" row="10.8333" />
+		<given id="i147" col="8" row="11" />
+
+
+
+
+
+<!--		below are the red digits not on the board that the player can choose from-->
+		<digit id="i148" col="5.8125" row="0.5" />
+		<digit id="i153" col="5.6458" row="13.9375" />
+		<digit id="i146" col="14.8333" row="0.8333" />
+		<digit id="i234" col="13.5" row="9.7292" />
+		<digit id="i161" col="15.0417" row="8.2917" />
+		<digit id="i155" col="8.75" row="1.3333" />
+
+		<digit id="i234" col="18.125" row="8.4792" />
+		<digit id="i164" col="13.25" row="2.9583" />
+		<digit id="i150" col="7.6458" row="13.5208" />
+		<digit id="i155" col="14.7917" row="3.0" />
+
+		<digit id="i153" col="17.125" row="13.6875" />
+		<digit id="i146" col="8.0833" row="0.4375" />
+		<digit id="i161" col="14.125" row="10.7917" />
+		<digit id="i148" col="18.5208" row="3.0" />
+		<digit id="i150" col="13.8333" row="4.9792" />
+		<digit id="i236" col="15.1875" row="10.5833" />
+
+		<digit id="i161" col="16.6875" row="11.9375" />
+		<digit id="i146" col="17.3125" row="4.8958" />
+		<digit id="i150" col="18.3333" row="4.9167" />
+		<digit id="i153" col="14.6667" row="6.3333" />
+
+		<digit id="i161" col="9.875" row="0.8958" />
+		<digit id="i236" col="11.2083" row="1.5208" />
+		<digit id="i150" col="6.6458" row="12.1875" />
+		<digit id="i164" col="13.5208" row="8.1875" />
+		<digit id="i148" col="16.0833" row="0.8542" />
+		<digit id="i146" col="4.625" row="12.3333" />
+		<digit id="i234" col="17.0625" row="2.0417" />
+
+		<digit id="i164" col="9.0208" row="0.1875" />
+		<digit id="i153" col="14.2292" row="3.8958" />
+		<digit id="i148" col="16.4583" row="9.2292" />
+		<digit id="i236" col="18.3542" row="1.4792" />
+		<digit id="i234" col="18.1042" row="5.9167" />
+		<digit id="i155" col="8.8125" row="13.4583" />
+
+		<digit id="i146" col="6.8333" row="1.4375" />
+		<digit id="i150" col="18.7708" row="10.8542" />
+		<digit id="i153" col="15.4375" row="4.7708" />
+		<digit id="i234" col="16.1042" row="12.7708" />
+		<digit id="i161" col="15.6458" row="11.4583" />
+		<digit id="i236" col="7.9375" row="12.2917" />
+		<digit id="i148" col="17.8125" row="12.2917" />
+
+		<digit id="i236" col="18.8542" row="12.3542" />
+		<digit id="i148" col="13.3958" row="6.2708" />
+		<digit id="i155" col="16.625" row="7.7292" />
+		<digit id="i164" col="13.4375" row="1.4167" />
+
+		<digit id="i155" col="4.8333" row="1.4583" />
+		<digit id="i153" col="18.5833" row="13.6667" />
+		<digit id="i234" col="16.3958" row="3.4583" />
+		<digit id="i164" col="12.1042" row="0.3958" />
+		<digit id="i146" col="17.875" row="7.2292" />
+		<digit id="i150" col="9.1875" row="12.3542" />
+		<digit id="i161" col="6.3125" row="13.3333" />
+
 	</items>
 </level>
