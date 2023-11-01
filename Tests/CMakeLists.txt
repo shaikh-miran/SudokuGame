@@ -11,7 +11,7 @@ set(TEST_FILES
         GivenTest.cpp
         DigitTest.cpp
 
-        LoadTest.cpp
+        ContainerTest.cpp
 
 )
 

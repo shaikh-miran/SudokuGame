@@ -72,8 +72,6 @@ private:
     /// xRay object
     std::shared_ptr<XRay> mXray;
 
-//    std::shared_ptr<ItemContainer> mContainer;
-
     /// The timer that allows for intro screen
     wxTimer mIntroScreenTimer;
 
@@ -181,12 +179,6 @@ public:
      */
     void SetSparty(std::shared_ptr<Sparty> sparty) { mSparty = sparty; }
 
-//    /**
-//     * Set the Game's associated Container object (shared ptr)
-//     * @param Container pointer to set
-//     */
-//    void SetContainer(std::shared_ptr<ItemContainer> container) { mContainer = container; }
-
     /**
     * sets the x-position of the click event
     * @return x value of the position
@@ -223,17 +215,23 @@ public:
      */
     std::shared_ptr<Sparty> GetSparty() { return mSparty; }
 
-//    /**
-//     * Get the Game's Container object
-//     * @return Container shared pointer
-//     */
-//    std::shared_ptr<ItemContainer> GetContainer() { return mContainer; }
-
     /**
      * Get the random number generator
      * @return Pointer to the random number generator
      */
     std::mt19937 &GetRandom() {return mRandom;}
+
+    /**
+     * Gets the width of the item.
+     * @return width
+     */
+    double GetWidthB() {return mWidth;}
+
+    /**
+     * Gets the height of the item.
+     * @return height
+     */
+    double GetHeightB() {return mWidth;}
 
 
     /// change game state to level 0
@@ -247,8 +245,7 @@ public:
 
     /// change game state to level 3
     void ChangeStateThree(bool starting);
-    double GetWidthB() {return mWidth;}
-    double GetHeightB() {return mWidth;}
+
 
 };
 

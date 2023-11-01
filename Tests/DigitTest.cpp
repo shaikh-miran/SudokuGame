@@ -5,8 +5,8 @@
 
 #include <pch.h>
 #include "gtest/gtest.h"
-#include "DeclarationDigit.h"
-#include "Game.h"
+#include <DeclarationGiven.h>
+#include <Game.h>
 
 TEST(DeclarationDigitTest, Constructor) {
     // Create a wxXmlNode for testing

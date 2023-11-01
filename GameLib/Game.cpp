@@ -169,7 +169,7 @@ void Game::OnLeftDown(int x, int y)
     mSparty->SetCanMove(true);
 }
 
-/**
+
 /**
  * Update the game (on-demand)
  * @param elapsed time elapsed from game begin
@@ -227,24 +227,24 @@ void Game::SpartyYum(){
         if (!xray->GetXrayFull()) {
             xray->AddItem(visitor.GetYummyDigit());
             xray->DisplayNums(visitor.GetYummyDigit());
-            visitor.GetYummyDigit()->SetHeight(visitor.GetYummyDigit()->GetHeight()/2);
-            visitor.GetYummyDigit()->SetWidth(visitor.GetYummyDigit()->GetWidth()/2);
+            visitor.GetYummyDigit()->SetHeight(visitor.GetYummyDigit()->GetHeight());
+            visitor.GetYummyDigit()->SetWidth(visitor.GetYummyDigit()->GetWidth());
             //mYummyTile = visitor.GetYummyDigit();
         }
     }
 }
 
+/**
+ * Regurgitates the digit when a key is pressed.
+ * @param keyPressed the key pressed in int.
+ */
 void Game::SpartyRegurgitate(long keyPressed)
 {
     XRayVisitor visitor;
     this->Accept(&visitor);
     XRay *xray = visitor.GetXray();
-
     xray->RegurgitateItemDigit(keyPressed);
-
-
-
-
+    mSparty->Yum();
 }
 
 

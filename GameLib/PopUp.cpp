@@ -2,7 +2,7 @@
  * @file PopUp.cpp
  * @author team prometheus
  */
-
+#include "pch.h"
 #include "PopUp.h"
 
 

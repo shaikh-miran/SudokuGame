@@ -38,7 +38,7 @@ private:
 
     std::shared_ptr<Item> item;
 
-
+    /// class ParseXML call.
     ParseXML *mLevel;
 
 public:
@@ -60,8 +60,16 @@ public:
      */
     void SetId(std::string id) { mId = id; }
 
+    /**
+     * SEts the level based on the xml.
+     * @param level a parse xml call for the nodes.
+     */
     void SetLevel(ParseXML *level){ mLevel = level;}
 
+    /**
+     * Gets the level from the xml.
+     * @return returns the level.
+     */
     ParseXML * GetLevel(){return mLevel;}
 
     /**
@@ -88,6 +96,12 @@ public:
      * @param game the Game object in which the Item object will reside in
      */
     virtual std::shared_ptr<Item> Create(wxXmlNode* node, Game *game) {return item;}
+
+    /**
+     * Create the Item object with the specifications from the declaration object and adds it to the container.
+     * @param node the "item" node to associate with the "declaration" node (this)
+     * @param game the Game object in which the Item object will reside in
+     */
     virtual std::shared_ptr<Item> CreateContainer(wxXmlNode* node, Game* game)  {return item;}
 };
 

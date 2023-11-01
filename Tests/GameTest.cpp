@@ -17,7 +17,7 @@ using namespace std;
 
 
 int ExpectedNumDeclarations = 24;
-int ExpectedNumItems = 83;
+int ExpectedNumItems = 84;
 
 class GameTest : public ::testing::Test
 {
@@ -83,9 +83,7 @@ TEST_F(GameTest, DeclarationsTest)
     wxXmlNode* Node = file.GetRoot();
 
     int numDeclarations ;
-    int numItems ;
     wxXmlNode* declarationsNode = nullptr;
-    wxXmlNode* itemsNode = nullptr;
 
     wxXmlNode* child = Node->GetChildren();
     for (; child; child = child->GetNext())
@@ -93,10 +91,7 @@ TEST_F(GameTest, DeclarationsTest)
         if (child->GetName() == "declarations")
         {
             declarationsNode = child;
-        }
-        if (child->GetName() == "items")
-        {
-            itemsNode = child;
+            break;
         }
     }
     if (declarationsNode != nullptr)
@@ -105,15 +100,32 @@ TEST_F(GameTest, DeclarationsTest)
         numDeclarations = game.GetNumDeclarations();
         ASSERT_EQ(numDeclarations, ExpectedNumDeclarations);
     }
+}
 
+TEST_F(GameTest, ItemsTest)
+{
+    auto path = TempPath();
+    Game *x = nullptr ;
+    ParseXML game(x);
+    wxXmlDocument file = path + L"/level1.xml";
+    wxXmlNode* Node = file.GetRoot();
+
+    int numItems ;
+    wxXmlNode* itemsNode = nullptr;
+
+    wxXmlNode* child = Node->GetChildren();
+    for (; child; child = child->GetNext())
+    {
+        if (child->GetName() == "items")
+        {
+            itemsNode = child;
+            break;
+        }
+    }
     if (itemsNode != nullptr)
     {
-        game.LoadItems(itemsNode);
-        numItems = game.GetNumItems();
+        game.LoadDeclarations(itemsNode);
+        numItems = game.GetNumDeclarations();
         ASSERT_EQ(numItems, ExpectedNumItems);
-
     }
-//    ASSERT_EQ(numItems, ExpectedNumItems);
-
-
 }

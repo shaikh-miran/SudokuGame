@@ -2,7 +2,7 @@
  * @file MessageBox.cpp
  * @author Sonia Charles Thalatoti
  */
-
+#include "pch.h"
 #include "MessageBox.h"
 void MessageBox::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int level)
 {
