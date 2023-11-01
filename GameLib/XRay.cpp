@@ -54,18 +54,21 @@ bool XRay::GetXrayFull()
 
 void XRay::RegurgitateItemDigit(int keyPressed)
 {
-    for (auto item : mXrayDigits)
+    for (auto it = mXrayDigits.begin(); it != mXrayDigits.end(); )
     {
-        int valueDigit = item->GetValue();
+        int valueDigit = (*it)->GetValue();
         if (keyPressed == valueDigit)
         {
+            (*it)->SetLocation(GetGame()->GetClickX(),GetGame()->GetClickY());
 
-            item->SetLocation(GetGame()->GetClickX(),GetGame()->GetClickY());
+            // Remove the ItemDigit from the mXrayDigits vector
+            it = mXrayDigits.erase(it);
         }
-
-
+        else
+        {
+            ++it;
+        }
     }
-
 }
 
 
