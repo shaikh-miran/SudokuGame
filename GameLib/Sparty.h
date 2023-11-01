@@ -89,7 +89,7 @@ public:
 
     /// Returns true if sparty is performing a headbutt or eating action (prevent crash if event + image change occurs
     /// concurrently)
-    bool InAction() { return mTimeHeadbutt != 0 or mTimeEating != 0; }
+    bool InAction() { return (mTimeHeadbutt != 0 || mTimeEating != 0); }
 };
 
 

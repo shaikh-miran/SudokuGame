@@ -133,8 +133,12 @@ void GameView::UpdateScoreboard(wxTimerEvent& event)
  */
 void GameView::OnLeftDown(wxMouseEvent &event)
 {
+    bool startState = mGame.GetStartState();
+    if (!startState)
+    {
+        mGame.OnLeftDown(event.GetX(), event.GetY());
 
-    mGame.OnLeftDown(event.GetX(), event.GetY());
+    }
 
 }
 
@@ -144,21 +148,24 @@ void GameView::OnLeftDown(wxMouseEvent &event)
 */
 void GameView::OnKeyPress(wxKeyEvent &event)
 {
-    /// Spacebar pressed
-    if (event.GetKeyCode() == WXK_SPACE)
+    bool startState = mGame.GetStartState();
+    if (!startState)
     {
-        mGame.SpartyYum();
+        /// Spacebar pressed
+        if (event.GetKeyCode() == WXK_SPACE)
+        {
+            mGame.SpartyYum();
+        }
+            /// B pressed
+        else if (event.GetUnicodeKey()==L'B'){
+            mGame.SpartyHeadButt();
+        }
+        else if(event.GetUnicodeKey() >= 48 && event.GetUnicodeKey() <= 57)
+        {
+            int keyPressed = event.GetUnicodeKey() - 48;
+            mGame.SpartyRegurgitate(keyPressed);
+        }
     }
-    /// B pressed
-    else if (event.GetUnicodeKey()==L'B'){
-        mGame.SpartyHeadButt();
-    }
-    else if(event.GetUnicodeKey() >= 48 && event.GetUnicodeKey() <= 57)
-    {
-        int keyPressed = event.GetUnicodeKey() - 48;
-        mGame.SpartyRegurgitate(keyPressed);
-    }
-
 
 }
 

@@ -245,6 +245,8 @@ public:
     /// change game state to level 3
     void ChangeStateThree(bool starting);
 
+    /// getter for mStartState
+    bool GetStartState(){return mStartState;}
 
 };
 
