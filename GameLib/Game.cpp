@@ -185,9 +185,28 @@ void Game::Update(double elapsed)
         mStartState = false;
         mDuration = 0;
     }
-    if (round(mDuration) == 10 && mCurrentLevel == 3 && !GetSparty()->InAction())
+    if (mCurrentLevel == 3 && !GetSparty()->InAction())
     {
-        GetSparty()->UpdateSpartyImage(L"images/sparty-5-1.png", L"images/sparty-2.png");
+        if (round(mDuration) == 10)
+        {
+            GetSparty()->UpdateSpartyImage(L"images/spartyL3-2.png", L"images/sparty-2.png");
+        }
+        else if (round(mDuration) == 20)
+        {
+            GetSparty()->UpdateSpartyImage(L"images/spartyL3-3.png", L"images/sparty-2.png");
+        }
+        else if (round(mDuration) == 30)
+        {
+            GetSparty()->UpdateSpartyImage(L"images/spartyL3-4.png", L"images/sparty-2.png");
+        }
+        else if (round(mDuration) == 40)
+        {
+            GetSparty()->UpdateSpartyImage(L"images/spartyL3-5.png", L"images/sparty-2.png");
+        }
+        else if (round(mDuration) == 50)
+        {
+            GetSparty()->UpdateSpartyImage(L"images/spartyL3-6.png", L"images/sparty-2.png");
+        }
     }
 }
 
