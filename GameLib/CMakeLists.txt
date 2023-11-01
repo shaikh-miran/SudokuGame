@@ -50,8 +50,6 @@ set(SOURCE_FILES
         DeclarationContainer.h
         ItemContainer.cpp
         ItemContainer.h
-        MessageBox.cpp
-        MessageBox.h
         YumVisitor.cpp
         YumVisitor.h
         Visitor.cpp

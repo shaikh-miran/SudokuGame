@@ -67,54 +67,6 @@ void PopUp::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int level)
 
     } else if (level == 1){
 
-//        long rectangleWidth = 700;
-//        long rectangleHeight = 300;
-//
-////        long rectangleX = (GameWidth/2) - (rectangleWidth);
-//        long rectangleX = (GameWidth) - (rectangleWidth/2);
-//        long rectangleY = (GameHeight/2) - (rectangleHeight/2);
-//
-//
-//
-//
-//        wxBrush brush(wxColour(255, 255, 255));
-//        graphics->SetBrush(brush);
-//        graphics->DrawRectangle(rectangleX, rectangleY, rectangleWidth, rectangleHeight);
-//
-//
-//
-//
-//        /// The font color to use for green level message
-//        const wxColour FontColorGreen = wxColour(34, 139, 34);
-//
-//        /// Pop up message font size to use
-//        const int PopUpMessageFontSize = 80;
-//
-//        wxFont labelFont(wxSize(0, PopUpMessageFontSize),
-//                         wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL);
-//        graphics->SetFont(labelFont, FontColorGreen);
-//
-//        graphics->GetTextExtent(L"Level 1 Begin", &textWidth, &textHeight);
-//        graphics->DrawText(L"Level 1 Begin", rectangleX + 40 , rectangleY + 10);
-//
-//
-//
-//        /// The font color to use for black following text
-//        const wxColour FontColorBlack = wxColour(0, 0, 0);
-//
-//        /// Pop up message font size to use
-//        const int PopUpMessageFontSizeBlackText = 50;
-//
-//
-//        wxFont labelFontBlackText(wxSize(0, PopUpMessageFontSizeBlackText),
-//                                  wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL);
-//        graphics->SetFont(labelFontBlackText, FontColorBlack);
-//
-//        graphics->GetTextExtent(L"space: Eat", &textWidth, &textHeight);
-//        graphics->DrawText(L"space: Eat", rectangleX + 130 , rectangleY + 90);
-//
-
-
     }
 
     if(level == -1){

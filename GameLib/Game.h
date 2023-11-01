@@ -20,7 +20,6 @@
 #include <wx/graphics.h>
 #include <map>
 #include "ItemContainer.h"
-#include "MessageBox.h"
 #include "Visitor.h"
 #include "XRayVisitor.h"
 #include "PopUp.h"

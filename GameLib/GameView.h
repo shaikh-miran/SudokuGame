@@ -10,7 +10,6 @@
 #include "Game.h"
 #include <wx/event.h>
 #include "Scoreboard.h"
-#include "MessageBox.h"
 
 /**
  * GameView class - Handles user input, does the back end of displaying items and window. Also handles menu bar options.
