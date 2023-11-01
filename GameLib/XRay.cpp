@@ -60,7 +60,10 @@ void XRay::RegurgitateItemDigit(int keyPressed)
         if (keyPressed == valueDigit)
         {
 
+            item->SetLocation(GetGame()->GetClickX(),GetGame()->GetClickY());
         }
+
+
     }
 
 }
