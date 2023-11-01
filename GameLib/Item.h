@@ -10,7 +10,6 @@
 /// Forward declaration of Game Class
 class Game;
 
-
 class Item
 {
 private:

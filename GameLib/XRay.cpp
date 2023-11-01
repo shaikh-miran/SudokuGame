@@ -52,7 +52,6 @@ bool XRay::GetXrayFull()
 
 bool XRay::DigitExist(double x, double y)
 {
-    // Iterate through existing ItemDigits and check if any are located at (x, y)
     for (const auto& item : mXrayDigits) {
             double itemX = item->GetX();
             double itemY = item->GetY();

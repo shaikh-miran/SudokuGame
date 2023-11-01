@@ -20,8 +20,7 @@ using namespace std;
 /**
  * Game Constructor - Creates an instance of the game, and automatically loads the default level
  */
-Game::Game()
-
+Game::Game() : mAlert(this)
 {
     /// Load level 1; this is the default level to load
     Load(L"levels/level1.xml");
@@ -228,7 +227,10 @@ void Game::SpartyYum(){
             xray->DisplayNums(visitor.GetYummyDigit());
             visitor.GetYummyDigit()->SetHeight(visitor.GetYummyDigit()->GetHeight()/2);
             visitor.GetYummyDigit()->SetWidth(visitor.GetYummyDigit()->GetWidth()/2);
-            //mYummyTile = visitor.GetYummyDigit();
+        } else {
+            // Set the flag to display the message
+            mFullMessage = true;
+            mFullTimer.Start(3000);
         }
     }
 }

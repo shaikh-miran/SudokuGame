@@ -24,6 +24,7 @@
 #include "Visitor.h"
 #include "XRayVisitor.h"
 #include "PopUp.h"
+#include "Alert.h"
 
 /// Forward declaration of class Item
 class Item;
@@ -75,9 +76,6 @@ private:
 
     wxTimer mGameTimer;
 
-    /// An object that describes the intro screen
-    //MessageBox mMessageBox;
-
     bool mIntroScreenVisible = true;
     std::mt19937 mRandom;
 
@@ -96,6 +94,11 @@ private:
 
     /// pop up message
     PopUp mPopUpMessage;
+
+    bool mFullMessage;
+    wxStopWatch mFullTimer;
+
+    Alert mAlert;
 
 public:
 
@@ -241,6 +244,12 @@ public:
     void ChangeStateThree(bool starting);
     double GetWidthB() {return mWidth;}
     double GetHeightB() {return mWidth;}
+
+    bool GetFullMessage() { return mFullMessage; }
+    void SetFullMessage(bool fullMessage) { mFullMessage = fullMessage; }
+
+    wxStopWatch GetFullTimer() { return mFullTimer; }
+    void StopFullTimer() { mFullTimer.Pause(); }
 
 };
 

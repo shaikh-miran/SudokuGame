@@ -21,7 +21,6 @@ const int FrameDuration = 30;
  */
 void GameView::Initialize(wxFrame* parent)
 {
-
     Create(parent, wxID_ANY,
            wxDefaultPosition, wxDefaultSize,
            wxFULL_REPAINT_ON_RESIZE);
@@ -52,7 +51,6 @@ void GameView::Initialize(wxFrame* parent)
  */
 void GameView::OnPaint(wxPaintEvent& event)
 {
-
     // Create a double-buffered display context
     wxAutoBufferedPaintDC dc(this);
 
@@ -71,9 +69,6 @@ void GameView::OnPaint(wxPaintEvent& event)
     mTime = newTime;
     mGame.Update(elapsed);
 }
-
-
-
 
 /**
  * Handler for level 0 option in file menu

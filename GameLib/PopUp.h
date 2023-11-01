@@ -18,7 +18,6 @@ private:
 public:
     void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int level);
 
-
 };
 
 
