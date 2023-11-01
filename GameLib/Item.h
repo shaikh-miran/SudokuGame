@@ -71,7 +71,7 @@ public:
      */
     virtual void Update(double elapsed) {}
 
-    virtual void Accept(Visitor * visitor){};
+    virtual void Accept(Visitor * visitor) = 0;
 
     /**
      * Sets the x-direction speed of the Item

@@ -41,8 +41,9 @@ std::shared_ptr<Item> DeclarationDigit::Create(wxXmlNode *node, Game *game)
     /// Using the local attributes from above, initialize the parameters of the Item
     item->SetWidth(width);
     item->SetHeight(height);
-    item->SetLocation(col * game->GetTileWidth(), (row+1) * game->GetTileHeight());
+    item->SetLocation(col * game->GetTileWidth(), (row) * game->GetTileHeight());
     item->SetValue(mValue);
+    item->SetEatable(true);
 
     /// Once the Item is ready, add it to the Game object's item list
     game->AddItem(item);

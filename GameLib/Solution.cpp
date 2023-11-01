@@ -18,7 +18,7 @@ void Solution::DisplaySolution(Game * game){
     DigitVisitor visitor;
     for (int i = mRow; i < mRow+9; i++)
     {
-        for (int j = mCol+1; j< mCol+10;j++)
+        for (int j = mCol; j< mCol+9;j++)
         {
             auto grabbedItem = game->HitTest(j*game->GetTileWidth(), i*game->GetTileHeight());
 

@@ -46,46 +46,27 @@ Item::~Item()
  */
 bool Item::HitTest(int x, int y)
 {
-//    double wid = mItemBitmap->GetWidth();
-//    double hit = mItemBitmap->GetHeight();
-//
-//    // Make x and y relative to the top-left corner of the bitmap image
-//    // Subtracting the center makes x, y relative to the image center
-//    // Adding half the size makes x, y relative to the image top corner
-//    double testX = x - GetX() + wid / 2;
-//    double testY = y - GetY() + hit / 2;
-//
-//    // Test to see if x, y are in the image
-//    if(testX < 0 || testY < 0 || testX >= wid || testY >= hit)
-//    {
-//        // We are outside the image
-//        return false;
-//    }
-//
-//    // Test to see if x, y are in the drawn part of the image
-//    // If the location is transparent, we are not in the drawn
-//    // part of the image
-//    return !mItemImage->IsTransparent((int)testX, (int)testY);
-
     double wid = mItemBitmap->GetWidth();
     double hit = mItemBitmap->GetHeight();
-    double testX = x - GetX();
-    double testY = y - GetY();
 
-// Define a bounding box for the image
-    double xMin = 0;
-    double yMin = 0;
-    double xMax = wid;
-    double yMax = hit;
+    // Make x and y relative to the top-left corner of the bitmap image
+    // Subtracting the center makes x, y relative to the image center
+    // Adding half the size makes x, y relative to the image top corner
+    double testX = x - GetX() + wid / 2;
+    double testY = y - GetY() + hit / 2;
 
-// Test to see if x, y are within the bounding box
-    if (testX >= xMin && testX < xMax && testY >= yMin && testY < yMax) {
-        // We are inside the bounding box, consider it a hit
-        return true;
+    // Test to see if x, y are in the image
+    if(testX < 0 || testY < 0 || testX >= wid || testY >= hit)
+    {
+        // We are outside the image
+        return false;
     }
 
-// If the location is outside the bounding box, it's not a hit
-    return false;
+    // Test to see if x, y are in the drawn part of the image
+    // If the location is transparent, we are not in the drawn
+    // part of the image
+    //return !mItemImage->IsTransparent((int)testX, (int)testY);
+    return true;
 }
 
 /**

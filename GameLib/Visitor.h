@@ -17,7 +17,7 @@ class Visitor
 private:
 
 public:
-    virtual void DigitVisit(ItemDigit * digit){}
+    virtual void VisitDigit(ItemDigit * digit){}
     virtual void GivenVisit(ItemGiven *given){}
     virtual void SpartyVisit(Sparty *sparty){}
     virtual void XrayVisit(XRay *xray){}

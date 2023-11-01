@@ -14,7 +14,7 @@ class DigitVisitor : public Visitor
 {
 private:
     ItemDigit * mDigit = nullptr;
-    int mValue;
+    int mValue = -1;
 
 public:
     void VisitDigit(ItemDigit * digit);

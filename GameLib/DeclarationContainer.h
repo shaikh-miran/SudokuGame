@@ -33,9 +33,6 @@ public:
 
     std::wstring GetImage1Name() { return mImage1; }
     std::wstring GetImage2Name() { return mImage2; }
-
-
-
 };
 
 #endif //PROJECT1_GAMELIB_DECLARATIONCONTAINER_H

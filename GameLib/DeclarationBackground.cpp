@@ -41,7 +41,7 @@ std::shared_ptr<Item> DeclarationBackground::Create(wxXmlNode *node, Game *game)
     /// Using the local attributes from above, initialize the parameters of the Item
     item->SetWidth(width);
     item->SetHeight(height);
-    item->SetLocation(col * game->GetTileWidth(), (row+2)*game->GetTileHeight() - height);
+    item->SetLocation(col * game->GetTileWidth(), (row+1) * game->GetTileHeight() - height);
 
     /// Once the Item is ready, add it to the Game object's item list
     game->AddItem(item);

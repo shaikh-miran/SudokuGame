@@ -15,7 +15,6 @@ void DigitVisitor::VisitDigit(ItemDigit * digit)
 
     if (digit->GetEatable() && mValue == -1)
     {
-
         mDigit = digit;
     }
     else if (digit->GetEatable() && mValue != -1)

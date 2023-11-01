@@ -25,8 +25,7 @@ std::shared_ptr<Item> DeclarationContainer::Create(wxXmlNode *node, Game *game)
     width = GetWidth();
     height = GetHeight();
 
-    auto item = std::make_shared<ItemContainer>(game, GetImage1Name(),
-                                                GetImage2Name(), this);
+    auto item = std::make_shared<ItemContainer>(game, GetImage1Name(), GetImage2Name(), this);
 
     item->SetWidth(width);
     item->SetHeight(height);

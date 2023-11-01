@@ -19,7 +19,7 @@ private:
 public:
 
     void Accept(Visitor * visitor) override {
-        visitor->DigitVisit(this);
+        visitor->VisitDigit(this);
     }
     //// Default constructor (disabled)
     ItemDigit() = delete;
@@ -38,6 +38,7 @@ public:
 
     void SetEatable(bool isEatable) { mIsEatable = isEatable; }
     bool GetEatable() { return mIsEatable; }
+    //bool HitTest(int x, int y) override { return true; };
 };
 
 #endif //PROJECT1_GAMELIB_ITEMDIGIT_H

@@ -242,10 +242,6 @@ void Game::SpartyRegurgitate(long keyPressed)
     XRay *xray = visitor.GetXray();
 
     xray->RegurgitateItemDigit(keyPressed);
-
-
-
-
 }
 
 
