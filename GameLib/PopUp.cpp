@@ -17,19 +17,28 @@ const int GameWidth = 1440;
 /// Screen Height
 const int GameHeight = 900;
 
-/// Score label Y location
-const int ScoreLabelY = 100;
+
+/// rectangle height
+const int rectangleHeight = 320;
+
+/// rectangle Width
+const int rectangleWidth = 700;
 
 
-void PopUp::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int level)
+void PopUp::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int level, int width, int height)
 {
     wxPen pen(wxColour(0, 0, 0), 3);
     graphics->SetPen(pen);
 
+    if (level == 2){
+        width = 1440;
+        height = 960;
+    }
+
     // white box
     wxBrush rectBrush(*wxWHITE);
     graphics->SetBrush(rectBrush);
-    graphics->DrawRectangle(130, 170, 700, 320);
+    graphics->DrawRectangle(width/2 - rectangleWidth/2, height/2 - rectangleHeight/2, rectangleWidth, rectangleHeight);
 
 
 
@@ -43,7 +52,8 @@ void PopUp::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int level)
     std::wstring text = L"Level " + std::to_wstring(level) + L" Begin";
     const wchar_t* textCStr = text.c_str();
 
-    graphics->DrawText(textCStr, 155, 175);
+//    graphics->DrawText(textCStr, 155, 175);
+    graphics->DrawText(textCStr,width/2 - rectangleWidth/2 + 28 , height/2 - rectangleHeight/2 + 5);
 
     // instructions
     wxFont fontInstructions(wxSize(0, 50),
@@ -51,9 +61,9 @@ void PopUp::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int level)
                             wxFONTSTYLE_NORMAL,
                             wxFONTWEIGHT_BOLD);
     graphics->SetFont(fontInstructions, wxColour(0,0,0));
-    graphics->DrawText(L"space: Eat", 350, 300);
-    graphics->DrawText(L"0-8: Regurgitate", 280, 365);
-    graphics->DrawText(L"B: Headbutt", 325, 430);
+    graphics->DrawText(L"space: Eat", width/2 - rectangleWidth/2 + 210, height/2 - rectangleHeight/2 + 110);
+    graphics->DrawText(L"0-8: Regurgitate", width/2 - rectangleWidth/2 + 160, height/2 - rectangleHeight/2 + 175);
+    graphics->DrawText(L"B: Headbutt", width/2 - rectangleWidth/2 + 200, height/2 - rectangleHeight/2 + 240);
 
     wxFont labelFont(wxSize(0, PopUpMessageFontSize),
                      wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL);
@@ -61,13 +71,6 @@ void PopUp::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int level)
 
     double textWidth = 0, textHeight = 0;
 
-
-    if (level == 0){
-
-
-    } else if (level == 1){
-
-    }
 
     if(level == -1){
         graphics->GetTextExtent(L"Level Complete", &textWidth, &textHeight);

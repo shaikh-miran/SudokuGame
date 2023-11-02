@@ -79,10 +79,14 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
         item->Draw(graphics);
     }
 
+
     // Write out PopUp message for 3 seconds
     mStopWatchPopUp.Start();
     if (mStartState){
-        mPopUpMessage.OnDraw(graphics, mCurrentLevel);
+        CallPopUpDraw(graphics);
+
+//        mPopUpMessage.OnDraw(graphics, mCurrentLevel, width, height);
+
     }
 
     if (mScoreboard.GetStartTimer()) {
@@ -263,6 +267,28 @@ void Game::SpartyRegurgitate(long keyPressed)
     mSparty->Yum();
 }
 
+void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
+{
+//    if (mCurrentLevel == 2)
+//    {
+//        BackgroundVisitor visitor;
+//        this->Accept(&visitor);
+//        Background *background = visitor.GetBackground();
+//        int height = background->GetHeight();
+//        int width = background->GetWidth();
+//
+//        mPopUpMessage.OnDraw(graphics, mCurrentLevel, width, height);
+//    }
+
+    BackgroundVisitor visitor;
+    this->Accept(&visitor);
+    Background *background = visitor.GetBackground();
+    int height = background->GetHeight();
+    int width = background->GetWidth();
+
+    mPopUpMessage.OnDraw(graphics, mCurrentLevel, width, height);
+
+}
 
 /**
  * Function that runs when sparty headbutts (B is pressed, activating this function). If there is a container in range,

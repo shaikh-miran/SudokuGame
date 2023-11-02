@@ -23,6 +23,8 @@
 #include "Visitor.h"
 #include "XRayVisitor.h"
 #include "PopUp.h"
+#include "Background.h"
+#include "BackgroundVisitor.h"
 
 /// Forward declaration of class Item
 class Item;
@@ -67,6 +69,9 @@ private:
     /// Sparty object saved in order to associate the game to it.
     std::shared_ptr<Sparty> mSparty;
 
+    /// background object
+    std::shared_ptr<Background> mBackground;
+
     /// xRay object
     std::shared_ptr<XRay> mXray;
 
@@ -75,8 +80,7 @@ private:
 
     wxTimer mGameTimer;
 
-    /// An object that describes the intro screen
-    //MessageBox mMessageBox;
+
 
     bool mIntroScreenVisible = true;
     std::mt19937 mRandom;
@@ -110,6 +114,9 @@ public:
 
 
     void SpartyHeadButt();
+
+    void CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics);
+
 
     /// Constructor
     Game();

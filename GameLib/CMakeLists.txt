@@ -60,6 +60,8 @@ set(SOURCE_FILES
         PopUp.h
         ContainerVisitor.cpp
         ContainerVisitor.h
+        BackgroundVisitor.cpp
+        BackgroundVisitor.h
 )
 
 set(wxBUILD_PRECOMP OFF)
