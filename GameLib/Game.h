@@ -95,6 +95,9 @@ private:
     /// Current Level
     long mCurrentLevel = 1;
 
+    /// is sparty full
+    bool mSpartyFull = false;
+
     /// Stopwatch for pop up message
     wxStopWatch mStopWatchPopUp;
 

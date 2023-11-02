@@ -85,6 +85,10 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     if (mStartState){
         CallPopUpDraw(graphics);
     }
+    if (mSpartyFull)
+    {
+        CallPopUpDraw(graphics);
+    }
 
     if (mScoreboard.GetStartTimer()) {
         mScoreboard.OnDraw(graphics, this);
@@ -230,27 +234,56 @@ void Game::AddItem(std::shared_ptr<Item> item)
     mItems.push_back(item);
 }
 
+
 void Game::SpartyYum(){
-    mSparty->Yum();
-    YumVisitor visitor;
-    visitor.XSparty(mSparty->GetX());
-    visitor.YSparty(mSparty->GetY());
 
-    this->Accept(&visitor);
-    if (visitor.GetYummyDigit() != nullptr)
+    // getting sparty full bool
+    XRayVisitor visitorForGetFullVariable;
+    this->Accept(&visitorForGetFullVariable);
+    bool isFull = visitorForGetFullVariable.GetIsFull();
+
+    // if sparty is not full
+    if (!isFull)
     {
-        XRayVisitor visitor2;
-        this->Accept(&visitor2);
-        XRay *xray = visitor2.GetXray();
+        mSparty->Yum();
+        YumVisitor visitor;
+        visitor.XSparty(mSparty->GetX());
+        visitor.YSparty(mSparty->GetY());
 
-        if (!xray->GetXrayFull()) {
-            xray->AddItem(visitor.GetYummyDigit());
-            xray->DisplayNums(visitor.GetYummyDigit());
-            visitor.GetYummyDigit()->SetHeight(visitor.GetYummyDigit()->GetHeight()/2);
-            visitor.GetYummyDigit()->SetWidth(visitor.GetYummyDigit()->GetWidth()/2);
-            //mYummyTile = visitor.GetYummyDigit();
+        this->Accept(&visitor);
+
+        if (visitor.GetYummyDigit() != nullptr )
+        {
+            XRayVisitor visitor2;
+            this->Accept(&visitor2);
+            XRay *xray = visitor2.GetXray();
+            std::vector<ItemDigit*> XrayDigits = xray->GetXRayDigits();
+
+            if (std::find(XrayDigits.begin(), XrayDigits.end(), visitor.GetYummyDigit()) == XrayDigits.end())
+            {
+
+                if (!xray->GetXrayFull() ) {
+                    xray->AddItem(visitor.GetYummyDigit());
+                    xray->DisplayNums(visitor.GetYummyDigit());
+                    visitor.GetYummyDigit()->SetHeight(visitor.GetYummyDigit()->GetHeight()/2);
+                    visitor.GetYummyDigit()->SetWidth(visitor.GetYummyDigit()->GetWidth()/2);
+                    //mYummyTile = visitor.GetYummyDigit();
+                }
+            }
+
+
+
         }
     }
+    else
+    {
+        mSpartyFull = true;
+//        CallPopUpDraw(graphics, )
+
+
+    }
+
+
 }
 
 /**
@@ -286,17 +319,30 @@ void Game::SpartyRegurgitate(long keyPressed)
             }
         }
     }
+    mSpartyFull = false;
 }
+
 
 void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
 {
+
     BackgroundVisitor visitor;
     this->Accept(&visitor);
     Background *background = visitor.GetBackground();
     int height = background->GetHeight();
     int width = background->GetWidth();
 
-    mPopUpMessage.OnDraw(graphics, mCurrentLevel, width, height);
+    if (mStartState)
+    {
+        mPopUpMessage.OnDraw(graphics, mCurrentLevel, width, height);
+
+    }
+    if (mSpartyFull)
+    {
+        mPopUpMessage.OnSpartyFull(graphics, mCurrentLevel, width, height);
+    }
+
+
 }
 
 /**

@@ -47,7 +47,7 @@ void PopUp::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int level, int w
     graphics->SetBrush(rectBrush);
     graphics->DrawRectangle(width/2 - rectangleWidth/2, height/2 - rectangleHeight/2, rectangleWidth, rectangleHeight);
 
-    
+
     // title
     wxFont fontTitle(wxSize(0, 100),
                      wxFONTFAMILY_SWISS,
@@ -126,3 +126,32 @@ void PopUp::OnIncorrect(std::shared_ptr<wxGraphicsContext> graphics,int level,in
     graphics->DrawText("Incorrect !",width/2 - textWidth /2, height/2 );
 }
 
+
+/**
+ * pop up that is drawn upon sparty being full
+ *
+ * @param graphics
+ * @param level
+ * @param width
+ * @param height
+ */
+void PopUp::OnSpartyFull(std::shared_ptr<wxGraphicsContext> graphics, int level, int width, int height)
+{
+
+    if (level == 2){
+        width = 1440;
+        height = 960;
+    }
+    wxFont fontTitle(wxSize(0, 100),
+                     wxFONTFAMILY_SWISS,
+                     wxFONTSTYLE_NORMAL,
+                     wxFONTWEIGHT_BOLD);
+    graphics->SetFont(fontTitle, wxColour(34, 139, 34));
+    double textWidth = 0, textHeight = 0;
+
+    graphics->GetTextExtent(L"I'm full!", &textWidth, &textHeight);
+
+    graphics->DrawText("I'm full!",width/2 - textWidth /2, height/2 );
+
+
+}
