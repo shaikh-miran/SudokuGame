@@ -246,8 +246,8 @@ void Game::SpartyYum(){
         if (!xray->GetXrayFull()) {
             xray->AddItem(visitor.GetYummyDigit());
             xray->DisplayNums(visitor.GetYummyDigit());
-            visitor.GetYummyDigit()->SetHeight(visitor.GetYummyDigit()->GetHeight());
-            visitor.GetYummyDigit()->SetWidth(visitor.GetYummyDigit()->GetWidth());
+            visitor.GetYummyDigit()->SetHeight(visitor.GetYummyDigit()->GetHeight()/2);
+            visitor.GetYummyDigit()->SetWidth(visitor.GetYummyDigit()->GetWidth()/2);
             //mYummyTile = visitor.GetYummyDigit();
         }
     }
@@ -262,8 +262,27 @@ void Game::SpartyRegurgitate(long keyPressed)
     XRayVisitor visitor;
     this->Accept(&visitor);
     XRay *xray = visitor.GetXray();
-    xray->RegurgitateItemDigit(keyPressed);
-    mSparty->Yum();
+    std::vector<ItemDigit*> digits = xray->GetXRayDigits();
+
+    int col = mClickX/48;
+    int row = mClickY/48;
+
+    bool keyPressedFound = false;
+    for (auto item : digits) {
+        if (item->GetValue() == keyPressed) {
+            keyPressedFound = true;
+            break; // Found a match, no need to continue searching
+        }
+    }
+
+    if (keyPressedFound)
+    {
+        if(isLocationInVector(row,col,mCurrentLevel))
+        {
+            mSparty->Yum(); // Call Yum if keyPressed was found
+            xray->RegurgitateItemDigit(keyPressed);
+        }
+    }
 }
 
 void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
@@ -275,7 +294,6 @@ void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
     int width = background->GetWidth();
 
     mPopUpMessage.OnDraw(graphics, mCurrentLevel, width, height);
-
 }
 
 /**
@@ -338,3 +356,50 @@ void Game::ChangeStateThree(bool starting){
 
     mDuration = 0;
 }
+
+/**
+ * Create a vector of tuples of position on the grid.
+ * @return a the vector.
+ */
+void Game::generateLocationTuples(int level)
+{
+    int rowStart , colStart;
+    if (level == 1 || level == 3)
+    {
+        rowStart = 3;
+        colStart = 4;
+    }
+    if (level == 2)
+    {
+        rowStart = 1;
+        colStart = 5;
+    }
+
+    const int numRows = 9;
+    const int numCols = 9;
+
+    for (int row = rowStart; row < rowStart+numRows; row++) {
+        for (int col = colStart; col < colStart+numCols; col++) {
+            mLocationTuples.push_back(std::make_tuple(row, col));
+        }
+    }
+}
+
+/**
+ * checks if the location is valid and is in the board frame.
+ * @param row row clicked
+ * @param col col clicked.
+ * @return return true if valid location.
+ */
+bool Game::isLocationInVector(int row, int col, int level)
+{
+    generateLocationTuples(level);
+    for (auto& location : mLocationTuples) {
+        if (std::get<0>(location) == row && std::get<1>(location) == col) {
+            return true; // Location found in the vector
+        }
+    }
+    return false; // Location not found in the vector
+}
+
+

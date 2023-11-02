@@ -19,7 +19,6 @@
 #include <wx/xml/xml.h>
 #include <wx/graphics.h>
 #include <map>
-#include "ItemContainer.h"
 #include "Visitor.h"
 #include "XRayVisitor.h"
 #include "PopUp.h"
@@ -32,6 +31,7 @@ class Item;
 /// Forward declaration of class ParseXML
 class ParseXML;
 
+class ItemContainer;
 /**
  * Class Game - Holds the game board data, keeps track of time via Scoreboard, and handles game loading, game/UI
  * interaction.
@@ -100,6 +100,9 @@ private:
 
     /// pop up message
     PopUp mPopUpMessage;
+
+    std::vector<std::tuple<int, int>> mLocationTuples = {};
+
 
 public:
 
@@ -254,6 +257,9 @@ public:
     /// getter for mStartState
     bool GetStartState(){return mStartState;}
 
+    void generateLocationTuples(int level);
+
+    bool isLocationInVector(int row, int col, int level);
 };
 
 #endif //CSE335PROJECTONE_PROJECT1_GAME_H

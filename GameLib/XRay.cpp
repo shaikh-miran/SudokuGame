@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "XRay.h"
 #include "Game.h"
+#include "ItemDigit.h"
 #include <random>
 
 /**
@@ -63,8 +64,13 @@ void XRay::RegurgitateItemDigit(int keyPressed)
         int valueDigit = (*it)->GetValue();
         if (keyPressed == valueDigit)
         {
-            (*it)->SetLocation(GetGame()->GetClickX(),GetGame()->GetClickY());
-
+            (*it)->SetHeight((*it)->GetHeight()*2);
+            (*it)->SetWidth((*it)->GetWidth()*2);
+            int clickedRow = GetGame()->GetClickX()/48;
+            int clickedCol = GetGame()->GetClickY()/48;
+            int b = clickedCol*GetGame()->GetTileHeight();
+            int a = clickedRow*GetGame()->GetTileWidth();
+            (*it)->SetLocation(a, b);
             // Remove the ItemDigit from the mXrayDigits vector
             it = mXrayDigits.erase(it);
         }

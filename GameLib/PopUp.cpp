@@ -24,7 +24,14 @@ const int rectangleHeight = 320;
 /// rectangle Width
 const int rectangleWidth = 700;
 
-
+/**
+ *
+ * Intro Pop up for each level.
+ * @param graphics
+ * @param level The current level.
+ * @param width width of the frame respective to the level.
+ * @param height height of the frame respective to the level.
+ */
 void PopUp::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int level, int width, int height)
 {
     wxPen pen(wxColour(0, 0, 0), 3);
@@ -67,14 +74,55 @@ void PopUp::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int level, int w
     wxFont labelFont(wxSize(0, PopUpMessageFontSize),
                      wxFONTFAMILY_SWISS,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL);
     graphics->SetFont(labelFont, FontColor);
-
-    double textWidth = 0, textHeight = 0;
-
-
-    if(level == -1){
-        graphics->GetTextExtent(L"Level Complete", &textWidth, &textHeight);
-        graphics->DrawText(L"Level Complete", GameWidth / 2 - textWidth / 2, GameHeight / 2);
-    }
 }
 
+/**
+ * A message that pop ups when an level completed with correct solution.
+ * @param graphics
+ * @param level the current level
+ * @param width width of the frame respective to the level.
+ * @param height height of the frame respective to the level.
+ */
+void PopUp::OnLevelCompletion(std::shared_ptr<wxGraphicsContext> graphics,int level,int width, int height)
+{
+    if (level == 2){
+        width = 1440;
+        height = 960;
+    }
+    wxFont fontTitle(wxSize(0, 100),
+                     wxFONTFAMILY_SWISS,
+                     wxFONTSTYLE_NORMAL,
+                     wxFONTWEIGHT_BOLD);
+    graphics->SetFont(fontTitle, wxColour(34, 139, 34));
+    double textWidth = 0, textHeight = 0;
+
+    graphics->GetTextExtent(L"Level Complete", &textWidth, &textHeight);
+
+    graphics->DrawText("Level Complete !",width/2 - textWidth /2, height/2 );
+}
+
+/**
+ * A message that pop ups when an incorrect solution.
+ * @param graphics
+ * @param level the current level
+ * @param width width of the frame respective to the level.
+ * @param height height of the frame respective to the level.
+ */
+void PopUp::OnIncorrect(std::shared_ptr<wxGraphicsContext> graphics,int level,int width, int height)
+{
+    if (level == 2){
+        width = 1440;
+        height = 960;
+    }
+    wxFont fontTitle(wxSize(0, 100),
+                     wxFONTFAMILY_SWISS,
+                     wxFONTSTYLE_NORMAL,
+                     wxFONTWEIGHT_BOLD);
+    graphics->SetFont(fontTitle, wxColour(34, 139, 34));
+    double textWidth = 0, textHeight = 0;
+
+    graphics->GetTextExtent(L"Incorrect!", &textWidth, &textHeight);
+
+    graphics->DrawText("Incorrect !",width/2 - textWidth /2, height/2 );
+}
 

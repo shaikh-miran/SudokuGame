@@ -43,6 +43,9 @@ public:
 
     bool DigitExist(double x, double y);
 
+    std::vector<ItemDigit*> GetXRayDigits(){return mXrayDigits;}
+
+
 };
 
 #endif //PROJECT1_PROJECT1_GAMELIB_XRAY_H
