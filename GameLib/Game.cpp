@@ -198,23 +198,23 @@ void Game::Update(double elapsed)
     /// Only change image when sparty is not performing headbutt or eat (will crash)
     if (mCurrentLevel == 3 && !GetSparty()->InAction())
     {
-        if (round(mDuration) == 10)
+        if (round(mDuration) == 20)
         {
             GetSparty()->UpdateDarknessLevel(L"images/darkness-2.png");
         }
-        else if (round(mDuration) == 20)
+        else if (round(mDuration) == 40)
         {
             GetSparty()->UpdateDarknessLevel(L"images/darkness-3.png");
         }
-        else if (round(mDuration) == 30)
+        else if (round(mDuration) == 70)
         {
             GetSparty()->UpdateDarknessLevel(L"images/darkness-4.png");
         }
-        else if (round(mDuration) == 40)
+        else if (round(mDuration) == 110)
         {
             GetSparty()->UpdateDarknessLevel(L"images/darkness-5.png");
         }
-        else if (round(mDuration) == 50)
+        else if (round(mDuration) == 160)
         {
             GetSparty()->UpdateDarknessLevel(L"images/darkness-6.png");
         }
