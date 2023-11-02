@@ -264,8 +264,8 @@ void Game::SpartyRegurgitate(long keyPressed)
     XRay *xray = visitor.GetXray();
     std::vector<ItemDigit*> digits = xray->GetXRayDigits();
 
-    int col = mClickX/48;
-    int row = mClickY/48;
+    int row = mClickX/48;
+    int col = mClickY/48;
 
     bool keyPressedFound = false;
     for (auto item : digits) {
@@ -274,13 +274,16 @@ void Game::SpartyRegurgitate(long keyPressed)
             break; // Found a match, no need to continue searching
         }
     }
-
+    std::shared_ptr<wxGraphicsContext> graphics;
     if (keyPressedFound)
     {
-        if(isLocationInVector(row,col,mCurrentLevel))
+        if(isLocationInVector(col,row,mCurrentLevel))
         {
-            mSparty->Yum(); // Call Yum if keyPressed was found
-            xray->RegurgitateItemDigit(keyPressed);
+            if (!GivenExist(col,row))
+            {
+                mSparty->Yum(); // Call Yum if keyPressed was found
+                xray->RegurgitateItemDigit(keyPressed);
+            }
         }
     }
 }
@@ -402,4 +405,23 @@ bool Game::isLocationInVector(int row, int col, int level)
     return false; // Location not found in the vector
 }
 
+/**
+ * checks if there exists any digit at that point.
+ * @param x col
+ * @param y row
+ * @return true if a given exists there.
+ */
+bool Game::GivenExist(int x, int y)
+{
+    for(auto item: mItems)
+    {
+        int row = item->GetX()/mTileWidth;
+        int col = item->GetY()/mTileHeight;
+        if (col == x && row == y)
+        {
+            return true; // Item exists at the given location (x, y)
+        }
+    }
+    return false; // No item found at the given location (x, y)
 
+}

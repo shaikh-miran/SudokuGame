@@ -260,6 +260,8 @@ public:
     void generateLocationTuples(int level);
 
     bool isLocationInVector(int row, int col, int level);
+
+    bool GivenExist(int x, int y);
 };
 
 #endif //CSE335PROJECTONE_PROJECT1_GAME_H
