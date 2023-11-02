@@ -17,11 +17,7 @@ const int GameWidth = 1440;
 /// Screen Height
 const int GameHeight = 900;
 
-/// rectangle height
-const int rectangleHeight = 320;
 
-/// rectangle Width
-const int rectangleWidth = 700;
 
 /**
  *
@@ -33,6 +29,14 @@ const int rectangleWidth = 700;
  */
 void PopUp::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int level, int width, int height)
 {
+
+    /// rectangle height
+    const int rectangleHeight = 320;
+
+/// rectangle Width
+    const int rectangleWidth = 700;
+
+
     wxPen pen(wxColour(0, 0, 0), 3);
     graphics->SetPen(pen);
 
@@ -132,21 +136,36 @@ void PopUp::OnIncorrect(std::shared_ptr<wxGraphicsContext> graphics,int level,in
  */
 void PopUp::OnSpartyFull(std::shared_ptr<wxGraphicsContext> graphics, int level, int width, int height)
 {
+    /// rectangle height
+    const int rectangleHeight = 60;
+
+ /// rectangle Width
+    const int rectangleWidth = 170;
+
+    wxPen pen(wxColour(0, 0, 0), 3);
+    graphics->SetPen(pen);
 
     if (level == 2){
         width = 1440;
         height = 960;
     }
-    wxFont fontTitle(wxSize(0, 100),
+
+    // white box
+    wxBrush rectBrush(*wxWHITE);
+    graphics->SetBrush(rectBrush);
+    graphics->DrawRectangle(width/2 - rectangleWidth/2, height/2 - rectangleHeight/2, rectangleWidth, rectangleHeight);
+
+
+    wxFont fontTitle(wxSize(0, 45),
                      wxFONTFAMILY_SWISS,
                      wxFONTSTYLE_NORMAL,
                      wxFONTWEIGHT_BOLD);
-    graphics->SetFont(fontTitle, wxColour(34, 139, 34));
+    graphics->SetFont(fontTitle, wxColour(255, 0, 0));
     double textWidth = 0, textHeight = 0;
 
     graphics->GetTextExtent(L"I'm full!", &textWidth, &textHeight);
 
-    graphics->DrawText("I'm full!",width/2 - textWidth /2, height/2 );
+    graphics->DrawText("I'm full!",width/2 - textWidth /2, height/2 - textHeight/2 );
 
 
 }
