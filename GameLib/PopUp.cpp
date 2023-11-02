@@ -40,8 +40,7 @@ void PopUp::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int level, int w
     graphics->SetBrush(rectBrush);
     graphics->DrawRectangle(width/2 - rectangleWidth/2, height/2 - rectangleHeight/2, rectangleWidth, rectangleHeight);
 
-
-
+    
     // title
     wxFont fontTitle(wxSize(0, 100),
                      wxFONTFAMILY_SWISS,

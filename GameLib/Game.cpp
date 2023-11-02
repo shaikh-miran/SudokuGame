@@ -84,9 +84,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     mStopWatchPopUp.Start();
     if (mStartState){
         CallPopUpDraw(graphics);
-
-//        mPopUpMessage.OnDraw(graphics, mCurrentLevel, width, height);
-
     }
 
     if (mScoreboard.GetStartTimer()) {
@@ -269,17 +266,6 @@ void Game::SpartyRegurgitate(long keyPressed)
 
 void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
 {
-//    if (mCurrentLevel == 2)
-//    {
-//        BackgroundVisitor visitor;
-//        this->Accept(&visitor);
-//        Background *background = visitor.GetBackground();
-//        int height = background->GetHeight();
-//        int width = background->GetWidth();
-//
-//        mPopUpMessage.OnDraw(graphics, mCurrentLevel, width, height);
-//    }
-
     BackgroundVisitor visitor;
     this->Accept(&visitor);
     Background *background = visitor.GetBackground();
