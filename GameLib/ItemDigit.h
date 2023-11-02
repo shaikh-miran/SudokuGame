@@ -13,7 +13,10 @@
 class ItemDigit : public Item
 {
 private:
-    int mValue ;
+    int mValue;
+
+    /// Boolean value that will be toggled when the Digit is in the sudoku grid (true if placed in grid)
+    bool mIsPlaced = false;
 
 public:
 
@@ -35,8 +38,14 @@ public:
     /// getter for mValue
     int GetValue(){return mValue;}
 
+    /**
+     * Toggle mIsPlaced when the Digit is in the sudoku grid (true if placed in grid)
+     * @param value boolean value to set mIsPlaced to
+     */
+    void SetPlaced(bool value) { mIsPlaced = value; }
 
-
+    /// Getter that indicates whether or not a Digit is placed in the grid (True if yes)
+    bool IsPlaced() const { return mIsPlaced; }
 };
 
 #endif //PROJECT1_GAMELIB_ITEMDIGIT_H
