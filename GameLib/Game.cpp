@@ -119,10 +119,15 @@ void Game::Load(const wxString & filename)
     Clear();
 
     auto mLevel = new ParseXML(this);
+
     /// Offload loading process to ParseXML object
     mLevel->Load(xmlDoc);
+
+    /// If the timer is already moving, stop it so that it does not run while the pop up is on screen
+    mScoreboard.StopTimer();
+
+    /// Reset Timer to 0 for new level
     mScoreboard.ResetTimer();
-//    mScoreboard.StartTimer();
 }
 
 
