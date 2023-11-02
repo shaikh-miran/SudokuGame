@@ -158,16 +158,43 @@ public:
      */
     virtual bool HitTest(int x, int y) ;
 
-
+    /// load function from xml file
     void XmlLoad(wxXmlNode *node);
 
+    /**
+     * bitmap width getter
+     * @return int width
+     */
     double GetWidthBitMap() {return mItemBitmap->GetWidth();}
+
+    /**
+     * bitmap height getter
+     * @return height int
+     */
     double GetHeightBitMap() {return mItemBitmap->GetHeight();}
 
+    /**
+     * width getter
+     * @return int width
+     */
     double GetWidth() { return mWidth; }
+
+    /**
+     * height getter
+     * @return height int
+     */
     double GetHeight() { return mHeight; }
 
+    /**
+     * value setter
+     * @param value
+     */
     void SetValue(int value) { mValue = value; }
+
+    /**
+     * value getter
+     * @return mValue
+     */
     int GetValue() { return mValue; }
 };
 

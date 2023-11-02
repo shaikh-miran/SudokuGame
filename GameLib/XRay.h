@@ -11,6 +11,9 @@
 #include "Item.h"
 #include "DeclarationXray.h"
 
+/**
+ * Xray class, derived from item class
+ */
 class XRay : public Item
 {
 private:

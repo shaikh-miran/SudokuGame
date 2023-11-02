@@ -82,6 +82,10 @@ void MainFrame::OnExit(wxCommandEvent& event)
     Close(true);
 }
 
+/**
+ * on close event handler
+ * @param event
+ */
 void MainFrame::OnClose(wxCloseEvent& event)
 {
 

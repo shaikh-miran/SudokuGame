@@ -10,6 +10,10 @@
 
 class Game;
 
+/**
+ * solution class
+ * solution is shown when show solution event invoked
+ */
 class Solution
 {
 private:
@@ -33,7 +37,10 @@ public:
      * @param row
      */
     void SetSolRowCol(double col, double row) {mCol = col; mRow = row;}
+    /// function to solve game
     void SolveGame(Game * game);
+
+    /// function to check if solution correct
     bool CheckSolution(Game * game);
 
 };

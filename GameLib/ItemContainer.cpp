@@ -134,6 +134,12 @@ bool ItemContainer::DigitExist(double x, double y)
     return false; // No ItemDigit exists at this position
 }
 
+/**
+ * hit test for item container
+ * @param x
+ * @param y
+ * @return
+ */
 bool ItemContainer::HitTest(int x, int y)
 {
     double wid = mContainerBitmap->GetWidth();

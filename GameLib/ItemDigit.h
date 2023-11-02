@@ -10,10 +10,17 @@
 #include "DeclarationDigit.h"
 #include "Visitor.h"
 
+/**
+ * item digit class, derived from item class
+ * these digits are going to be eaten , placed on grid
+ */
 class ItemDigit : public Item
 {
 private:
+    /// value member variable
     int mValue ;
+
+    /// bool, true if item is eatable
     bool mIsEatable;
 
     /// Boolean value that will be toggled when the Digit is in the sudoku grid (true if placed in grid)
@@ -22,6 +29,10 @@ private:
 
 public:
 
+    /**
+     * accept function for visitors
+     * @param visitor
+     */
     void Accept(Visitor * visitor) override {
         visitor->VisitDigit(this);
     }
@@ -40,7 +51,16 @@ public:
     /// getter for mValue
     int GetValue() {return mValue;}
 
+    /**
+     * setter for is eatable member variable
+     * @param isEatable
+     */
     void SetEatable(bool isEatable) { mIsEatable = isEatable; }
+
+    /**
+     * getter for is eatable member variable
+     * @return bool mIsEatable
+     */
     bool GetEatable() { return mIsEatable; }
     //bool HitTest(int x, int y) override { return true; };
 
