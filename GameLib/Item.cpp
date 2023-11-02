@@ -82,6 +82,10 @@ void Item::Draw(shared_ptr<wxGraphicsContext> graphics)
                          mHeight);
 }
 
+/**
+ * load function from xml file
+ * @param node
+ */
 void Item::XmlLoad(wxXmlNode *node)
 {
     node->GetAttribute(L"col", L"0").ToDouble(&mX);

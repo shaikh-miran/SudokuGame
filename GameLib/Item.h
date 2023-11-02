@@ -32,11 +32,15 @@ private:
     /// Item height
     double mHeight;
 
+    /// item image pointer
     std::unique_ptr<wxImage> mItemImage;
+    /// item bitmap pointer
     std::unique_ptr<wxBitmap> mItemBitmap;
 
+    /// item instance
     std::unique_ptr<Item> mItems;
 
+    /// value instance
     int mValue = -1;
 
 protected:
@@ -71,6 +75,10 @@ public:
      */
     virtual void Update(double elapsed) {}
 
+    /**
+     * accept function for visitor
+     * @param visitor
+     */
     virtual void Accept(Visitor * visitor) = 0;
 
     /**
@@ -124,6 +132,10 @@ public:
      */
     double GetY() const { return mY; }
 
+    /**
+     * bitmap getter
+     * @return
+     */
     wxBitmap* GetBitmap() const {
         return mItemBitmap.get();
     }

@@ -40,8 +40,10 @@ public:
     /// Gets the front image of the container.
     std::wstring GetImage2Name() { return mImage2; }
 
+    /// declaration container constructor
     DeclarationContainer(wxXmlNode* node);
 
+    /// create function
     std::shared_ptr<Item> Create(wxXmlNode* node, Game* game) override;
 };
 

@@ -50,6 +50,13 @@ std::shared_ptr<Item> DeclarationDigit::Create(wxXmlNode *node, Game *game)
     return item;
 }
 
+/**
+ * declaration digit function to create container
+ *
+ * @param node
+ * @param game
+ * @return
+ */
 std::shared_ptr<Item> DeclarationDigit::CreateContainer(wxXmlNode *node, Game *game)
 {
     double row, col, width, height;

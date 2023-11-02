@@ -139,7 +139,7 @@ void PopUp::OnSpartyFull(std::shared_ptr<wxGraphicsContext> graphics, int level,
     /// rectangle height
     const int rectangleHeight = 60;
 
- /// rectangle Width
+    /// rectangle Width
     const int rectangleWidth = 170;
 
     wxPen pen(wxColour(0, 0, 0), 3);
@@ -163,9 +163,9 @@ void PopUp::OnSpartyFull(std::shared_ptr<wxGraphicsContext> graphics, int level,
     graphics->SetFont(fontTitle, wxColour(255, 0, 0));
     double textWidth = 0, textHeight = 0;
 
-    graphics->GetTextExtent(L"I'm full!", &textWidth, &textHeight);
+    graphics->GetTextExtent(L"I'm Full!", &textWidth, &textHeight);
 
-    graphics->DrawText("I'm full!",width/2 - textWidth /2, height/2 - textHeight/2 );
+    graphics->DrawText("I'm Full!",width/2 - textWidth /2, height/2 - textHeight/2 );
 
 
 }

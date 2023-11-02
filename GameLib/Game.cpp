@@ -24,6 +24,10 @@ Game::Game() : mAlert(this)
 }
 
 
+/**
+ * accept function for visitor class
+ * @param visitor
+ */
 void Game::Accept(Visitor *visitor){
     for (auto item : mItems)
     {
@@ -120,6 +124,7 @@ void Game::Load(const wxString & filename)
     mScoreboard.ResetTimer();
 //    mScoreboard.StartTimer();
 }
+
 
 /**
  * Test an x,y click location to see if an item exists at that position.
@@ -234,6 +239,12 @@ void Game::AddItem(std::shared_ptr<Item> item)
 }
 
 
+/**
+ * function for sparty to eat a digit to eat a digit
+ * gets location, checks if digit at location
+ * checks if digit exists in xray already
+ * if not, eats digit
+ */
 void Game::SpartyYum(){
     // getting sparty full bool
     XRayVisitor visitorForGetFullVariable;
@@ -315,6 +326,11 @@ void Game::SpartyRegurgitate(long keyPressed)
 }
 
 
+/**
+ * function to call pop up messages at different instances
+ *
+ * @param graphics
+ */
 void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
 {
 
@@ -324,11 +340,13 @@ void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
     int height = background->GetHeight();
     int width = background->GetWidth();
 
+    /// call level start pop up draw
     if (mStartState)
     {
         mPopUpMessage.OnDraw(graphics, mCurrentLevel, width, height);
 
     }
+    /// call sparty full pop up draw
     if (mSpartyFull)
     {
         mPopUpMessage.OnSpartyFull(graphics, mCurrentLevel, width, height);
