@@ -6,6 +6,7 @@
 #include "pch.h"
 #include "XRay.h"
 #include "Game.h"
+#include "ItemDigit.h"
 #include <random>
 
 /**
@@ -48,16 +49,42 @@ bool XRay::GetXrayFull()
     return mXrayFull;
 }
 
+/**
+ * Allows regurgitate to happen. Removes the item specified by the input from xray.
+ * @param keyPressed
+ * @return
+ */
 void XRay::RegurgitateItemDigit(int keyPressed)
 {
-    for (auto item : mXrayDigits)
+    for (auto it = mXrayDigits.begin(); it != mXrayDigits.end(); )
     {
-        int valueDigit = item->GetValue();
+        int valueDigit = (*it)->GetValue();
         if (keyPressed == valueDigit)
         {
-
-            item->SetLocation(GetGame()->GetClickX(),GetGame()->GetClickY());
+            (*it)->SetHeight((*it)->GetHeight()*2);
+            (*it)->SetWidth((*it)->GetWidth()*2);
+            int clickedRow = GetGame()->GetClickX()/48;
+            int clickedCol = GetGame()->GetClickY()/48;
+            int b = clickedCol*GetGame()->GetTileHeight();
+            int a = clickedRow*GetGame()->GetTileWidth();
+            (*it)->SetLocation(a, b);
+            // Remove the ItemDigit from the mXrayDigits vector
+            it = mXrayDigits.erase(it);
+            break;
         }
+        else
+        {
+            ++it;
+        }
+    }
+    /// Update mXrayFull boolean after the regurgitate process is done
+    if (mXrayDigits.size() != mCapacity)
+    {
+        mXrayFull = false;
+    }
+    else
+    {
+        mXrayFull = true;
     }
 }
 

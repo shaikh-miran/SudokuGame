@@ -16,7 +16,11 @@ class PopUp
 private:
 
 public:
-    void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int level);
+    void OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int level, int width, int height);
+
+    void OnLevelCompletion(std::shared_ptr<wxGraphicsContext> graphics,int level, int width, int height);
+
+    void OnIncorrect(std::shared_ptr<wxGraphicsContext> graphics,int level,int width, int height);
 
 };
 

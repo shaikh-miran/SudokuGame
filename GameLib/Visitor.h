@@ -5,6 +5,7 @@
 
 #ifndef PROJECT1_PROJECT1_GAMELIB_VISITOR_H
 #define PROJECT1_PROJECT1_GAMELIB_VISITOR_H
+
 class ItemDigit;
 class ItemGiven;
 class Background;

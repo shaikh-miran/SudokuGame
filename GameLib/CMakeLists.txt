@@ -50,8 +50,6 @@ set(SOURCE_FILES
         DeclarationContainer.h
         ItemContainer.cpp
         ItemContainer.h
-        MessageBox.cpp
-        MessageBox.h
         YumVisitor.cpp
         YumVisitor.h
         Visitor.cpp
@@ -68,6 +66,8 @@ set(SOURCE_FILES
         Solution.h
         DigitVisitor.cpp
         DigitVisitor.h
+        BackgroundVisitor.cpp
+        BackgroundVisitor.h
 )
 
 set(wxBUILD_PRECOMP OFF)

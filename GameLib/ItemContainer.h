@@ -59,7 +59,6 @@ public:
     void EjectDigits();
     void ContainerXmlLoad(wxXmlNode *node);
     bool DigitExist(double x, double y);
-
     bool HitTest(int x, int y) override;
 };
 

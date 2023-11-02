@@ -70,3 +70,17 @@ TEST(SpartyTest, HitTest) {
     // On a fish transparent pixel
     ASSERT_FALSE(sparty.HitTest(100 - 125/2 + 17, 200 - 117/2 + 16));
 }
+
+TEST(SpartyTest, RegurgitateTest)
+{
+    Game game;
+    const std::wstring &filename1 = L"images/sparty-1.png";
+    const std::wstring &filename2 = L"images/sparty-2.png";
+    Sparty sparty(&game, filename1, filename2);
+
+    std::shared_ptr<ItemDigit> item0 = std::make_shared<ItemDigit>(&game, L"images/0.png");
+    game.AddItem(item0);
+
+/// incomplete test
+
+}

@@ -36,6 +36,7 @@ public:
 
     void AddItem(ItemDigit* item);
     bool GetXrayFull();
+    void SetXrayFull(bool xrayFull) { mXrayFull = xrayFull; }
 
     void SetCapacity(int capacity) { mCapacity = capacity; }
 
@@ -45,6 +46,7 @@ public:
 
     bool HitTest(int x, int y) override { return false; }
 
+    std::vector<ItemDigit*> GetXRayDigits(){return mXrayDigits;}
 };
 
 #endif //PROJECT1_PROJECT1_GAMELIB_XRAY_H

@@ -5,7 +5,7 @@
 
 #include <pch.h>
 #include "gtest/gtest.h"
-#include "Scoreboard.h"
+#include <Scoreboard.h>
 
 TEST(ScoreboardTest, DefaultConstructor) {
     Scoreboard scoreboard;

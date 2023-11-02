@@ -7,6 +7,7 @@
 #include "Solution.h"
 #include "Game.h"
 #include "DigitVisitor.h"
+#include "ItemDigit.h"
 
 /**
  * Displays the solution of curr level on the board

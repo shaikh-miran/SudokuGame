@@ -10,12 +10,22 @@
 #include "ItemDigit.h"
 #include "Game.h"
 
+/**
+ * Constructor
+ * @param node
+ */
 DeclarationContainer::DeclarationContainer(wxXmlNode *node) : Declaration(node)
 {
     mImage1 = L"images/" + node->GetAttribute(L"image").ToStdWstring();
     mImage2 = L"images/" + node->GetAttribute(L"front").ToStdWstring();
 }
 
+/**
+ * A function which creates the location of the node Container and it's children.
+ * @param node Container node in xml.
+ * @param game
+ * @return returns an item.
+ */
 std::shared_ptr<Item> DeclarationContainer::Create(wxXmlNode *node, Game *game)
 {
 
@@ -30,16 +40,8 @@ std::shared_ptr<Item> DeclarationContainer::Create(wxXmlNode *node, Game *game)
     item->SetWidth(width);
     item->SetHeight(height);
     item->SetLocation((col+2) * game->GetTileWidth(), (row-1) * game->GetTileHeight());
-    //game->SetContainer(item);
     game->AddItem(item);
     item->ContainerXmlLoad(node);
-//
-//    auto item1 = std::make_shared<ItemContainer>(game, GetImage2Name(),this);
-//    item1->SetWidth(width);
-//    item1->SetHeight(height);
-//    item1->SetLocation((col+2) * game->GetTileWidth(), (row-1) * game->GetTileHeight());
-//    //game->SetContainer(item1);
-//    game->AddItem(item1);
     return item;
 }
 

@@ -19,14 +19,13 @@
 #include <wx/xml/xml.h>
 #include <wx/graphics.h>
 #include <map>
-#include "ItemContainer.h"
-#include "MessageBox.h"
 #include "Visitor.h"
 #include "XRayVisitor.h"
 #include "PopUp.h"
 #include "Alert.h"
-#include "XRay.h"
 #include "Solution.h"
+#include "Background.h"
+#include "BackgroundVisitor.h"
 
 /// Forward declaration of class Item
 class Item;
@@ -34,6 +33,7 @@ class Item;
 /// Forward declaration of class ParseXML
 class ParseXML;
 
+class ItemContainer;
 /**
  * Class Game - Holds the game board data, keeps track of time via Scoreboard, and handles game loading, game/UI
  * interaction.
@@ -71,10 +71,11 @@ private:
     /// Sparty object saved in order to associate the game to it.
     std::shared_ptr<Sparty> mSparty;
 
+    /// background object
+    std::shared_ptr<Background> mBackground;
+
     /// xRay object
     std::shared_ptr<XRay> mXray;
-
-//    std::shared_ptr<ItemContainer> mContainer;
 
     /// The timer that allows for intro screen
     wxTimer mIntroScreenTimer;
@@ -106,6 +107,7 @@ private:
     Alert mAlert;
 
     Solution * mSolution = new Solution();
+    std::vector<std::tuple<int, int>> mLocationTuples = {};
 
 public:
 
@@ -120,6 +122,9 @@ public:
 
 
     void SpartyHeadButt();
+
+    void CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics);
+
 
     /// Constructor
     Game();
@@ -187,12 +192,6 @@ public:
      */
     void SetSparty(std::shared_ptr<Sparty> sparty) { mSparty = sparty; }
 
-//    /**
-//     * Set the Game's associated Container object (shared ptr)
-//     * @param Container pointer to set
-//     */
-//    void SetContainer(std::shared_ptr<ItemContainer> container) { mContainer = container; }
-
     /**
     * sets the x-position of the click event
     * @return x value of the position
@@ -229,17 +228,23 @@ public:
      */
     std::shared_ptr<Sparty> GetSparty() { return mSparty; }
 
-//    /**
-//     * Get the Game's Container object
-//     * @return Container shared pointer
-//     */
-//    std::shared_ptr<ItemContainer> GetContainer() { return mContainer; }
-
     /**
      * Get the random number generator
      * @return Pointer to the random number generator
      */
     std::mt19937 &GetRandom() {return mRandom;}
+
+    /**
+     * Gets the width of the item.
+     * @return width
+     */
+    double GetWidthB() {return mWidth;}
+
+    /**
+     * Gets the height of the item.
+     * @return height
+     */
+    double GetHeightB() {return mWidth;}
 
 
     /// change game state to level 0
@@ -253,8 +258,6 @@ public:
 
     /// change game state to level 3
     void ChangeStateThree(bool starting);
-    double GetWidthB() {return mWidth;}
-    double GetHeightB() {return mWidth;}
 
     bool GetFullMessage() { return mFullMessage; }
     void SetFullMessage(bool fullMessage) { mFullMessage = fullMessage; }
@@ -264,6 +267,14 @@ public:
 
     Solution * GetSolution() { return mSolution; };
 
+    /// getter for mStartState
+    bool GetStartState(){return mStartState;}
+
+    void generateLocationTuples(int level);
+
+    bool isLocationInVector(int row, int col, int level);
+
+    bool GivenExist(int x, int y);
 };
 
 #endif //CSE335PROJECTONE_PROJECT1_GAME_H

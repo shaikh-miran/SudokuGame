@@ -18,7 +18,10 @@
 #include "Game.h"
 
 using namespace std;
-
+/**
+ * Constructor.
+ * @param game
+ */
 ParseXML::ParseXML(Game * game) : mGame(game)
 {
 
@@ -111,6 +114,11 @@ void ParseXML::LoadGame(wxXmlNode * node)
     mGame->GetSolution()->SetSolution(mSolutionVector);
 }
 
+/**
+ * Finds the declaration in the Map using iD.
+ * @param id Id of each item.
+ * @return declaration associated with the id in the Map.
+ */
 std::shared_ptr<Declaration> ParseXML::FindDeclaration(std::wstring id)
 {
     auto declaration = mDeclarationMap[id];

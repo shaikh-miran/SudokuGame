@@ -3,6 +3,7 @@
  * @author Team prometheus
  */
 
+#include "pch.h"
 #include "ContainerVisitor.h"
 
 void ContainerVisitor::ContainerVisit(ItemContainer* container)

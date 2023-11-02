@@ -10,7 +10,6 @@
 #include "Game.h"
 #include <wx/event.h>
 #include "Scoreboard.h"
-#include "MessageBox.h"
 #include "Alert.h"
 
 /**

@@ -24,8 +24,19 @@ private:
     /// Mouth image
     std::wstring mImage2;
 
-    double mTargetX;
-    double mTargetY;
+    /// Darkness image
+    std::wstring mImage3;
+
+    /// Head Attributes
+    double mHeadPivotAngle, mHeadPivotX, mHeadPivotY;
+
+    /// Mouth Attributes
+    double mMouthPivotAngle, mMouthPivotX, mMouthPivotY;
+
+    /// Target Pivot Attributes
+    double mTargetX, mTargetY;
+
+    bool mIsLevel3 = false;
 
 public:
     //// Default constructor (disabled)
@@ -54,6 +65,8 @@ public:
       * @return string form of the image's filename
       */
     std::wstring GetImage2Name() { return mImage2; }
+
+    std::wstring GetImage3Name() { return mImage3; }
 
     double GetTargetX() { return mTargetX; }
     double GetTargetY() { return mTargetY; }

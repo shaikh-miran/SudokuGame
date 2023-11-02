@@ -8,13 +8,6 @@
 #include "Item.h"
 #include "YumVisitor.h"
 #include "ContainerVisitor.h"
-
-///// Initial XRay X location
-//const int XRInitialX = 100;
-//
-///// Initial XRay Y location
-//const int XRInitialY = 100;
-
 using namespace std;
 
 /**
@@ -85,10 +78,11 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
         item->Draw(graphics);
     }
 
+
     // Write out PopUp message for 3 seconds
     mStopWatchPopUp.Start();
     if (mStartState){
-        mPopUpMessage.OnDraw(graphics, mCurrentLevel);
+        CallPopUpDraw(graphics);
     }
 
     if (mScoreboard.GetStartTimer()) {
@@ -168,6 +162,7 @@ void Game::OnLeftDown(int x, int y)
     mSparty->SetCanMove(true);
 }
 
+
 /**
  * Update the game (on-demand)
  * @param elapsed time elapsed from game begin
@@ -189,6 +184,31 @@ void Game::Update(double elapsed)
         /// change state
         mStartState = false;
         mDuration = 0;
+    }
+    /// If Level 3, handle the timed sparty darkness image changes
+    /// Only change image when sparty is not performing headbutt or eat (will crash)
+    if (mCurrentLevel == 3 && !GetSparty()->InAction())
+    {
+        if (round(mDuration) == 10)
+        {
+            GetSparty()->UpdateDarknessLevel(L"images/darkness-2.png");
+        }
+        else if (round(mDuration) == 20)
+        {
+            GetSparty()->UpdateDarknessLevel(L"images/darkness-3.png");
+        }
+        else if (round(mDuration) == 30)
+        {
+            GetSparty()->UpdateDarknessLevel(L"images/darkness-4.png");
+        }
+        else if (round(mDuration) == 40)
+        {
+            GetSparty()->UpdateDarknessLevel(L"images/darkness-5.png");
+        }
+        else if (round(mDuration) == 50)
+        {
+            GetSparty()->UpdateDarknessLevel(L"images/darkness-6.png");
+        }
     }
 }
 
@@ -235,15 +255,52 @@ void Game::SpartyYum(){
     }
 }
 
+/**
+ * Regurgitates the digit when a key is pressed.
+ * @param keyPressed the key pressed in int.
+ */
 void Game::SpartyRegurgitate(long keyPressed)
 {
     XRayVisitor visitor;
     this->Accept(&visitor);
     XRay *xray = visitor.GetXray();
-
+    std::vector<ItemDigit*> digits = xray->GetXRayDigits();
     xray->RegurgitateItemDigit(keyPressed);
+
+    int row = mClickX/48;
+    int col = mClickY/48;
+
+    bool keyPressedFound = false;
+    for (auto item : digits) {
+        if (item->GetValue() == keyPressed) {
+            keyPressedFound = true;
+            break; // Found a match, no need to continue searching
+        }
+    }
+    std::shared_ptr<wxGraphicsContext> graphics;
+    if (keyPressedFound)
+    {
+        if(isLocationInVector(col,row,mCurrentLevel))
+        {
+            if (!GivenExist(col,row))
+            {
+                mSparty->Yum(); // Call Yum if keyPressed was found
+                xray->RegurgitateItemDigit(keyPressed);
+            }
+        }
+    }
 }
 
+void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
+{
+    BackgroundVisitor visitor;
+    this->Accept(&visitor);
+    Background *background = visitor.GetBackground();
+    int height = background->GetHeight();
+    int width = background->GetWidth();
+
+    mPopUpMessage.OnDraw(graphics, mCurrentLevel, width, height);
+}
 
 /**
  * Function that runs when sparty headbutts (B is pressed, activating this function). If there is a container in range,
@@ -298,10 +355,77 @@ void Game::ChangeStateTwo(bool starting){
  * Change Level to 3
  * @param starting
  */
-void Game::ChangeStateThree(bool starting){
+void Game::ChangeStateThree(bool starting)
+{
     mStartState = starting;
     mEndState = false;
     mCurrentLevel = 3;
 
     mDuration = 0;
+}
+
+/**
+ * Create a vector of tuples of position on the grid.
+ * @return a the vector.
+ */
+void Game::generateLocationTuples(int level)
+{
+    int rowStart , colStart;
+    if (level == 1 || level == 3)
+    {
+        rowStart = 3;
+        colStart = 4;
+    }
+    if (level == 2)
+    {
+        rowStart = 1;
+        colStart = 5;
+    }
+
+    const int numRows = 9;
+    const int numCols = 9;
+
+    for (int row = rowStart; row < rowStart+numRows; row++) {
+        for (int col = colStart; col < colStart+numCols; col++) {
+            mLocationTuples.push_back(std::make_tuple(row, col));
+        }
+    }
+}
+
+/**
+ * checks if the location is valid and is in the board frame.
+ * @param row row clicked
+ * @param col col clicked.
+ * @return return true if valid location.
+ */
+bool Game::isLocationInVector(int row, int col, int level)
+{
+    generateLocationTuples(level);
+    for (auto& location : mLocationTuples) {
+        if (std::get<0>(location) == row && std::get<1>(location) == col) {
+            return true; // Location found in the vector
+        }
+    }
+    return false; // Location not found in the vector
+}
+
+/**
+ * checks if there exists any digit at that point.
+ * @param x col
+ * @param y row
+ * @return true if a given exists there.
+ */
+bool Game::GivenExist(int x, int y)
+{
+    for(auto item: mItems)
+    {
+        int row = item->GetX()/mTileWidth;
+        int col = item->GetY()/mTileHeight;
+        if (col == x && row == y)
+        {
+            return true; // Item exists at the given location (x, y)
+        }
+    }
+    return false; // No item found at the given location (x, y)
+
 }
