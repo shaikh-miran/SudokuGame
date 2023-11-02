@@ -186,27 +186,29 @@ void Game::Update(double elapsed)
         mStartState = false;
         mDuration = 0;
     }
+    /// If Level 3, handle the timed sparty darkness image changes
+    /// Only change image when sparty is not performing headbutt or eat (will crash)
     if (mCurrentLevel == 3 && !GetSparty()->InAction())
     {
         if (round(mDuration) == 10)
         {
-            GetSparty()->UpdateSpartyImage(L"images/spartyL3-2.png", L"images/sparty-2.png");
+            GetSparty()->UpdateDarknessLevel(L"images/darkness-2.png");
         }
         else if (round(mDuration) == 20)
         {
-            GetSparty()->UpdateSpartyImage(L"images/spartyL3-3.png", L"images/sparty-2.png");
+            GetSparty()->UpdateDarknessLevel(L"images/darkness-3.png");
         }
         else if (round(mDuration) == 30)
         {
-            GetSparty()->UpdateSpartyImage(L"images/spartyL3-4.png", L"images/sparty-2.png");
+            GetSparty()->UpdateDarknessLevel(L"images/darkness-4.png");
         }
         else if (round(mDuration) == 40)
         {
-            GetSparty()->UpdateSpartyImage(L"images/spartyL3-5.png", L"images/sparty-2.png");
+            GetSparty()->UpdateDarknessLevel(L"images/darkness-5.png");
         }
         else if (round(mDuration) == 50)
         {
-            GetSparty()->UpdateSpartyImage(L"images/spartyL3-6.png", L"images/sparty-2.png");
+            GetSparty()->UpdateDarknessLevel(L"images/darkness-6.png");
         }
     }
 }

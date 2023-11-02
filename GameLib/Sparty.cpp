@@ -58,10 +58,10 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
         double halfOfHeadbutt = TotalTimeHeadbutt / 2;
         if (mTimeHeadbutt < halfOfHeadbutt)
         {
-            angleOfHead = mTimeHeadbutt / halfOfHeadbutt * mAngleofHead;
+            angleOfHead = mTimeHeadbutt / halfOfHeadbutt * mHeadAngle;
         }
         else{
-            angleOfHead = (TotalTimeEating - mTimeHeadbutt) / halfOfHeadbutt * mAngleofHead;
+            angleOfHead = (TotalTimeEating - mTimeHeadbutt) / halfOfHeadbutt * mHeadAngle;
         }
         graphics->Translate(mHeadPivot.x, mHeadPivot.y);
         graphics->Rotate(angleOfHead);
@@ -70,10 +70,10 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     if (mTimeEating > 0){
         double halfTimeEating = TotalTimeEating / 2;
         if (mTimeEating < halfTimeEating){
-            angleOfMouth = mTimeEating / halfTimeEating * mAngleOfMouth;
+            angleOfMouth = mTimeEating / halfTimeEating * mMouthAngle;
         }
         else{
-            angleOfMouth = (TotalTimeHeadbutt - mTimeEating) / halfTimeEating * mAngleOfMouth;
+            angleOfMouth = (TotalTimeHeadbutt - mTimeEating) / halfTimeEating * mMouthAngle;
         }
     }
 
@@ -86,70 +86,15 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     graphics->PopState();
 
     graphics->DrawBitmap(*mSpartyBitmap , 0, 0, wid, hit);
+    /// If level 3, draw in the darkness image too
+    if (mIsLevel3)
+    {
+        graphics->Translate((-mDarknessImage->GetWidth()/2) + (wid/2),(-mDarknessImage->GetHeight()/2) + (hit/2));
+        graphics->DrawBitmap(*mDarknessBitmap, 0, 0,
+                             mDarknessImage->GetWidth(), mDarknessImage->GetHeight());
+    }
     graphics->PopState();
 }
-
-void Sparty::DrawTop(std::shared_ptr<wxGraphicsContext> graphics)
-{
-    double wid = mSpartyImage->GetWidth();
-    double hit = mSpartyImage->GetHeight();
-
-
-    // headX, headY are the pixel location of the top-left corner of the Sparty images
-    double HeadX = GetX() - wid / 2;
-    double HeadY = GetY() - hit / 2;
-
-    //  graphics->PushState();
-
-
-
-    graphics->DrawBitmap(*mSpartyImage, 0, 0, wid, hit);
-
-    // moving mouth
-
-
-    //graphics->DrawBitmap(*mSpartyMouthBitmap, int(wid - wid1) / 2, int(hit - hit1) / 2, wid1, hit1);
-
-    // hailey: this should be 0 and 0, not int(wid - wid1) / 2 and int(hit - hit1) / 2
-
-
-
-    // graphics->PopState();
-
-
-}
-void Sparty::DrawBottom(std::shared_ptr<wxGraphicsContext> graphics)
-//put sparty mouth open here
-{
-
-
-    double wid1 = mSpartyMouthBitmap->GetWidth();
-    double hit1 = mSpartyMouthBitmap->GetHeight();
-
-
-
-    graphics->PushState();
-
-    // Translate to the top-left corner of the Sparty image
-
-    // Draw all the Sparty character assuming the
-    // top left corner is at 0,0
-    graphics->Translate(mMouthPivot.x, mMouthPivot.y);
-    graphics->Rotate(mAngleOfMouth);
-    graphics->Translate(-mMouthPivot.x, -mMouthPivot.y);
-
-
-    graphics->DrawBitmap(*mSpartyMouthBitmap, 0, 0, wid1, hit1);
-
-    // moving mouth
-
-
-    //graphics->DrawBitmap(*mSpartyMouthBitmap, int(wid - wid1) / 2, int(hit - hit1) / 2, wid1, hit1);
-
-    // hailey: this should be 0 and 0, not int(wid - wid1) / 2 and int(hit - hit1) / 2
-    graphics->PopState();
-}
-
 
 /**
  * Test to see if we hit this object with a mouse.
@@ -181,20 +126,7 @@ bool Sparty::HitTest(int x, int y)
     return !mSpartyImage->IsTransparent((int)testX, (int)testY);
 }
 
-// moving mouth
-void Sparty::SetMouthPivot(const wxPoint& pivot)
-{
-    mMouthPivot = pivot;
-}
-
-void Sparty::SetMouthAngle(double angle)
-{
-    mAngleOfMouth = angle;
-}
-
-
 /**
-
 Handle updates in time of sparty*
 This is called before we draw and allows us to
 move sparty. We add our speed times the amount
@@ -310,16 +242,17 @@ void Sparty::Headbutt(){
     mTimeHeadbutt = TotalTimeHeadbutt;
 }
 
-/**
- * Update Sparty's image post-initialization. Updates the current image/bitmaps with the input. (Level 3)
- */
-void Sparty::UpdateSpartyImage(std::wstring image1, std::wstring image2)
+ /**
+  * Update Sparty's image post-initialization. Updates the current image/bitmaps with the input. (Level 3)
+  * @param image3 new image filename
+  */
+void Sparty::UpdateDarknessLevel(std::wstring image3)
 {
-    /// Initialize sparty main body image
-    mSpartyImage = std::make_unique<wxImage>(image1, wxBITMAP_TYPE_ANY);
-    mSpartyBitmap = std::make_unique<wxBitmap>(*mSpartyImage);
-
-    /// Initialize sparty mouth image
-    mSpartyMouthImage = std::make_unique<wxImage>(image2, wxBITMAP_TYPE_ANY);
-    mSpartyMouthBitmap = std::make_unique<wxBitmap>(*mSpartyMouthImage);
+    /// If the image has not been updated to the new image yet...
+    if (mDarknessImageFilename != image3) {
+        /// Initialize sparty main body image
+        mDarknessImage = std::make_unique<wxImage>(image3, wxBITMAP_TYPE_ANY);
+        mDarknessBitmap = std::make_unique<wxBitmap>(*mDarknessImage);
+        mDarknessImageFilename = image3;
+    }
 }

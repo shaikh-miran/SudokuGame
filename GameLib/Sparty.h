@@ -28,21 +28,34 @@ private:
     /// The bitmap we can display for this Sparty Mouth
     std::unique_ptr<wxBitmap> mSpartyMouthBitmap;
 
-    /// moving mouth
-    wxPoint mMouthPivot = wxPoint(39, 86);
-    double mAngleOfMouth = 1;
+    /// (Level 3) The darkness image name
+    std::wstring mDarknessImageFilename;
 
-    wxPoint mHeadPivot = wxPoint(30, 86);
+    /// (Level 3) The underlying Sparty darkness image
+    std::unique_ptr<wxImage> mDarknessImage;
 
-    wxPoint mTargetPivot = wxPoint(72, 24);
+    /// (Level 3) The bitmap we can display for the darkness image
+    std::unique_ptr<wxBitmap> mDarknessBitmap;
+
+    /// Mouth Attributes
+    wxPoint mMouthPivot;
+    double mMouthAngle;
+
+    /// Head Attributes
+    wxPoint mHeadPivot;
+    double mHeadAngle;
+
+    wxPoint mTargetPivot;
 
     double mTimeHeadbutt = 0;
 
-    double mAngleofHead = .8;
+
 
     double mTimeEating = 0;
 
     bool mCanMove = false;
+
+    bool mIsLevel3 = false;
 
 public:
     //headbutting
@@ -69,14 +82,8 @@ public:
     void Update(double elapsed) override;
 
     void Draw( std::shared_ptr<wxGraphicsContext> graphics) override;
-    void DrawTop( std::shared_ptr<wxGraphicsContext> graphics);
-    void DrawBottom( std::shared_ptr<wxGraphicsContext> graphics);
 
     bool HitTest(int x, int y) override;
-
-    /// moving mouth
-    void SetMouthPivot(const wxPoint& pivot);
-    void SetMouthAngle(double angle);
 
     void SetCanMove(bool value) { mCanMove = value; }
 
@@ -84,12 +91,21 @@ public:
         visitor->SpartyVisit(this);
     }
 
-    /// Update Sparty's image post-initialization
-    void UpdateSpartyImage(std::wstring image1, std::wstring image2);
+    /// Update Sparty's darkness level (Level 3 sparty)
+    void UpdateDarknessLevel(std::wstring image3);
 
     /// Returns true if sparty is performing a headbutt or eating action (prevent crash if event + image change occurs
     /// concurrently)
     bool InAction() { return (mTimeHeadbutt != 0 || mTimeEating != 0); }
+
+    /// Set whether this sparty is level 3
+    void IsLevel3(bool input) { mIsLevel3 = input; }
+
+    void SetHeadPivot(double x, double y) { mHeadPivot = wxPoint(x, y); }
+    void SetHeadAngle(double angle) { mHeadAngle = angle; }
+    void SetMouthPivot(double x, double y) { mMouthPivot = wxPoint(x, y); }
+    void SetMouthAngle(double angle) { mMouthAngle = angle; }
+    void SetTargetPivot(double x, double y) { mTargetPivot = wxPoint(x, y); }
 };
 
 
