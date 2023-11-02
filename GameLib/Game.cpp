@@ -62,18 +62,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     graphics->Translate(mXOffset, mYOffset);
     graphics->Scale(mScale, mScale);
 
-    //
-    // Draw in virtual pixels on the graphics context
-    //
-    // INSERT YOUR DRAWING CODE HERE
-
-//    mXOffset = (width - pixelWidth * mScale) / 2.0;
-//    mYOffset = 0;
-//    if (height > pixelHeight * mScale)
-//    {
-//        mYOffset = (double)((height - pixelHeight * mScale) / 2.0);
-//    }
-
     for (auto item : mItems){
         item->Draw(graphics);
     }
@@ -84,6 +72,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     if (mStartState){
         CallPopUpDraw(graphics);
     }
+
     if (mSpartyFull)
     {
         CallPopUpDraw(graphics);
@@ -91,6 +80,16 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 
     if (mScoreboard.GetStartTimer()) {
         mScoreboard.OnDraw(graphics, this);
+    }
+
+    if (mSolutionCorrect)
+    {
+        CallPopUpDraw(graphics);
+    }
+
+    if (mSolutionIncorrect)
+    {
+        CallPopUpDraw(graphics);
     }
 
     graphics->PopState();
@@ -259,13 +258,11 @@ void Game::SpartyYum(){
 
             if (std::find(XrayDigits.begin(), XrayDigits.end(), visitor.GetYummyDigit()) == XrayDigits.end())
             {
-
                 if (!xray->GetXrayFull() ) {
                     xray->AddItem(visitor.GetYummyDigit());
                     xray->DisplayNums(visitor.GetYummyDigit());
                     visitor.GetYummyDigit()->SetHeight(visitor.GetYummyDigit()->GetHeight()/2);
                     visitor.GetYummyDigit()->SetWidth(visitor.GetYummyDigit()->GetWidth()/2);
-                    //mYummyTile = visitor.GetYummyDigit();
                 }
             }
         }
@@ -299,7 +296,7 @@ void Game::SpartyRegurgitate(long keyPressed)
             break; // Found a match, no need to continue searching
         }
     }
-    std::shared_ptr<wxGraphicsContext> graphics;
+
     if (keyPressedFound)
     {
         if(isLocationInVector(col,row,mCurrentLevel))
@@ -311,29 +308,34 @@ void Game::SpartyRegurgitate(long keyPressed)
             }
         }
     }
+
     mSpartyFull = false;
 }
 
 
 void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
 {
-
     BackgroundVisitor visitor;
     this->Accept(&visitor);
     Background *background = visitor.GetBackground();
     int height = background->GetHeight();
     int width = background->GetWidth();
 
-    if (mStartState)
-    {
+    if (mStartState) {
         mPopUpMessage.OnDraw(graphics, mCurrentLevel, width, height);
-
     }
-    if (mSpartyFull)
-    {
+
+    if (mSpartyFull) {
         mPopUpMessage.OnSpartyFull(graphics, mCurrentLevel, width, height);
     }
 
+    if (mSolutionCorrect) {
+        mPopUpMessage.OnLevelCompletion(graphics, mCurrentLevel, width, height);
+    }
+
+    if (mSolutionIncorrect) {
+        mPopUpMessage.OnIncorrect(graphics, mCurrentLevel, width, height);
+    }
 
 }
 

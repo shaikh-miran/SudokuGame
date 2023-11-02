@@ -163,6 +163,13 @@ void GameView::OnKeyPress(wxKeyEvent &event)
         {
             int keyPressed = event.GetUnicodeKey() - 48;
             mGame.SpartyRegurgitate(keyPressed);
+            if (mGame.GetGridFull()) {
+                if (mGame.GetCheckSolution()) {
+                    mGame.SetSolutionCorrect(true);
+                } else {
+                    mGame.SetSolutionIncorrect(true);
+                }
+            }
         }
     }
 
@@ -181,4 +188,11 @@ void GameView::OnTimer(wxTimerEvent &event)
 void GameView::OnSolve(wxCommandEvent& event)
 {
     mGame.GetSolution()->SolveGame(&mGame);
+    if (mGame.GetGridFull()) {
+        if (mGame.GetCheckSolution()) {
+            mGame.SetSolutionCorrect(true);
+        } else {
+            mGame.SetSolutionIncorrect(true);
+        }
+    }
 }

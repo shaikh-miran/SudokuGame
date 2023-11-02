@@ -98,6 +98,9 @@ private:
     /// is sparty full
     bool mSpartyFull = false;
 
+    int mSolutionCorrect = false;
+    int mSolutionIncorrect = false;
+
     /// Stopwatch for pop up message
     wxStopWatch mStopWatchPopUp;
 
@@ -113,8 +116,6 @@ private:
     std::vector<std::tuple<int, int>> mLocationTuples = {};
 
 public:
-
-    ItemDigit* mYummyTile = nullptr;
 
     void Accept(Visitor * visitor);
 
@@ -278,6 +279,12 @@ public:
     bool isLocationInVector(int row, int col, int level);
 
     bool GivenExist(int x, int y);
+
+    bool GetGridFull() { return mSolution->GridFull(this); }
+    bool GetCheckSolution() { return mSolution->CheckSolution(this); }
+
+    void SetSolutionCorrect(bool setCorrect) { mSolutionCorrect = setCorrect; }
+    void SetSolutionIncorrect(bool setIncorrect) { mSolutionIncorrect = setIncorrect; }
 };
 
 #endif //CSE335PROJECTONE_PROJECT1_GAME_H

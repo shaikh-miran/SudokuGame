@@ -50,6 +50,31 @@ void Solution::SolveGame(Game* game) {
  */
 bool Solution::CheckSolution(Game *game)
 {
+    int index = 0;
+
+    for (int i = mRow; i < mRow+9; i++)
+    {
+        for(int j = mCol; j < mCol + 9; j++)
+        {
+            auto grabbedItem = game->HitTest(j*game->GetTileWidth(), i*game->GetTileHeight());
+            if (grabbedItem == nullptr)
+            {
+                return false;
+            }
+            else if (grabbedItem->GetValue() != mSolution[index])
+            {
+                return false;
+            }
+            index++;
+        }
+
+
+    }
+    return true;
+}
+
+bool Solution::GridFull(Game *game)
+{
     int i = mRow;
     int j = mCol;
     int index = 0;
@@ -58,8 +83,6 @@ bool Solution::CheckSolution(Game *game)
         while (j < mCol + 9) {
             auto grabbedItem = game->HitTest(j*game->GetTileWidth(), i*game->GetTileHeight());
             if (grabbedItem == nullptr) {
-                return false;
-            } else if (grabbedItem->GetValue() != mSolution[index]) {
                 return false;
             }
             index++;

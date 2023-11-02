@@ -148,5 +148,4 @@ void PopUp::OnSpartyFull(std::shared_ptr<wxGraphicsContext> graphics, int level,
 
     graphics->DrawText("I'm full!",width/2 - textWidth /2, height/2 );
 
-
 }

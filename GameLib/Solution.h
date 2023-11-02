@@ -35,6 +35,7 @@ public:
     void SetSolRowCol(double col, double row) {mCol = col; mRow = row;}
     void SolveGame(Game * game);
     bool CheckSolution(Game * game);
+    bool GridFull(Game *game);
 
 };
 
