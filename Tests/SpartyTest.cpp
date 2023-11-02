@@ -8,6 +8,7 @@
 
 #include <Sparty.h>
 #include <Game.h>
+#include <ItemDigit.h>
 
 using namespace std;
 

@@ -33,7 +33,7 @@ public:
      * @param row
      */
     void SetSolRowCol(double col, double row) {mCol = col; mRow = row;}
-    void DisplaySolution(Game * game);
+    void SolveGame(Game * game);
     bool CheckSolution(Game * game);
 
 };

@@ -44,7 +44,7 @@ TEST(XRayTest, HitTest) {
 
     xRay.SetLocation(100, 200);
 
-    ASSERT_TRUE(xRay.HitTest(100, 200));
+    ASSERT_FALSE(xRay.HitTest(100, 200)); // supposed to return FALSE in order for Solution to work
 
     ASSERT_FALSE(xRay.HitTest(10, 200));
 

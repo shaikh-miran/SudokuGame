@@ -180,5 +180,5 @@ void GameView::OnTimer(wxTimerEvent &event)
  */
 void GameView::OnSolve(wxCommandEvent& event)
 {
-    mGame.GetSolution()->DisplaySolution(&mGame);
+    mGame.GetSolution()->SolveGame(&mGame);
 }
