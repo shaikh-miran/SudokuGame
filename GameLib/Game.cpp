@@ -298,7 +298,6 @@ void Game::SpartyRegurgitate(long keyPressed)
     this->Accept(&visitor);
     XRay *xray = visitor.GetXray();
     std::vector<ItemDigit*> digits = xray->GetXRayDigits();
-    xray->RegurgitateItemDigit(keyPressed);
 
     int row = mClickX/48;
     int col = mClickY/48;
@@ -310,7 +309,6 @@ void Game::SpartyRegurgitate(long keyPressed)
             break; // Found a match, no need to continue searching
         }
     }
-    std::shared_ptr<wxGraphicsContext> graphics;
     if (keyPressedFound)
     {
         if(isLocationInVector(col,row,mCurrentLevel))
