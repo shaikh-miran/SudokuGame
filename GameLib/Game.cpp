@@ -77,7 +77,7 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
         CallPopUpDraw(graphics);
     }
 
-    if (mSpartyFull)
+    if (mFullMessage)
     {
         CallPopUpDraw(graphics);
     }
@@ -198,6 +198,13 @@ void Game::Update(double elapsed)
         mStartState = false;
         mDuration = 0;
     }
+
+    if (mFullMessage == true && mStopWatchSpartyFull.Time() > 3000)
+    {
+        mFullMessage = false;
+        mDurationFullMessage = 0;
+
+    }
     /// If Level 3, handle the timed sparty darkness image changes
     /// Only change image when sparty is not performing headbutt or eat (will crash)
     if (mCurrentLevel == 3 && !GetSparty()->InAction())
@@ -286,6 +293,10 @@ void Game::SpartyYum(){
     else
     {
         mSpartyFull = true;
+        mStopWatchSpartyFull.Start();
+        mFullMessage = true;
+
+
     }
 }
 
