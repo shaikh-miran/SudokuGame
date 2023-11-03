@@ -105,6 +105,9 @@ private:
     /// bool for if sparty full message displayed
     bool mFullMessage = false;
 
+    /// bool for if something is already there message displayed
+    bool mWrongLocationMessage = false;
+
     /// double duration for full message
     double mDurationFullMessage = 0;
 
@@ -115,6 +118,8 @@ private:
 
     /// is sparty full
     bool mSpartyFull = false;
+    /// is a given exist in the location.
+    bool mGivenExists = false;
 
     int mSolutionCorrect = false;
     int mSolutionIncorrect = false;
@@ -125,9 +130,11 @@ private:
     /// stopwatch for pop up sparty is full message
     wxStopWatch mStopWatchSpartyFull;
 
+    /// stopwatch for pop up somethign is there.
+    wxStopWatch mStopWatchWrongLocation;
+
     /// pop up message
     PopUp mPopUpMessage;
-
 
 
     /// full timer stopwatch

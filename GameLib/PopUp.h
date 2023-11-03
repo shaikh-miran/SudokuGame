@@ -26,8 +26,11 @@ public:
     /// draw pop up upon incorrect
     void OnIncorrect(std::shared_ptr<wxGraphicsContext> graphics,int level,int width, int height);
 
-    /// draw pop up upon level completion
+    /// draw pop up upon sparty being full
     void OnSpartyFull(std::shared_ptr<wxGraphicsContext> graphics, int level, int width, int height);
+
+    /// draw pop up upon given exists a location.
+    void OnExists(std::shared_ptr<wxGraphicsContext> graphics, int level, int width, int height);
 };
 
 

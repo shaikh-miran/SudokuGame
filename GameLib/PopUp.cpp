@@ -168,3 +168,47 @@ void PopUp::OnSpartyFull(std::shared_ptr<wxGraphicsContext> graphics, int level,
     graphics->DrawText("I'm Full!",width/2 - textWidth /2, height/2 - textHeight/2 );
 
 }
+
+
+/**
+ * pop up that is drawn upon seting location of a digit ina wrong position.
+ *
+ * @param graphics
+ * @param level
+ * @param width
+ * @param height
+ */
+void PopUp::OnExists(std::shared_ptr<wxGraphicsContext> graphics, int level, int width, int height)
+{
+    /// rectangle height
+    const int rectangleHeight = 60;
+
+    /// rectangle Width
+    const int rectangleWidth = 690;
+
+    wxPen pen(wxColour(0, 0, 0), 3);
+    graphics->SetPen(pen);
+
+    if (level == 2){
+        width = 1440;
+        height = 960;
+    }
+
+    // white box
+    wxBrush rectBrush(*wxWHITE);
+    graphics->SetBrush(rectBrush);
+    graphics->DrawRectangle(width/2 - rectangleWidth/2, height/2 - rectangleHeight/2, rectangleWidth, rectangleHeight);
+
+
+    wxFont fontTitle(wxSize(0, 45),
+                     wxFONTFAMILY_SWISS,
+                     wxFONTSTYLE_NORMAL,
+                     wxFONTWEIGHT_BOLD);
+    graphics->SetFont(fontTitle, wxColour(255, 0, 0));
+    double textWidth = 0, textHeight = 0;
+
+    graphics->GetTextExtent(L"Something is already there!", &textWidth, &textHeight);
+
+    graphics->DrawText("Something is already there!",width/2 - textWidth /2, height/2 - textHeight/2 );
+
+}

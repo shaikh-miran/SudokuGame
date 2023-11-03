@@ -82,6 +82,11 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
         CallPopUpDraw(graphics);
     }
 
+    if (mWrongLocationMessage)
+    {
+        CallPopUpDraw(graphics);
+    }
+
     if (mScoreboard.GetStartTimer()) {
         mScoreboard.OnDraw(graphics, this);
     }
@@ -202,6 +207,13 @@ void Game::Update(double elapsed)
     if (mFullMessage == true && mStopWatchSpartyFull.Time() > 3000)
     {
         mFullMessage = false;
+        mDurationFullMessage = 0;
+
+    }
+
+    if (mWrongLocationMessage == true && mStopWatchWrongLocation.Time() > 3000)
+    {
+        mWrongLocationMessage = false;
         mDurationFullMessage = 0;
 
     }
@@ -331,7 +343,15 @@ void Game::SpartyRegurgitate(long keyPressed)
             {
                 mSparty->Yum(); // Call Yum if keyPressed was found
                 xray->RegurgitateItemDigit(keyPressed);
+                mGivenExists = false;
             }
+            else
+            {
+                mGivenExists = true;
+                mStopWatchWrongLocation.Start();
+                mWrongLocationMessage = true;
+            }
+
         }
     }
 
@@ -366,6 +386,10 @@ void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
 
     if (mSolutionIncorrect) {
         mPopUpMessage.OnIncorrect(graphics, mCurrentLevel, width, height);
+    }
+    if (mGivenExists)
+    {
+        mPopUpMessage.OnExists(graphics,mCurrentLevel,width,height);
     }
 }
 
