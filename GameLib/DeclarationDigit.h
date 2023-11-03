@@ -36,10 +36,10 @@ public:
     /// Constructor
     DeclarationDigit(wxXmlNode* node);
 
-    // Declaration::Create override; modified to accept "digit" specific attributes
+    /// create container function that overrides base class function
     std::shared_ptr<Item> Create(wxXmlNode* node, Game* game) override;
 
-    /// create container function that overrides base class function
+    /// creates teh digits inside the contianer.
     std::shared_ptr<Item> CreateContainer(wxXmlNode* node, Game* game) override;
 
     /**

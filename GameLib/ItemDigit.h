@@ -31,7 +31,7 @@ public:
 
     /**
      * accept function for visitors
-     * @param visitor
+     * @param visitor Visitor object
      */
     void Accept(Visitor * visitor) override {
         visitor->VisitDigit(this);
@@ -48,12 +48,15 @@ public:
     /// Constructor
     ItemDigit(Game* game, std::wstring filename);
 
-    /// getter for mValue
+    /**
+     * getter for mValue
+     * @return value of the ItemDigit
+     */
     int GetValue() {return mValue;}
 
     /**
      * setter for is eatable member variable
-     * @param isEatable
+     * @param isEatable bool, true if eatable
      */
     void SetEatable(bool isEatable) { mIsEatable = isEatable; }
 
@@ -62,7 +65,6 @@ public:
      * @return bool mIsEatable
      */
     bool GetEatable() { return mIsEatable; }
-    //bool HitTest(int x, int y) override { return true; };
 
     /**
      * Toggle mIsPlaced when the Digit is in the sudoku grid (true if placed in grid)
@@ -70,7 +72,10 @@ public:
      */
     void SetPlaced(bool value) { mIsPlaced = value; }
 
-    /// Getter that indicates whether or not a Digit is placed in the grid (True if yes)
+    /**
+     * Getter that indicates whether or not a Digit is placed in the grid
+     * @return bool true if Digit is placed
+     */
     bool GetPlaced() const { return mIsPlaced; }
 
 };

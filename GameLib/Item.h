@@ -26,8 +26,10 @@ private:
     Game *mGame;
 
     // Item location in the Game window
-    double  mX = 0;     ///< X location for the center of the item
-    double  mY = 0;     ///< Y location for the center of the item
+    ///< X location for the center of the item
+    double  mX = 0;
+    ///< Y location for the center of the item
+    double  mY = 0;
 
     /// Item width
     double mWidth;

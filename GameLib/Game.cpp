@@ -196,20 +196,16 @@ void Game::Update(double elapsed)
 
     if(mDuration >= 3 && mStartState == true)
     {
-//        mScoreboard.ResetTimer();
         mScoreboard.SetStartTimer(true);
         mScoreboard.StartTimer();
-        /// change state
         mStartState = false;
         mDuration = 0;
-
     }
 
     if (mFullMessage == true && mStopWatchSpartyFull.Time() > 3000)
     {
         mFullMessage = false;
         mDurationFullMessage = 0;
-
     }
 
     if (mWrongLocationMessage == true && mStopWatchWrongLocation.Time() > 3000)
@@ -268,7 +264,8 @@ void Game::AddItem(std::shared_ptr<Item> item)
  * checks if digit exists in xray already
  * if not, eats digit
  */
-void Game::SpartyYum(){
+void Game::SpartyYum()
+{
     // getting sparty full bool
     XRayVisitor visitorForGetFullVariable;
     this->Accept(&visitorForGetFullVariable);
