@@ -66,18 +66,6 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
     graphics->Translate(mXOffset, mYOffset);
     graphics->Scale(mScale, mScale);
 
-    //
-    // Draw in virtual pixels on the graphics context
-    //
-    // INSERT YOUR DRAWING CODE HERE
-
-//    mXOffset = (width - pixelWidth * mScale) / 2.0;
-//    mYOffset = 0;
-//    if (height > pixelHeight * mScale)
-//    {
-//        mYOffset = (double)((height - pixelHeight * mScale) / 2.0);
-//    }
-
     for (auto item : mItems){
         item->Draw(graphics);
     }
@@ -85,17 +73,27 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 
     // Write out PopUp message for 3 seconds
     mStopWatchPopUp.Start();
-//    mStopWatchSpartyFull.Start();
     if (mStartState){
         CallPopUpDraw(graphics);
     }
-    if (mFullMessage)
+
+    if (mSpartyFull)
     {
         CallPopUpDraw(graphics);
     }
 
     if (mScoreboard.GetStartTimer()) {
         mScoreboard.OnDraw(graphics, this);
+    }
+
+    if (mSolutionCorrect)
+    {
+        CallPopUpDraw(graphics);
+    }
+
+    if (mSolutionIncorrect)
+    {
+        CallPopUpDraw(graphics);
     }
 
     graphics->PopState();
@@ -190,7 +188,6 @@ void Game::Update(double elapsed)
     }
 
     mDuration += elapsed;
-    mDurationFullMessage;
 
     if(mDuration >= 3 && mStartState == true)
     {
@@ -201,18 +198,6 @@ void Game::Update(double elapsed)
         mStartState = false;
         mDuration = 0;
     }
-
-
-
-    if (mStopWatchSpartyFull.Time() >= 3000 && mFullMessage == true)
-    {
-        mFullMessage = false;
-        mDurationFullMessage = 0;
-
-    }
-
-
-
     /// If Level 3, handle the timed sparty darkness image changes
     /// Only change image when sparty is not performing headbutt or eat (will crash)
     if (mCurrentLevel == 3 && !GetSparty()->InAction())
@@ -240,7 +225,6 @@ void Game::Update(double elapsed)
     }
 }
 
-
 /**
  * Clear the game data - deletes all known items in the game.
  */
@@ -248,7 +232,6 @@ void Game::Clear()
 {
     mItems.clear();
 }
-
 
 /**
  * Add the Item from item parameter into the Game object's mItems list
@@ -291,13 +274,11 @@ void Game::SpartyYum(){
 
             if (std::find(XrayDigits.begin(), XrayDigits.end(), visitor.GetYummyDigit()) == XrayDigits.end())
             {
-
                 if (!xray->GetXrayFull() ) {
                     xray->AddItem(visitor.GetYummyDigit());
                     xray->DisplayNums(visitor.GetYummyDigit());
                     visitor.GetYummyDigit()->SetHeight(visitor.GetYummyDigit()->GetHeight()/2);
                     visitor.GetYummyDigit()->SetWidth(visitor.GetYummyDigit()->GetWidth()/2);
-                    //mYummyTile = visitor.GetYummyDigit();
                 }
             }
         }
@@ -305,8 +286,6 @@ void Game::SpartyYum(){
     else
     {
         mSpartyFull = true;
-        mFullMessage = true;
-        mStopWatchSpartyFull.Start();
     }
 }
 
@@ -332,6 +311,7 @@ void Game::SpartyRegurgitate(long keyPressed)
             break; // Found a match, no need to continue searching
         }
     }
+
     if (keyPressedFound)
     {
         if(isLocationInVector(col,row,mCurrentLevel))
@@ -343,6 +323,7 @@ void Game::SpartyRegurgitate(long keyPressed)
             }
         }
     }
+
     mSpartyFull = false;
 }
 
@@ -354,26 +335,27 @@ void Game::SpartyRegurgitate(long keyPressed)
  */
 void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
 {
-
     BackgroundVisitor visitor;
     this->Accept(&visitor);
     Background *background = visitor.GetBackground();
     int height = background->GetHeight();
     int width = background->GetWidth();
 
-    /// call level start pop up draw
-    if (mStartState)
-    {
+    if (mStartState) {
         mPopUpMessage.OnDraw(graphics, mCurrentLevel, width, height);
-
     }
-    /// call sparty full pop up draw
-    if (mSpartyFull)
-    {
+
+    if (mSpartyFull) {
         mPopUpMessage.OnSpartyFull(graphics, mCurrentLevel, width, height);
     }
 
+    if (mSolutionCorrect) {
+        mPopUpMessage.OnLevelCompletion(graphics, mCurrentLevel, width, height);
+    }
 
+    if (mSolutionIncorrect) {
+        mPopUpMessage.OnIncorrect(graphics, mCurrentLevel, width, height);
+    }
 }
 
 /**

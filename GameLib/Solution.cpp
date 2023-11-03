@@ -70,3 +70,24 @@ bool Solution::CheckSolution(Game *game)
     }
     return true;
 }
+
+bool Solution::GridFull(Game *game)
+{
+    int i = mRow;
+    int j = mCol;
+    int index = 0;
+
+    while (i < mRow + 9) {
+        while (j < mCol + 9) {
+            auto grabbedItem = game->HitTest(j*game->GetTileWidth(), i*game->GetTileHeight());
+            if (grabbedItem == nullptr) {
+                return false;
+            }
+            index++;
+            j++;
+        }
+        i++;
+        j = mCol;
+    }
+    return true;
+}

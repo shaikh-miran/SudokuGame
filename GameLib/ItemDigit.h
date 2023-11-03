@@ -71,7 +71,7 @@ public:
     void SetPlaced(bool value) { mIsPlaced = value; }
 
     /// Getter that indicates whether or not a Digit is placed in the grid (True if yes)
-    bool IsPlaced() const { return mIsPlaced; }
+    bool GetPlaced() const { return mIsPlaced; }
 
 };
 

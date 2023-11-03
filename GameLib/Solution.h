@@ -42,6 +42,7 @@ public:
 
     /// function to check if solution correct
     bool CheckSolution(Game * game);
+    bool GridFull(Game *game);
 
 };
 

@@ -116,6 +116,9 @@ private:
     /// is sparty full
     bool mSpartyFull = false;
 
+    int mSolutionCorrect = false;
+    int mSolutionIncorrect = false;
+
     /// Stopwatch for pop up message
     wxStopWatch mStopWatchPopUp;
 
@@ -140,11 +143,6 @@ private:
     std::vector<std::tuple<int, int>> mLocationTuples = {};
 
 public:
-
-    /// yummy tile instance
-    ItemDigit* mYummyTile = nullptr;
-
-    /// accept function for visitor
     void Accept(Visitor * visitor);
 
     /// function that makes sparty eat digits
@@ -334,6 +332,12 @@ public:
 
     /// checks if given exists
     bool GivenExist(int x, int y);
+
+    bool GetGridFull() { return mSolution->GridFull(this); }
+    bool GetCheckSolution() { return mSolution->CheckSolution(this); }
+
+    void SetSolutionCorrect(bool setCorrect) { mSolutionCorrect = setCorrect; }
+    void SetSolutionIncorrect(bool setIncorrect) { mSolutionIncorrect = setIncorrect; }
 };
 
 #endif //CSE335PROJECTONE_PROJECT1_GAME_H

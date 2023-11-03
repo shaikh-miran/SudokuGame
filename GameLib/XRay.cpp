@@ -43,6 +43,7 @@ void XRay::DisplayNums(ItemDigit * digit)
 void XRay::AddItem(ItemDigit* item)
 {
     if (mXrayDigits.size() <= mCapacity) {
+        item->SetEatable(false);
         mXrayDigits.push_back(item);
     }
 }
@@ -82,6 +83,7 @@ void XRay::RegurgitateItemDigit(int keyPressed)
             (*it)->SetLocation(a, b);
             // Remove the ItemDigit from the mXrayDigits vector
             it = mXrayDigits.erase(it);
+            (*it)->SetPlaced(true);
             break;
         }
         else
