@@ -14,11 +14,10 @@ using namespace std;
 /// Size of the scoreboard text in virtual pixels
 const int ScoreboardTextSize = 64;
 
-/// Top left corner of the scoreboard in virtual pixels
-const wxPoint ScoreboardTopLeft(10, 10);
-
+/// Scoreboard x coordinate
 const int ScoreboardX = 10;
 
+/// Scoreboard y coordinate
 const int ScoreboardY = 20;
 
 /// The font color to use

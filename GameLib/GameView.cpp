@@ -10,10 +10,10 @@
 #include <wx/dcclient.h>
 #include <wx/dcbuffer.h>
 #include <string>
-#include "Solution.h"
 
 using namespace std;
 
+/// FrameDuration integer
 const int FrameDuration = 30;
 
 /**

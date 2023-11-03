@@ -16,7 +16,10 @@ class Background : public Item
 {
 public:
 
-    /// visitor acceptor function
+    /**
+     * Accept function for visitor
+     * @param visitor
+     */
     void Accept(Visitor *visitor) override{
         visitor->BackgroundVisit(this);
     }
@@ -32,7 +35,12 @@ public:
     /// Constructor
     Background(Game* game, std::wstring filename);
 
-    /// function to test if item hit
+    /**
+     * Hittest for background
+     * @param x coordinate
+     * @param y coordinate
+     * @return false
+     */
     bool HitTest(int x, int y) override { return false; };
 };
 

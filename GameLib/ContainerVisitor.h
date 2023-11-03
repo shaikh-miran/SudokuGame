@@ -27,20 +27,36 @@ private:
 
 public:
 
-    /// function to visit item container
+    /**
+     * Container visit function for accept
+     * @param container object
+     */
     void ContainerVisit(ItemContainer* container);
 
-    /// getter for mX
+    /**
+     * Getter for mX
+     * @return mX
+     */
     double GetX() {return mX;}
 
-    /// getter for mY
+    /**
+     * Getter for mY
+     * @return mY
+     */
     double GetY() {return mY;}
 
-    /// setter for sparty location x, y coordinates
+    /**
+     * setter for sparty location
+     * @param x coordinate
+     * @param y coordinate
+     */
     void SetSpartyLocation(double x, double y) {mSpartyCenterX = x; mSpartyCenterY = y;}
 
 
-    /// getter for item container
+    /**
+     * Getter for Container
+     * @return container
+     */
     ItemContainer* GetContainer() {return mContainer;}
 };
 #endif //PROJECT1_GAMELIB_CONTAINERVISITOR_H

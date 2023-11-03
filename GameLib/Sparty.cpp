@@ -10,10 +10,13 @@
 
 using namespace std;
 
+/// Maximum Sparty Speed
 const double MaxSpeed = 400.00;
 
+/// Total time for Sparty to eat
 const double TotalTimeEating = 0.5;
 
+/// Total time for Sparty headbutt
 const double TotalTimeHeadbutt = 0.5;
 
 /**

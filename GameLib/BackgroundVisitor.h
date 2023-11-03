@@ -24,10 +24,16 @@ private:
 
 public:
 
-    /// background getter
+    /**
+     * Getter for Background object
+     * @return Background object
+     */
     Background* GetBackground() { return mBackground; }
 
-    // Implement the Visit method for XRay
+    /**
+     * Background visit for accept function
+     * @param background object
+     */
     void BackgroundVisit(Background* background) override
     {
         mBackground = background;

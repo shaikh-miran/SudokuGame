@@ -10,6 +10,9 @@
 /// Forward declaration of Game Class
 class Game;
 
+/**
+ * Item class
+ */
 class Item
 {
 private:
