@@ -202,7 +202,7 @@ void Game::Update(double elapsed)
         /// change state
         mStartState = false;
         mDuration = 0;
-        
+
     }
 
     if (mFullMessage == true && mStopWatchSpartyFull.Time() > 3000)
@@ -376,29 +376,37 @@ void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
     if (mStartState) {
         mPopUpMessage.OnDraw(graphics, mCurrentLevel, width, height);
         mGivenExists = false;
+        mSolutionCorrect = false;
 
     }
 
     if (mSpartyFull) {
         mPopUpMessage.OnSpartyFull(graphics, mCurrentLevel, width, height);
         mGivenExists = false;
-
+        mSolutionCorrect = false;
+        mSolutionIncorrect = false;
     }
 
     if (mGivenExists)
     {
         mPopUpMessage.OnExists(graphics,mCurrentLevel,width,height);
+        mSolutionCorrect = false;
+        mSolutionIncorrect = false;
+
     }
 
     if (mSolutionCorrect) {
         mPopUpMessage.OnLevelCompletion(graphics, mCurrentLevel, width, height);
         mGivenExists = false;
+        mSolutionIncorrect = false;
 
     }
 
     if (mSolutionIncorrect) {
         mPopUpMessage.OnIncorrect(graphics, mCurrentLevel, width, height);
         mGivenExists = false;
+        mSolutionCorrect = false;
+
 
     }
 }
