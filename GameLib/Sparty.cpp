@@ -36,6 +36,10 @@ Sparty::Sparty(Game *game, std::wstring image1, std::wstring image2) : Item(game
     mSpartyMouthBitmap = std::make_unique<wxBitmap>(*mSpartyMouthImage);
 }
 
+/**
+ * sparty draw function
+ * @param graphics
+ */
 void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
     double wid = mSpartyImage->GetWidth();
@@ -228,6 +232,9 @@ void Sparty::Update(double elapsed)
     }
 }
 
+/**
+ * sparty headbutt function
+ */
 void Sparty::StartHeadbutt()
 {
 //    mIsHeadbutting = true;
@@ -235,10 +242,16 @@ void Sparty::StartHeadbutt()
 }
 
 
+/**
+ * function to set mTimeEating member variable
+ */
 void Sparty::Yum(){
     mTimeEating = TotalTimeEating;
 }
 
+/**
+ * funciton to set mTimeHeadbutt member variable
+ */
 void Sparty::Headbutt(){
     mTimeHeadbutt = TotalTimeHeadbutt;
 }

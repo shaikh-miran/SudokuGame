@@ -11,6 +11,10 @@
 #include "Item.h"
 #include "DeclarationGiven.h"
 
+/**
+ * given number class, derived from item class
+ * represents numbers given on the grid
+ */
 class ItemGiven : public Item
 {
 private:
@@ -23,10 +27,15 @@ public:
     /// Assignment operator
     void operator=(const ItemGiven &) = delete;
 
+    /**
+     * accept function for visitors
+     * @param visitor
+     */
     void Accept(Visitor *visitor) override{
         visitor->GivenVisit(this);
     }
 
+    /// constructor
     ItemGiven(Game* game, std::wstring filename);
 
     //bool HitTest(int x, int y) override { return true; };

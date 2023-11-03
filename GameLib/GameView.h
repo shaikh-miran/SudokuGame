@@ -57,6 +57,7 @@ public:
     /// Handler for when Level 3 is clicked in the menu bar
     void OnLevel3(wxCommandEvent& event);
 
+    /// function to solve level
     void OnSolve(wxCommandEvent& event);
 
     /// Handler for key presses
@@ -71,7 +72,7 @@ public:
     /// Update the time of the scoreboard
     void UpdateScoreboard(wxTimerEvent& event);
 
-
+    /// function for intro screen timer
     void IntroScreenTimer(wxTimerEvent& event);
 
 

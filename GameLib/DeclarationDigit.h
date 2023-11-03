@@ -14,7 +14,6 @@ class Game;
  * DeclarationDigit class - a type of Declaration; handles Declaration nodes that have the "name" attribute of
  * "digit"
  */
-
 class DeclarationDigit : public Declaration
 {
 private:
@@ -40,7 +39,9 @@ public:
     // Declaration::Create override; modified to accept "digit" specific attributes
     std::shared_ptr<Item> Create(wxXmlNode* node, Game* game) override;
 
+    /// create container function that overrides base class function
     std::shared_ptr<Item> CreateContainer(wxXmlNode* node, Game* game) override;
+
     /**
      * Return the digit image filename
      * @return string form of the image's filename

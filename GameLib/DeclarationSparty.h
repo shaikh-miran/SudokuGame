@@ -36,6 +36,7 @@ private:
     /// Target Pivot Attributes
     double mTargetX, mTargetY;
 
+    /// boolean member variable for is level 3
     bool mIsLevel3 = false;
 
 public:
@@ -66,9 +67,16 @@ public:
       */
     std::wstring GetImage2Name() { return mImage2; }
 
+
+    /**
+     * getter for image 3 name
+     * @return
+     */
     std::wstring GetImage3Name() { return mImage3; }
 
+    /// getter for mTargetX
     double GetTargetX() { return mTargetX; }
+    /// getter for mTargetY
     double GetTargetY() { return mTargetY; }
 };
 

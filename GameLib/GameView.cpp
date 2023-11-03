@@ -119,7 +119,10 @@ void GameView::OnLevel3(wxCommandEvent& event)
     Refresh();
 }
 
-
+/**
+ * function to update scoreboard
+ * @param event
+ */
 void GameView::UpdateScoreboard(wxTimerEvent& event)
 {
     mScoreboard.UpdateTime(event);
@@ -176,6 +179,10 @@ void GameView::OnKeyPress(wxKeyEvent &event)
 }
 
 
+/**
+ * function to refresh game window
+ * @param event
+ */
 void GameView::OnTimer(wxTimerEvent &event)
 {
     Refresh();

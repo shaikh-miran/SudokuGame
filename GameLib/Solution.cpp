@@ -50,25 +50,23 @@ void Solution::SolveGame(Game* game) {
  */
 bool Solution::CheckSolution(Game *game)
 {
+    int i = mRow;
+    int j = mCol;
     int index = 0;
 
-    for (int i = mRow; i < mRow+9; i++)
-    {
-        for(int j = mCol; j < mCol + 9; j++)
-        {
+    while (i < mRow + 9) {
+        while (j < mCol + 9) {
             auto grabbedItem = game->HitTest(j*game->GetTileWidth(), i*game->GetTileHeight());
-            if (grabbedItem == nullptr)
-            {
+            if (grabbedItem == nullptr) {
                 return false;
-            }
-            else if (grabbedItem->GetValue() != mSolution[index])
-            {
+            } else if (grabbedItem->GetValue() != mSolution[index]) {
                 return false;
             }
             index++;
+            j++;
         }
-
-
+        i++;
+        j = mCol;
     }
     return true;
 }

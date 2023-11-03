@@ -48,9 +48,16 @@ private:
     std::vector<std::shared_ptr<Item>> mItems;
 
 
+    /// member variable for click x
     double mClickY = -1;
+
+    /// member variable for click y
     double mClickX = -1;
+
+    /// member variable for width
     double mWidth;
+
+    /// member variable for height
     double mHeight;
 
 
@@ -80,9 +87,13 @@ private:
     /// The timer that allows for intro screen
     wxTimer mIntroScreenTimer;
 
+    /// game timer variable
     wxTimer mGameTimer;
 
+    /// bool that is true when intro screen visible
     bool mIntroScreenVisible = true;
+
+    /// random seed
     std::mt19937 mRandom;
 
     ///Duration
@@ -107,26 +118,35 @@ private:
     /// pop up message
     PopUp mPopUpMessage;
 
+    /// bool that is true when full message displayed
     bool mFullMessage;
+
+    /// full timer stopwatch
     wxStopWatch mFullTimer;
 
+    /// alert instance
     Alert mAlert;
 
+    /// solution instance
     Solution * mSolution = new Solution();
+
+    /// vector of tuples of int, int - contains locations
     std::vector<std::tuple<int, int>> mLocationTuples = {};
 
 public:
-
     void Accept(Visitor * visitor);
 
+    /// function that makes sparty eat digits
     void SpartyYum();
 
     /// function that regurgitates a number from xray to a location
     void SpartyRegurgitate(long keyPressed);
 
 
+    /// function that makes sparty headbutt
     void SpartyHeadButt();
 
+    /// function that calls pop up draws on different occasions
     void CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics);
 
 
@@ -263,21 +283,45 @@ public:
     /// change game state to level 3
     void ChangeStateThree(bool starting);
 
+    /**
+     * getter for full message
+     * @return
+     */
     bool GetFullMessage() { return mFullMessage; }
+
+    /**
+     * setter for full message
+     * @param fullMessage
+     */
     void SetFullMessage(bool fullMessage) { mFullMessage = fullMessage; }
 
+    /**
+     * getter for full timer
+     * @return
+     */
     wxStopWatch GetFullTimer() { return mFullTimer; }
+
+    /**
+     * stops full timer
+     */
     void StopFullTimer() { mFullTimer.Pause(); }
 
+    /**
+     * getter for solution
+     * @return
+     */
     Solution * GetSolution() { return mSolution; };
 
     /// getter for mStartState
     bool GetStartState(){return mStartState;}
 
+    /// function that generates tuple locations
     void generateLocationTuples(int level);
 
+    /// function that checks if location in vector
     bool isLocationInVector(int row, int col, int level);
 
+    /// checks if given exists
     bool GivenExist(int x, int y);
 
     bool GetGridFull() { return mSolution->GridFull(this); }

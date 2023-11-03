@@ -24,6 +24,10 @@ Game::Game() : mAlert(this)
 }
 
 
+/**
+ * accept function for visitor class
+ * @param visitor
+ */
 void Game::Accept(Visitor *visitor){
     for (auto item : mItems)
     {
@@ -114,11 +118,17 @@ void Game::Load(const wxString & filename)
     Clear();
 
     auto mLevel = new ParseXML(this);
+
     /// Offload loading process to ParseXML object
     mLevel->Load(xmlDoc);
+
+    /// If the timer is already moving, stop it so that it does not run while the pop up is on screen
+    mScoreboard.StopTimer();
+
+    /// Reset Timer to 0 for new level
     mScoreboard.ResetTimer();
-//    mScoreboard.StartTimer();
 }
+
 
 /**
  * Test an x,y click location to see if an item exists at that position.
@@ -192,23 +202,23 @@ void Game::Update(double elapsed)
     /// Only change image when sparty is not performing headbutt or eat (will crash)
     if (mCurrentLevel == 3 && !GetSparty()->InAction())
     {
-        if (round(mDuration) == 10)
+        if (round(mDuration) == 20)
         {
             GetSparty()->UpdateDarknessLevel(L"images/darkness-2.png");
         }
-        else if (round(mDuration) == 20)
+        else if (round(mDuration) == 40)
         {
             GetSparty()->UpdateDarknessLevel(L"images/darkness-3.png");
         }
-        else if (round(mDuration) == 30)
+        else if (round(mDuration) == 70)
         {
             GetSparty()->UpdateDarknessLevel(L"images/darkness-4.png");
         }
-        else if (round(mDuration) == 40)
+        else if (round(mDuration) == 110)
         {
             GetSparty()->UpdateDarknessLevel(L"images/darkness-5.png");
         }
-        else if (round(mDuration) == 50)
+        else if (round(mDuration) == 160)
         {
             GetSparty()->UpdateDarknessLevel(L"images/darkness-6.png");
         }
@@ -233,6 +243,12 @@ void Game::AddItem(std::shared_ptr<Item> item)
 }
 
 
+/**
+ * function for sparty to eat a digit to eat a digit
+ * gets location, checks if digit at location
+ * checks if digit exists in xray already
+ * if not, eats digit
+ */
 void Game::SpartyYum(){
     // getting sparty full bool
     XRayVisitor visitorForGetFullVariable;
@@ -284,7 +300,6 @@ void Game::SpartyRegurgitate(long keyPressed)
     this->Accept(&visitor);
     XRay *xray = visitor.GetXray();
     std::vector<ItemDigit*> digits = xray->GetXRayDigits();
-    xray->RegurgitateItemDigit(keyPressed);
 
     int row = mClickX/48;
     int col = mClickY/48;
@@ -313,6 +328,11 @@ void Game::SpartyRegurgitate(long keyPressed)
 }
 
 
+/**
+ * function to call pop up messages at different instances
+ *
+ * @param graphics
+ */
 void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
 {
     BackgroundVisitor visitor;
@@ -336,7 +356,6 @@ void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
     if (mSolutionIncorrect) {
         mPopUpMessage.OnIncorrect(graphics, mCurrentLevel, width, height);
     }
-
 }
 
 /**

@@ -52,13 +52,25 @@ public:
     /// Assignment operator
     void operator=(const ItemContainer &) = delete;
 
+    /// item container constructor
     ItemContainer(Game* game, std::wstring image1, std::wstring image2, DeclarationContainer *declaration);
 
+    /// draw function, overrides base class
     void Draw(std::shared_ptr<wxGraphicsContext> graphics) override;
+
+    /// function to add digits
     void AddDigits(std::shared_ptr<Item> digit);
+
+    /// function to eject digits
     void EjectDigits();
+
+    /// function to load xml container
     void ContainerXmlLoad(wxXmlNode *node);
+
+    /// function to check if digit exists
     bool DigitExist(double x, double y);
+
+    /// hit test function
     bool HitTest(int x, int y) override;
 };
 

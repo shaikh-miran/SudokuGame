@@ -15,6 +15,10 @@
  */
 XRay::XRay(Game *game, std::wstring filename) : Item(game, filename) {}
 
+/**
+ * display nums function for xray
+ * @param digit
+ */
 void XRay::DisplayNums(ItemDigit * digit)
 {
     const double MaxX = GetWidth() - GetGame()->GetTileWidth();
@@ -32,6 +36,10 @@ void XRay::DisplayNums(ItemDigit * digit)
     digit->SetLocation(x, y);
 }
 
+/**
+ * add items to xray
+ * @param item
+ */
 void XRay::AddItem(ItemDigit* item)
 {
     if (mXrayDigits.size() <= mCapacity) {
@@ -40,6 +48,10 @@ void XRay::AddItem(ItemDigit* item)
     }
 }
 
+/**
+ * check if xray is full
+ * @return bool
+ */
 bool XRay::GetXrayFull()
 {
     if (mXrayDigits.size() == mCapacity) {
@@ -91,6 +103,12 @@ void XRay::RegurgitateItemDigit(int keyPressed)
 }
 
 
+/**
+ * check if item exists
+ * @param x
+ * @param y
+ * @return bool
+ */
 bool XRay::DigitExist(double x, double y)
 {
     for (const auto& item : mXrayDigits) {

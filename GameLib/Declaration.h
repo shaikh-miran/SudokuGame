@@ -13,10 +13,12 @@
 //#include "ItemContainer.h"
 //#include "ParseXML.h"
 #include "Item.h"
+
 /// Forward declaration of game class
 class Game;
 class ItemContainer;
 class ParseXML;
+
 /**
  * Class Declaration - Stores relevant data from declaration nodes in the level XML file. Declaration objects are used
  * in conjunction with the ParseXML class to handle the creation of items displayed in the game window.
@@ -36,6 +38,7 @@ private:
     /// Item height
     double mHeight;
 
+    /// item instance
     std::shared_ptr<Item> item;
 
     /// class ParseXML call.

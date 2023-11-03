@@ -24,12 +24,18 @@ const int ScoreboardY = 20;
 /// The font color to use
 const wxColour FontColor = wxColour(255, 255, 255);
 
-
+/**
+ * scoreboard constructor
+ */
 Scoreboard::Scoreboard()
 {
     mTimer.Bind(wxEVT_TIMER, &Scoreboard::UpdateTime, this);
 }
 
+/**
+ * update time function
+ * @param event
+ */
 void Scoreboard::UpdateTime(wxTimerEvent& event)
 {
     if (mSeconds == 60)
@@ -40,16 +46,26 @@ void Scoreboard::UpdateTime(wxTimerEvent& event)
     ++mSeconds;
 }
 
+/**
+ * start timer
+ *
+ */
 void Scoreboard::StartTimer()
 {
     mTimer.Start(1000);
 }
 
+/**
+ * stop timer function
+ */
 void Scoreboard::StopTimer()
 {
     mTimer.Stop();
 }
 
+/**
+ * reset timer function
+ */
 void Scoreboard::ResetTimer()
 {
     mMinutes = 0;

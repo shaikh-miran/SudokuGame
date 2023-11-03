@@ -10,6 +10,9 @@
 #ifndef PROJECT1_GAMELIB_SPARTY_H
 #define PROJECT1_GAMELIB_SPARTY_H
 
+/**
+ * sparty class, derived from Item
+ */
 class Sparty: public Item
 {
 private:
@@ -39,22 +42,30 @@ private:
 
     /// Mouth Attributes
     wxPoint mMouthPivot;
+
+    /// mouth angle member variable
     double mMouthAngle;
 
     /// Head Attributes
     wxPoint mHeadPivot;
+
+    /// head angle member variable
     double mHeadAngle;
 
+    /// target point
     wxPoint mTargetPivot;
 
+    /// time headbutt member variable
     double mTimeHeadbutt = 0;
 
 
-
+    /// time eating member variable
     double mTimeEating = 0;
 
+    /// can move bool
     bool mCanMove = false;
 
+    /// is level 3 bool variable
     bool mIsLevel3 = false;
 
 public:
@@ -63,8 +74,10 @@ public:
     //headbutting
     void BKeyPressed(wxKeyEvent& event);
 
+    /// function to headbutt
     void Headbutt();
 
+    /// function to set mTimeEating
     void Yum();
 
     /// Default constructor (disabled)
@@ -79,14 +92,25 @@ public:
     /// Constructor
     Sparty(Game *game, std::wstring image1, std::wstring image2);
 
+    /// function to update sparty
     void Update(double elapsed) override;
 
+    /// function to draw sparty
     void Draw( std::shared_ptr<wxGraphicsContext> graphics) override;
 
+    /// hit test function
     bool HitTest(int x, int y) override;
 
+    /**
+     * mCanMove setter
+     * @param value
+     */
     void SetCanMove(bool value) { mCanMove = value; }
 
+    /**
+     * accept function for visitor
+     * @param visitor
+     */
     void Accept(Visitor *visitor) override{
         visitor->SpartyVisit(this);
     }
@@ -101,10 +125,37 @@ public:
     /// Set whether this sparty is level 3
     void IsLevel3(bool input) { mIsLevel3 = input; }
 
+    /**
+     * mHeadPivot setter
+     * @param x
+     * @param y
+     */
     void SetHeadPivot(double x, double y) { mHeadPivot = wxPoint(x, y); }
+
+    /**
+     * mHeadAngle setter
+     * @param angle
+     */
     void SetHeadAngle(double angle) { mHeadAngle = angle; }
+
+    /**
+     * mMouthPivot setter
+     * @param x
+     * @param y
+     */
     void SetMouthPivot(double x, double y) { mMouthPivot = wxPoint(x, y); }
+
+    /**
+     * mMouthAngle setter
+     * @param angle
+     */
     void SetMouthAngle(double angle) { mMouthAngle = angle; }
+
+    /**
+     * mTargetPivot setter
+     * @param x
+     * @param y
+     */
     void SetTargetPivot(double x, double y) { mTargetPivot = wxPoint(x, y); }
 };
 
