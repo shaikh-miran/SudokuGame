@@ -16,9 +16,6 @@
 class Sparty: public Item
 {
 private:
-    //headbutting
-    static const double HeadbuttTime;
-
     /// The underlying Sparty image
     std::unique_ptr<wxImage> mSpartyImage;
 
@@ -69,17 +66,6 @@ private:
     bool mIsLevel3 = false;
 
 public:
-    //headbutting
-    void StartHeadbutt();
-    //headbutting
-    void BKeyPressed(wxKeyEvent& event);
-
-    /// function to headbutt
-    void Headbutt();
-
-    /// function to set mTimeEating
-    void Yum();
-
     /// Default constructor (disabled)
     Sparty() = delete;
 
@@ -92,13 +78,24 @@ public:
     /// Constructor
     Sparty(Game *game, std::wstring image1, std::wstring image2);
 
-    /// function to update sparty
+    /**
+     * Update Sparty
+     * @param elapsed double
+     */
     void Update(double elapsed) override;
 
-    /// function to draw sparty
+    /**
+     * Draw for Sparty
+     * @param graphics wxGraphicsContext
+     */
     void Draw( std::shared_ptr<wxGraphicsContext> graphics) override;
 
-    /// hit test function
+    /**
+     * Hittest for Sparty
+     * @param x coordinate
+     * @param y coordinate
+     * @return false
+     */
     bool HitTest(int x, int y) override;
 
     /**
@@ -115,14 +112,22 @@ public:
         visitor->SpartyVisit(this);
     }
 
-    /// Update Sparty's darkness level (Level 3 sparty)
+    /**
+     * Update Sparty's darkness level in level 3
+     * @param image3 WxString
+     */
     void UpdateDarknessLevel(std::wstring image3);
 
-    /// Returns true if sparty is performing a headbutt or eating action (prevent crash if event + image change occurs
-    /// concurrently)
+    /**
+     * True if sparty is performing a headbutt or eating action
+     * @return boolean
+     */
     bool InAction() { return (mTimeHeadbutt != 0 || mTimeEating != 0); }
 
-    /// Set whether this sparty is level 3
+   /**
+    * Setter for mIsLevel3
+    * @param input boolean
+    */
     void IsLevel3(bool input) { mIsLevel3 = input; }
 
     /**
@@ -157,6 +162,22 @@ public:
      * @param y
      */
     void SetTargetPivot(double x, double y) { mTargetPivot = wxPoint(x, y); }
+
+    /**
+     * Headbutt when 'B' pressed
+     * @param event  wxKeyEvent
+     */
+    void BKeyPressed(wxKeyEvent& event);
+
+    /**
+     * Function for Sparty Headbutt
+     */
+    void Headbutt();
+
+    /**
+     * Function to set mTimeEating
+     */
+    void Yum();
 };
 
 

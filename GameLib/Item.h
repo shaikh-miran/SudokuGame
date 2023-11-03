@@ -41,7 +41,7 @@ private:
     std::unique_ptr<Item> mItems;
 
     /// value instance
-    int mValue = -1;
+    int mValue;
 
 protected:
     /// Item Constructor

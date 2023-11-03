@@ -74,6 +74,7 @@ std::shared_ptr<Item> DeclarationDigit::CreateContainer(wxXmlNode *node, Game *g
     item->SetWidth(width);
     item->SetHeight(height);
     item->SetLocation(col * game->GetTileWidth(), (row) * game->GetTileHeight());
+    item->SetValue(mValue);
     item->SetEatable(true);
 
     return item;

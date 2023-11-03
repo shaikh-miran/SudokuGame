@@ -100,6 +100,16 @@ private:
 
     /// Status Starting
     bool mStartState = true;
+
+    /// bool for if sparty full message displayed
+    bool mFullMessage = false;
+
+    /// bool for if something is already there message displayed
+    bool mWrongLocationMessage = false;
+
+    /// double duration for full message
+    double mDurationFullMessage = 0;
+
     /// Status Ending
     bool mEndState = false;
     /// Current Level
@@ -107,6 +117,8 @@ private:
 
     /// is sparty full
     bool mSpartyFull = false;
+    /// is a given exist in the location.
+    bool mGivenExists = false;
 
     int mSolutionCorrect = false;
     int mSolutionIncorrect = false;
@@ -114,8 +126,17 @@ private:
     /// Stopwatch for pop up message
     wxStopWatch mStopWatchPopUp;
 
+    /// stopwatch for pop up sparty is full message
+    wxStopWatch mStopWatchSpartyFull;
+
+    /// stopwatch for pop up somethign is there.
+    wxStopWatch mStopWatchWrongLocation;
+
     /// pop up message
     PopUp mPopUpMessage;
+
+    /// full timer stopwatch
+    wxStopWatch mFullTimer;
 
     /// solution instance
     Solution * mSolution = new Solution();

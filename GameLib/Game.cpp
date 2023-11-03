@@ -77,7 +77,12 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
         CallPopUpDraw(graphics);
     }
 
-    if (mSpartyFull)
+    if (mFullMessage)
+    {
+        CallPopUpDraw(graphics);
+    }
+
+    if (mWrongLocationMessage)
     {
         CallPopUpDraw(graphics);
     }
@@ -198,6 +203,20 @@ void Game::Update(double elapsed)
         mStartState = false;
         mDuration = 0;
     }
+
+    if (mFullMessage == true && mStopWatchSpartyFull.Time() > 3000)
+    {
+        mFullMessage = false;
+        mDurationFullMessage = 0;
+
+    }
+
+    if (mWrongLocationMessage == true && mStopWatchWrongLocation.Time() > 3000)
+    {
+        mWrongLocationMessage = false;
+        mDurationFullMessage = 0;
+
+    }
     /// If Level 3, handle the timed sparty darkness image changes
     /// Only change image when sparty is not performing headbutt or eat (will crash)
     if (mCurrentLevel == 3 && !GetSparty()->InAction())
@@ -286,6 +305,10 @@ void Game::SpartyYum(){
     else
     {
         mSpartyFull = true;
+        mStopWatchSpartyFull.Start();
+        mFullMessage = true;
+
+
     }
 }
 
@@ -320,7 +343,15 @@ void Game::SpartyRegurgitate(long keyPressed)
             {
                 mSparty->Yum(); // Call Yum if keyPressed was found
                 xray->RegurgitateItemDigit(keyPressed);
+                mGivenExists = false;
             }
+            else
+            {
+                mGivenExists = true;
+                mStopWatchWrongLocation.Start();
+                mWrongLocationMessage = true;
+            }
+
         }
     }
 
@@ -355,6 +386,10 @@ void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
 
     if (mSolutionIncorrect) {
         mPopUpMessage.OnIncorrect(graphics, mCurrentLevel, width, height);
+    }
+    if (mGivenExists)
+    {
+        mPopUpMessage.OnExists(graphics,mCurrentLevel,width,height);
     }
 }
 

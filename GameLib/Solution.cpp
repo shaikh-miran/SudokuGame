@@ -57,6 +57,8 @@ bool Solution::CheckSolution(Game *game)
     while (i < mRow + 9) {
         while (j < mCol + 9) {
             auto grabbedItem = game->HitTest(j*game->GetTileWidth(), i*game->GetTileHeight());
+            int value = grabbedItem->GetValue();
+            int ind = mSolution[index];
             if (grabbedItem == nullptr) {
                 return false;
             } else if (grabbedItem->GetValue() != mSolution[index]) {

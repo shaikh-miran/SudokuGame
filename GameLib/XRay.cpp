@@ -12,6 +12,7 @@
 /**
  * Constructor
  * @param game game this xray is a member of
+ * @param filename filename of the xray image
  */
 XRay::XRay(Game *game, std::wstring filename) : Item(game, filename) {}
 
@@ -65,7 +66,6 @@ bool XRay::GetXrayFull()
 /**
  * Allows regurgitate to happen. Removes the item specified by the input from xray.
  * @param keyPressed
- * @return
  */
 void XRay::RegurgitateItemDigit(int keyPressed)
 {

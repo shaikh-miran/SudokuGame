@@ -16,9 +16,6 @@ const double TotalTimeEating = 0.5;
 
 const double TotalTimeHeadbutt = 0.5;
 
-//headbutting
-const double Sparty::HeadbuttTime = 0.5;
-
 /**
  * Constructor
  * @param game The game the sparty item will be part of
@@ -36,10 +33,6 @@ Sparty::Sparty(Game *game, std::wstring image1, std::wstring image2) : Item(game
     mSpartyMouthBitmap = std::make_unique<wxBitmap>(*mSpartyMouthImage);
 }
 
-/**
- * sparty draw function
- * @param graphics
- */
 void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
 {
     double wid = mSpartyImage->GetWidth();
@@ -100,44 +93,11 @@ void Sparty::Draw(std::shared_ptr<wxGraphicsContext> graphics)
     graphics->PopState();
 }
 
-/**
- * Test to see if we hit this object with a mouse.
- * @param x X position to test
- * @param y Y position to test
- * @return true if hit.
- */
 bool Sparty::HitTest(int x, int y)
 {
     return false;
-//    double wid = mSpartyBitmap->GetWidth();
-//    double hit = mSpartyBitmap->GetHeight();
-//
-//    // Make x and y relative to the top-left corner of the bitmap image
-//    // Subtracting the center makes x, y relative to the image center
-//    // Adding half the size makes x, y relative to theimage top corner
-//    double testX = x - GetX() + wid / 2;
-//    double testY = y - GetY() + hit / 2;
-//
-//    // Test to see if x, y are in the image
-//    if (testX < 0 || testY < 0 || testX >= wid || testY >= hit)
-//    {
-//        // We are outside the image
-//        return false;
-//    }
-//
-//    // Test to see if x, y are in the drawn part of the image
-//    // If the location is transparent, we are not in the drawn
-//    // part of the image
-//    return !mSpartyImage->IsTransparent((int)testX, (int)testY);
 }
 
-/**
-Handle updates in time of sparty*
-This is called before we draw and allows us to
-move sparty. We add our speed times the amount
-of time that has elapsed.
-@param elapsed Time elapsed since the class call
-*/
 void Sparty::Update(double elapsed)
 {
     Game *game = GetGame();
@@ -232,34 +192,14 @@ void Sparty::Update(double elapsed)
     }
 }
 
-/**
- * sparty headbutt function
- */
-void Sparty::StartHeadbutt()
-{
-//    mIsHeadbutting = true;
-//    mHeadbuttDuration = 0.0;
-}
-
-
-/**
- * function to set mTimeEating member variable
- */
 void Sparty::Yum(){
     mTimeEating = TotalTimeEating;
 }
 
-/**
- * funciton to set mTimeHeadbutt member variable
- */
 void Sparty::Headbutt(){
     mTimeHeadbutt = TotalTimeHeadbutt;
 }
 
- /**
-  * Update Sparty's image post-initialization. Updates the current image/bitmaps with the input. (Level 3)
-  * @param image3 new image filename
-  */
 void Sparty::UpdateDarknessLevel(std::wstring image3)
 {
     /// If the image has not been updated to the new image yet...
