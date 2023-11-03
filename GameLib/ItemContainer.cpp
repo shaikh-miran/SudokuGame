@@ -106,7 +106,6 @@ void ItemContainer::EjectDigits() {
         this->GetGame()->AddItem(std::move(item));
     }
 
-    /// I think move copies for some reason :( to prevent multiples of the same object, delete !
     mDigitList.clear();
 }
 

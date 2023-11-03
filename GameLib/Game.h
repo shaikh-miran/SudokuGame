@@ -33,7 +33,9 @@ class Item;
 /// Forward declaration of class ParseXML
 class ParseXML;
 
+/// Forward declaration of class Item Contianer.
 class ItemContainer;
+
 /**
  * Class Game - Holds the game board data, keeps track of time via Scoreboard, and handles game loading, game/UI
  * interaction.
@@ -47,7 +49,6 @@ private:
     /// Vector to store all of the items to be drawn and interacted with in the game
     std::vector<std::shared_ptr<Item>> mItems;
 
-
     /// member variable for click x
     double mClickY = -1;
 
@@ -60,7 +61,6 @@ private:
     /// member variable for height
     double mHeight;
 
-
     /// Tile width
     double mTileHeight;
 
@@ -69,6 +69,7 @@ private:
 
     ///Y and X offset doubles
     double mXOffset;
+
     ///Y and X offset doubles
     double mYOffset;
 
@@ -90,9 +91,6 @@ private:
     /// game timer variable
     wxTimer mGameTimer;
 
-    /// bool that is true when intro screen visible
-    bool mIntroScreenVisible = true;
-
     /// random seed
     std::mt19937 mRandom;
 
@@ -108,23 +106,30 @@ private:
     /// bool for if something is already there message displayed
     bool mWrongLocationMessage = false;
 
+    bool mLevelComplete = false;
+
     /// double duration for full message
     double mDurationFullMessage = 0;
 
-    /// double duration for full message
+    /// double duration for wrong Location
     double mDurationWrongLocation = 0;
 
     /// Status Ending
     bool mEndState = false;
+
     /// Current Level
     long mCurrentLevel = 1;
 
     /// is sparty full
     bool mSpartyFull = false;
+
     /// is a given exist in the location.
     bool mGivenExists = false;
 
+    /// is the solution correct
     int mSolutionCorrect = false;
+
+    /// is the solution incorrect
     int mSolutionIncorrect = false;
 
     /// Stopwatch for pop up message
@@ -136,9 +141,11 @@ private:
     /// stopwatch for pop up somethign is there.
     wxStopWatch mStopWatchWrongLocation;
 
+    /// stopwatch for pop up somethign is there.
+    wxStopWatch mStopLevelComplete;
+
     /// pop up message
     PopUp mPopUpMessage;
-
 
     /// full timer stopwatch
     wxStopWatch mFullTimer;
@@ -153,6 +160,7 @@ private:
     std::vector<std::tuple<int, int>> mLocationTuples = {};
 
 public:
+    /// Accepts the visitors information.
     void Accept(Visitor * visitor);
 
     /// function that makes sparty eat digits
@@ -161,13 +169,11 @@ public:
     /// function that regurgitates a number from xray to a location
     void SpartyRegurgitate(long keyPressed);
 
-
     /// function that makes sparty headbutt
     void SpartyHeadButt();
 
     /// function that calls pop up draws on different occasions
     void CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics);
-
 
     /// Constructor
     Game();
@@ -331,7 +337,10 @@ public:
      */
     Solution * GetSolution() { return mSolution; };
 
-    /// getter for mStartState
+    /**
+     * Getter for the start time.
+     * @return
+     */
     bool GetStartState(){return mStartState;}
 
 
@@ -344,10 +353,28 @@ public:
     /// checks if given exists
     bool GivenExist(int x, int y);
 
+    /**
+     * getter for the full grid.
+     * @return
+     */
     bool GetGridFull() { return mSolution->GridFull(this); }
+
+    /**
+     * getter for the solution check.
+     * @return
+     */
     bool GetCheckSolution() { return mSolution->CheckSolution(this); }
 
+    /**
+     * Setter for the correct solution.
+     * @param setCorrect
+     */
     void SetSolutionCorrect(bool setCorrect) { mSolutionCorrect = setCorrect; }
+
+    /**
+     * Setter for the incorrect solution.
+     * @param setCorrect
+     */
     void SetSolutionIncorrect(bool setIncorrect) { mSolutionIncorrect = setIncorrect; }
 };
 

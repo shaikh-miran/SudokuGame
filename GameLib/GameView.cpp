@@ -14,6 +14,7 @@
 
 using namespace std;
 
+/// Constant frame duration set.
 const int FrameDuration = 30;
 
 /**

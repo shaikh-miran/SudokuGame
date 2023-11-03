@@ -62,7 +62,6 @@ public:
      * @return bool mIsEatable
      */
     bool GetEatable() { return mIsEatable; }
-    //bool HitTest(int x, int y) override { return true; };
 
     /**
      * Toggle mIsPlaced when the Digit is in the sudoku grid (true if placed in grid)
@@ -70,8 +69,6 @@ public:
      */
     void SetPlaced(bool value) { mIsPlaced = value; }
 
-    /// Getter that indicates whether or not a Digit is placed in the grid (True if yes)
-    bool GetPlaced() const { return mIsPlaced; }
 
 };
 
