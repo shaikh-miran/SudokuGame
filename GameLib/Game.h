@@ -111,6 +111,9 @@ private:
     /// double duration for full message
     double mDurationFullMessage = 0;
 
+    /// double duration for full message
+    double mDurationWrongLocation = 0;
+
     /// Status Ending
     bool mEndState = false;
     /// Current Level
@@ -330,6 +333,7 @@ public:
 
     /// getter for mStartState
     bool GetStartState(){return mStartState;}
+
 
     /// function that generates tuple locations
     void generateLocationTuples(int level);
