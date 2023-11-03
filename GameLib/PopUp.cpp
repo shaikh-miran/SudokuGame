@@ -181,10 +181,10 @@ void PopUp::OnSpartyFull(std::shared_ptr<wxGraphicsContext> graphics, int level,
 void PopUp::OnExists(std::shared_ptr<wxGraphicsContext> graphics, int level, int width, int height)
 {
     /// rectangle height
-    const int rectangleHeight = 60;
+    const int rectangleHeight = 40;
 
     /// rectangle Width
-    const int rectangleWidth = 690;
+    const int rectangleWidth = 500;
 
     wxPen pen(wxColour(0, 0, 0), 3);
     graphics->SetPen(pen);
@@ -200,7 +200,7 @@ void PopUp::OnExists(std::shared_ptr<wxGraphicsContext> graphics, int level, int
     graphics->DrawRectangle(width/2 - rectangleWidth/2, height/2 - rectangleHeight/2, rectangleWidth, rectangleHeight);
 
 
-    wxFont fontTitle(wxSize(0, 45),
+    wxFont fontTitle(wxSize(0, 20),
                      wxFONTFAMILY_SWISS,
                      wxFONTSTYLE_NORMAL,
                      wxFONTWEIGHT_BOLD);
