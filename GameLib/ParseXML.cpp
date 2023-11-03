@@ -18,6 +18,7 @@
 #include "Game.h"
 
 using namespace std;
+
 /**
  * Constructor.
  * @param game
