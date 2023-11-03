@@ -1,8 +1,6 @@
 /**
  * @file ItemGiven.h
- * @author Navya Singh
- *
- *
+ * @author Team Prometheus
  */
 
 #ifndef PROJECT1_GAMELIB_ITEMGIVEN_H
@@ -17,8 +15,6 @@
  */
 class ItemGiven : public Item
 {
-private:
-
 public:
     /// Default constructor (disabled)
     ItemGiven() = delete;
@@ -29,7 +25,7 @@ public:
 
     /**
      * accept function for visitors
-     * @param visitor
+     * @param visitor visitor object
      */
     void Accept(Visitor *visitor) override{
         visitor->GivenVisit(this);
@@ -37,8 +33,6 @@ public:
 
     /// constructor
     ItemGiven(Game* game, std::wstring filename);
-
-    //bool HitTest(int x, int y) override { return true; };
 };
 
 #endif //PROJECT1_GAMELIB_ITEMGIVEN_H

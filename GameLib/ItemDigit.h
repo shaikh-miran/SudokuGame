@@ -31,7 +31,7 @@ public:
 
     /**
      * accept function for visitors
-     * @param visitor
+     * @param visitor Visitor object
      */
     void Accept(Visitor * visitor) override {
         visitor->VisitDigit(this);
@@ -48,12 +48,15 @@ public:
     /// Constructor
     ItemDigit(Game* game, std::wstring filename);
 
-    /// getter for mValue
+    /**
+     * getter for mValue
+     * @return value of the ItemDigit
+     */
     int GetValue() {return mValue;}
 
     /**
      * setter for is eatable member variable
-     * @param isEatable
+     * @param isEatable bool, true if eatable
      */
     void SetEatable(bool isEatable) { mIsEatable = isEatable; }
 
@@ -69,6 +72,11 @@ public:
      */
     void SetPlaced(bool value) { mIsPlaced = value; }
 
+    /**
+     * Getter that indicates whether or not a Digit is placed in the grid
+     * @return bool true if Digit is placed
+     */
+    bool GetPlaced() const { return mIsPlaced; }
 
 };
 
