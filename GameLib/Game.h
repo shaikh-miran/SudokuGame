@@ -22,7 +22,6 @@
 #include "Visitor.h"
 #include "XRayVisitor.h"
 #include "PopUp.h"
-#include "Alert.h"
 #include "Solution.h"
 #include "Background.h"
 #include "BackgroundVisitor.h"
@@ -117,15 +116,6 @@ private:
 
     /// pop up message
     PopUp mPopUpMessage;
-
-    /// bool that is true when full message displayed
-    bool mFullMessage;
-
-    /// full timer stopwatch
-    wxStopWatch mFullTimer;
-
-    /// alert instance
-    Alert mAlert;
 
     /// solution instance
     Solution * mSolution = new Solution();
@@ -287,24 +277,6 @@ public:
      * getter for full message
      * @return
      */
-    bool GetFullMessage() { return mFullMessage; }
-
-    /**
-     * setter for full message
-     * @param fullMessage
-     */
-    void SetFullMessage(bool fullMessage) { mFullMessage = fullMessage; }
-
-    /**
-     * getter for full timer
-     * @return
-     */
-    wxStopWatch GetFullTimer() { return mFullTimer; }
-
-    /**
-     * stops full timer
-     */
-    void StopFullTimer() { mFullTimer.Pause(); }
 
     /**
      * getter for solution

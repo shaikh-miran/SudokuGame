@@ -10,7 +10,6 @@
 #include "Game.h"
 #include <wx/event.h>
 #include "Scoreboard.h"
-#include "Alert.h"
 
 /**
  * GameView class - Handles user input, does the back end of displaying items and window. Also handles menu bar options.
@@ -27,7 +26,7 @@ private:
     wxStopWatch mStopwatch;
 
     /// Start time (default 0)
-    long mTime = 0;
+    long mStartTime = 0;
 
     /// The timer that allows for animation
     wxTimer mTimer;

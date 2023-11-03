@@ -60,8 +60,6 @@ set(SOURCE_FILES
         PopUp.h
         ContainerVisitor.cpp
         ContainerVisitor.h
-        Alert.cpp
-        Alert.h
         Solution.cpp
         Solution.h
         DigitVisitor.cpp

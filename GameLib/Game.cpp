@@ -13,7 +13,7 @@ using namespace std;
 /**
  * Game Constructor - Creates an instance of the game, and automatically loads the default level
  */
-Game::Game() : mAlert(this)
+Game::Game()
 {
     /// Load level 1; this is the default level to load
     Load(L"levels/level1.xml");
