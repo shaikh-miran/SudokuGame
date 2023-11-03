@@ -13,8 +13,12 @@
 #include "DeclarationGiven.h"
 #include "Solution.h"
 
+/// Forward declaration of class Game
 class Game;
+
+/// Forward declaration of class Declaration
 class Declaration;
+
 /**
  * Class that handles the XML loading aspect of the program.
  */
@@ -49,7 +53,7 @@ private:
     std::vector<int> mSolutionVector;
 
     /// solution instance
-    Solution * mSolution = new Solution();;
+    Solution * mSolution = new Solution();
 
 public:
     /// Default constructor (disabled)
