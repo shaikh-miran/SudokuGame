@@ -101,6 +101,13 @@ private:
 
     /// Status Starting
     bool mStartState = true;
+
+    /// bool for if sparty full message displayed
+    bool mFullMessage = false;
+
+    /// double duration for full message
+    double mDurationFullMessage = 0;
+
     /// Status Ending
     bool mEndState = false;
     /// Current Level
@@ -112,11 +119,13 @@ private:
     /// Stopwatch for pop up message
     wxStopWatch mStopWatchPopUp;
 
+    /// stopwatch for pop up sparty is full message
+    wxStopWatch mStopWatchSpartyFull;
+
     /// pop up message
     PopUp mPopUpMessage;
 
-    /// bool that is true when full message displayed
-    bool mFullMessage;
+
 
     /// full timer stopwatch
     wxStopWatch mFullTimer;

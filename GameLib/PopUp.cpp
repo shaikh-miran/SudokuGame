@@ -140,7 +140,7 @@ void PopUp::OnSpartyFull(std::shared_ptr<wxGraphicsContext> graphics, int level,
     const int rectangleHeight = 60;
 
     /// rectangle Width
-    const int rectangleWidth = 170;
+    const int rectangleWidth = 190;
 
     wxPen pen(wxColour(0, 0, 0), 3);
     graphics->SetPen(pen);

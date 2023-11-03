@@ -85,10 +85,11 @@ void Game::OnDraw(std::shared_ptr<wxGraphicsContext> graphics, int width, int he
 
     // Write out PopUp message for 3 seconds
     mStopWatchPopUp.Start();
+//    mStopWatchSpartyFull.Start();
     if (mStartState){
         CallPopUpDraw(graphics);
     }
-    if (mSpartyFull)
+    if (mFullMessage)
     {
         CallPopUpDraw(graphics);
     }
@@ -189,6 +190,7 @@ void Game::Update(double elapsed)
     }
 
     mDuration += elapsed;
+    mDurationFullMessage;
 
     if(mDuration >= 3 && mStartState == true)
     {
@@ -199,6 +201,18 @@ void Game::Update(double elapsed)
         mStartState = false;
         mDuration = 0;
     }
+
+
+
+    if (mStopWatchSpartyFull.Time() >= 3000 && mFullMessage == true)
+    {
+        mFullMessage = false;
+        mDurationFullMessage = 0;
+
+    }
+
+
+
     /// If Level 3, handle the timed sparty darkness image changes
     /// Only change image when sparty is not performing headbutt or eat (will crash)
     if (mCurrentLevel == 3 && !GetSparty()->InAction())
@@ -226,6 +240,7 @@ void Game::Update(double elapsed)
     }
 }
 
+
 /**
  * Clear the game data - deletes all known items in the game.
  */
@@ -233,6 +248,7 @@ void Game::Clear()
 {
     mItems.clear();
 }
+
 
 /**
  * Add the Item from item parameter into the Game object's mItems list
@@ -289,6 +305,8 @@ void Game::SpartyYum(){
     else
     {
         mSpartyFull = true;
+        mFullMessage = true;
+        mStopWatchSpartyFull.Start();
     }
 }
 
