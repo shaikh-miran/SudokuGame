@@ -9,10 +9,6 @@
 #include "DigitVisitor.h"
 #include "ItemDigit.h"
 
-/**
- * Displays the solution of curr level on the board
- * @param game
- */
 void Solution::SolveGame(Game* game) {
     int i = mRow;
     int j = mCol;
@@ -42,12 +38,6 @@ void Solution::SolveGame(Game* game) {
     }
 }
 
-
-/**
- * checks if current solution is correct
- * @param game
- * @return
- */
 bool Solution::CheckSolution(Game *game)
 {
     int i = mRow;

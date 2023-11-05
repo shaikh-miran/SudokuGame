@@ -37,7 +37,10 @@ private:
     DeclarationContainer *mDeclaration;
 
 public:
-    ///// needed for sparty mouth
+    /**
+     * Accept visitor
+     * @param visitor object
+     */
     void Accept(Visitor * visitor) override
     {
         visitor->ContainerVisit(this);

@@ -374,7 +374,7 @@ void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
         mPopUpMessage.OnDraw(graphics, mCurrentLevel, width, height);
         mGivenExists = false;
         mSolutionCorrect = false;
-
+        mSolutionIncorrect = false;
     }
 
     if (mSpartyFull) {
@@ -396,15 +396,12 @@ void Game::CallPopUpDraw(std::shared_ptr<wxGraphicsContext> graphics)
         mPopUpMessage.OnLevelCompletion(graphics, mCurrentLevel, width, height);
         mGivenExists = false;
         mSolutionIncorrect = false;
-
     }
 
     if (mSolutionIncorrect) {
         mPopUpMessage.OnIncorrect(graphics, mCurrentLevel, width, height);
         mGivenExists = false;
         mSolutionCorrect = false;
-
-
     }
 }
 

@@ -23,6 +23,7 @@ DeclarationBackground::DeclarationBackground(wxXmlNode *node) : Declaration(node
  * that are unique to the "background" item nodes.
  * @param node the "item" node to associate the declaration node with.
  * @param game the Game object that the Item object will reside in.
+ * @return item
  */
 std::shared_ptr<Item> DeclarationBackground::Create(wxXmlNode *node, Game *game)
 {

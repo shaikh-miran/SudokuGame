@@ -17,8 +17,12 @@ using namespace std;
 const int FrameDuration = 30;
 
 /**
- * GameView object initializer.
+ *
  */
+ /**
+  * GameView object initializer
+  * @param parent wxFrame
+  */
 void GameView::Initialize(wxFrame* parent)
 {
     Create(parent, wxID_ANY,

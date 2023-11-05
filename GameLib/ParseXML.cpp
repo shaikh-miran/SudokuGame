@@ -30,7 +30,7 @@ ParseXML::ParseXML(Game * game) : mGame(game)
 
 /**
  * Loads entries under the <declarations> node in the XML document.
- * @param declaration the parent node of all declaration entries
+ * @param node the parent node of all declaration entries
  */
 void ParseXML::LoadDeclarations(wxXmlNode * node)
 {
@@ -87,7 +87,7 @@ void ParseXML::LoadDeclarations(wxXmlNode * node)
 
 /**
  * Loads game solution from <game> child from the XML document.
- * @param game game node, containing the correct board layout.
+ * @param node game node, containing the correct board layout.
  */
 void ParseXML::LoadGame(wxXmlNode * node)
 {
@@ -128,7 +128,7 @@ std::shared_ptr<Declaration> ParseXML::FindDeclaration(std::wstring id)
 
 /**
  * Loads entries under the <items> child in the XML document.
- * @param items the parent node of all item entries
+ * @param node the parent node of all item entries
  */
 void ParseXML::LoadItems(wxXmlNode * node)
 {

@@ -43,7 +43,12 @@ public:
     /// declaration container constructor
     DeclarationContainer(wxXmlNode* node);
 
-    /// create function
+    /**
+     * Container Create
+     * @param node wxXmlNode
+     * @param game Game
+     * @return item
+     */
     std::shared_ptr<Item> Create(wxXmlNode* node, Game* game) override;
 };
 

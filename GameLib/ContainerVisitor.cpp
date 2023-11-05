@@ -6,10 +6,6 @@
 #include "pch.h"
 #include "ContainerVisitor.h"
 
-/**
- * function to visit container
- * @param container
- */
 void ContainerVisitor::ContainerVisit(ItemContainer* container)
 {
     double containerX = container->GetX();

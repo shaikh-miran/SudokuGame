@@ -17,31 +17,46 @@ class Game;
 class Solution
 {
 private:
-    ///row of starting cell
+    /// Starting cell row
     int mRow;
-    ///col of starting cell
+    /// Starting cell col
     int mCol;
-    ///vector of solution from xml file
+    /// Vector for all digits in Solution
     std::vector<int> mSolution;
 
 public:
     /**
-     * sets vector of solution, loaded in from xml
-     * @param sol
+     * Sets vector of solution, loaded in from xml
+     * @param solution vector
      */
     void SetSolution(std::vector<int> solution) {mSolution = solution;}
+
     /**
      * Sets starting row and col for solution,
      * loaded in from xml
-     * @param col
-     * @param row
+     * @param col double
+     * @param row double
      */
     void SetSolRowCol(double col, double row) {mCol = col; mRow = row;}
-    /// function to solve game
+
+    /**
+     * Solve Game entirely
+     * @param game object
+     */
     void SolveGame(Game * game);
 
-    /// function to check if solution correct
+    /**
+     * Check game solution
+     * @param game object
+     * @return
+     */
     bool CheckSolution(Game * game);
+
+    /**
+     * Check if grid is full
+     * @param game object
+     * @return
+     */
     bool GridFull(Game *game);
 
 };

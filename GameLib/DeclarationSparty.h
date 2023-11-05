@@ -27,14 +27,29 @@ private:
     /// Darkness image
     std::wstring mImage3;
 
-    /// Head Attributes
-    double mHeadPivotAngle, mHeadPivotX, mHeadPivotY;
+    /// Head Angle
+    double mHeadPivotAngle;
 
-    /// Mouth Attributes
-    double mMouthPivotAngle, mMouthPivotX, mMouthPivotY;
+    /// Head Pivot x coordinate
+    double mHeadPivotX;
 
-    /// Target Pivot Attributes
-    double mTargetX, mTargetY;
+    /// Head Pivot y coordinate
+    double mHeadPivotY;
+
+    /// Mouth Angle
+    double mMouthPivotAngle;
+
+    /// Mouth Pivot x coordinate
+    double mMouthPivotX;
+
+    /// Mouth Pivot y coordinate
+    double mMouthPivotY;
+
+    /// Target Pivot x coordinate
+    double mTargetX;
+
+    /// Target Pivot y coordinate
+    double mTargetY;
 
     /// boolean member variable for is level 3
     bool mIsLevel3 = false;
@@ -52,7 +67,6 @@ public:
     /// Constructor
     DeclarationSparty(wxXmlNode* node);
 
-    /// Declaration::Create override; modified to accept "background" specific attributes
     std::shared_ptr<Item> Create(wxXmlNode* node, Game* game) override;
 
     /**
@@ -70,14 +84,9 @@ public:
 
     /**
      * getter for image 3 name
-     * @return
+     * @return string for of the image's filename
      */
     std::wstring GetImage3Name() { return mImage3; }
-
-    /// getter for mTargetX
-    double GetTargetX() { return mTargetX; }
-    /// getter for mTargetY
-    double GetTargetY() { return mTargetY; }
 };
 
 #endif //PROJECT1_GAMELIB_DECLARATIONSPARTY_H

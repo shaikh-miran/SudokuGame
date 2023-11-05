@@ -38,12 +38,6 @@ Item::~Item()
 {
 }
 
-/**
- * Test to see if we hit this object with a mouse.
- * @param x X position to test
- * @param y Y position to test
- * @return true if hit.
- */
 bool Item::HitTest(int x, int y)
 {
     double wid = mItemBitmap->GetWidth();

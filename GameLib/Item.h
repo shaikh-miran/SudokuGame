@@ -25,9 +25,9 @@ private:
     /// The Game object that the item is associated with
     Game *mGame;
 
-    // Item location in the Game window
     ///< X location for the center of the item
     double  mX = 0;
+
     ///< Y location for the center of the item
     double  mY = 0;
 

@@ -7,10 +7,6 @@
 #include "DigitVisitor.h"
 #include "ItemDigit.h"
 
-/**
- * if it visits a digit, its, eatable, set a pointer to it
- * @param number
- */
 void DigitVisitor::VisitDigit(ItemDigit * digit)
 {
 

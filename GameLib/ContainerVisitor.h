@@ -16,11 +16,16 @@
 class ContainerVisitor : public Visitor
 {
 private:
-    /// member variables sparty center x , sparty centre y,
-    double mSpartyCenterX, mSpartyCenterY;
+    /// member variable sparty center x
+    double mSpartyCenterX;
 
-    /// member variables mX, mY
-    double mX, mY;
+    /// member variables sparty center y
+    double mSpartyCenterY;
+
+    /// member variables mX
+    double mX;
+    /// member variables mY
+    double mY;
 
     /// item container instance
     ItemContainer* mContainer = nullptr;

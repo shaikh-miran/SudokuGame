@@ -31,7 +31,7 @@ private:
     /// The timer that allows for animation
     wxTimer mTimer;
 
-    //headbutting
+    ///headbutting
     std::unique_ptr<Sparty> spartyInstance;
 
 public:
@@ -71,7 +71,10 @@ public:
     /// Update the time of the scoreboard
     void UpdateScoreboard(wxTimerEvent& event);
 
-    /// function for intro screen timer
+    /**
+     * Introduction to Screen Timer
+     * @param event  wxTimerEvent
+     */
     void IntroScreenTimer(wxTimerEvent& event);
 
 

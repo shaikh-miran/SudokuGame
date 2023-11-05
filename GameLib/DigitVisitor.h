@@ -23,22 +23,37 @@ private:
     int mValue = -1;
 
 public:
-    /// digit visit function
+    /**
+     * Visitor for accept
+     * @param digit object
+     */
     void VisitDigit(ItemDigit * digit);
 
     /// function to set digit to uneatable
     void SetUneatable();
 
-    /// getter for mValue
+    /**
+     * Getter for value
+     * @return
+     */
     int GetValue() { return mValue; }
 
-    /// setter for mValue
+    /**
+     * Setter for value
+     * @param value  integer
+     */
     void SetValue(int value) { mValue = value; }
 
-    /// getter for digit
+    /**
+     * Getter for digit object
+     * @return digit
+     */
     ItemDigit * GetDigit() { return mDigit; }
 
-    /// setter for digit
+    /**
+     * Setter for digit object
+     * @param digit object
+     */
     void SetDigit(ItemDigit * digit) { mDigit = digit; }
 };
 

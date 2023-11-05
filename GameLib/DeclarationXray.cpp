@@ -24,6 +24,7 @@ DeclarationXray::DeclarationXray(wxXmlNode* node) : Declaration(node)
  * that are unique to the "xray" item nodes.
  * @param node the "item" node to associate the declaration node with.
  * @param game the Game object that the Item object will reside in.
+ * @return item
  */
 std::shared_ptr<Item> DeclarationXray::Create(wxXmlNode *node, Game *game)
 {
